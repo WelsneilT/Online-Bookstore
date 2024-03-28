@@ -7,7 +7,7 @@ books_df = pd.read_csv("Book dataset/Book_data.csv")
 genres_count = {}
 
 # Lặp qua từng dòng trong cột 'genres' và đếm số lượng sách cho mỗi thể loại
-for genres in books_df['genres']:
+for genres in books_df['genres']: #s
     # Loại bỏ dấu ngoặc kép và dấu ngoặc vuông từ chuỗi
     genres = genres.replace("[", "").replace("]", "").replace("'", "")
     # Tách các thể loại bằng dấu phẩy

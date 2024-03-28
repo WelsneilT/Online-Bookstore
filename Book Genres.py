@@ -19,5 +19,5 @@ all_genres_list = sorted(list(all_genres))
 # Tạo DataFrame mới từ list các thể loại
 genres_df = pd.DataFrame(all_genres_list, columns=['Genre'])
 
-# Ghi DataFrame vào tệp CSV
+# Ghi DataFrame vào tệp CSV 3333
 genres_df.to_csv("./Book dataset/Genres_data.csv", index=False)
