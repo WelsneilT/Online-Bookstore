@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Book Store - For Admin</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body onload="onPageLoading()">
+<div class="container jumbotron py-4">
+    <h1 class="text-center mb-5">Create Book - For Admin</h1>
+    <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Tên sách</label>
+        <div class="col-sm-4">
+            <input type="text" id="input-bookname" class="form-control" placeholder="Tên sách">
+        </div>
+        <label for="" class="col-sm-2 col-form-label">Tác giả</label>
+        <div class="col-sm-4">
+            <input type="text" id="input-author" class="form-control" placeholder="Tác giả">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Thể loại</label>
+        <div class="col-sm-4">
+            <select id="select-genre" class="form-control">
+                <option value="NOT_SELECT_GENRE">Chọn thể loại</option>
+                <option value="Fiction">Hư cấu</option>
+                <option value="Non-Fiction">Phi hư cấu</option>
+                <option value="Mystery">Trinh thám</option>
+                <option value="Romance">Lãng mạn</option>
+                <option value="Science Fiction">Khoa học viễn tưởng</option>
+            </select>
+        </div>
+        <label class="col-sm-2 col-form-label">Năm xuất bản</label>
+        <div class="col-sm-4">
+            <input type="text" id="input-publishyear" class="form-control" placeholder="Năm xuất bản">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nhà xuất bản</label>
+        <div class="col-sm-4">
+            <input type="text" id="input-publisher" class="form-control" placeholder="Nhà xuất bản">
+        </div>
+        <label class="col-sm-2 col-form-label">Giá</label>
+        <div class="col-sm-4">
+            <input type="number" id="input-price" class="form-control" placeholder="Giá">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Mô tả</label>
+        <div class="col-sm-10">
+            <textarea id="input-description" class="form-control" placeholder="Mô tả"></textarea>
+        </div>
+    </div>
+    <div class="form-group text-right">
+        <button class="btn btn-primary" onclick="onBtnCreateBookClick()">Create Book</button>
+    </div>
+</div>
+
+<script>
+// JavaScript functionality for admin book creation
+function onPageLoading() {
+    // Perform actions when the page is loaded
+}
+
+function onBtnCreateBookClick() {
+    // Functionality to create a new book when the button is clicked
+    const bookName = document.getElementById('input-bookname').value;
+    const author = document.getElementById('input-author').value;
+    const genre = document.getElementById('select-genre').value;
+    const publishYear = document.getElementById('input-publishyear').value;
+    const publisher = document.getElementById('input-publisher').value;
+    const price = document.getElementById('input-price').value;
+    const description = document.getElementById('input-description').value;
+
+    // Perform further actions like sending data to the server for book creation
+    console.log("Creating book with the following details:");
+    console.log("Book Name:", bookName);
+    console.log("Author:", author);
+    console.log("Genre:", genre);
+    console.log("Publish Year:", publishYear);
+    console.log("Publisher:", publisher);
+    console.log("Price:", price);
+    console.log("Description:", description);
+}
+</script>
+</body>
+</html>
