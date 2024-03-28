@@ -51,7 +51,10 @@
         <div class="row">
           <!-- Title row home -->
           <div class="col-sm-12">
-            <h1><b class="text-main">Online Book Store</b></h1>
+            <h1 style="display: inline-block;">
+              <b class="text-main">Online Book Store</b>
+              <img src="images/book1.gif" alt="Online Bookstore GIF" style="height: 50px; width: auto; vertical-align: middle;" />
+            </h1>
             <p style="font-style: italic;" class="text-second">
               Explore a world of knowledge!
             </p>
@@ -140,33 +143,8 @@
 
           <!-- Content for different Book Types -->
           <div class="col-sm-12">
-            <div class="row">
-              <!-- Book Type 1 -->
-              <div class="col-sm-2">
-                <img src="path_to_image/image1.png" alt="Book Type 1" class="img-fluid">
-                <p>Book Type 1 Description</p>
-              </div>
-              <!-- Book Type 2 -->
-              <div class="col-sm-2">
-                <img src="path_to_image/image2.png" alt="Book Type 2" class="img-fluid">
-                <p>Book Type 2 Description</p>
-              </div>
-              <!-- Add more Book Types here -->
-              <!-- Book Type 3 -->
-              <div class="col-sm-2">
-                <img src="path_to_image/image3.png" alt="Book Type 3" class="img-fluid">
-                <p>Book Type 3 Description</p>
-              </div>
-              <!-- Book Type 4 -->
-              <div class="col-sm-2">
-                <img src="path_to_image/image4.png" alt="Book Type 4" class="img-fluid">
-                <p>Book Type 4 Description</p>
-              </div>
-              <!-- Book Type 5 -->
-              <div class="col-sm-2">
-                <img src="path_to_image/image5.png" alt="Book Type 5" class="img-fluid">
-                <p>Book Type 5 Description</p>
-              </div>
+            <div class="row" id="bookTypesRow">
+              <!-- Book types will be appended here -->
             </div>
           </div>
         </div>
@@ -208,7 +186,50 @@
     </div>
   </div>
 
-  
+  <script>
+    $(document).ready(function(){
+      // Đọc dữ liệu từ tệp CSV
+      $.ajax({
+        type: "GET",
+        url: "Quantity Each Genres.csv",
+        dataType: "text",
+        success: function(data) {
+          processData(data);
+        }
+      });
+
+      // Hàm xử lý dữ liệu từ tệp CSV
+      function processData(allText) {
+        var allRows = allText.split(/\r\n|\n/);
+        var genresData = [];
+
+        for (var i = 0; i < allRows.length; i++) {
+          var row = allRows[i].split(',');
+          genresData.push({
+            Genre: row[0],
+            Quantity: parseInt(row[1])
+          });
+        }
+
+        // Sắp xếp dữ liệu theo số lượng giảm dần
+        genresData.sort((a, b) => b.Quantity - a.Quantity);
+
+        // Lấy 6 thể loại sách phổ biến nhất
+        var topGenres = genresData.slice(0, 6);
+
+        // Thêm các thể loại sách vào phần "Choose Book Types"
+        topGenres.forEach(function(genre){
+          $('#bookTypesRow').append(`
+            <div class="col-sm-2">
+              <img src="path_to_image/${genre.Genre}.png" alt="${genre.Genre}" class="img-fluid">
+              <p>${genre.Genre}</p>
+            </div>
+          `);
+        });
+      }
+    });
+  </script>
+
 </body>
 
 </html>
