@@ -2,244 +2,293 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="css/stylemin.css" />
-  <link rel="stylesheet" href="css/color.css" />
-  <title>Online Bookstore</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/stylemin.css" />
+    <link rel="stylesheet" href="css/color.css" />
+    <title>Online Bookstore</title>
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav nav-fill w-100">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">
-                  <img src="images/books icon home.png" alt="Home Icon" style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;"> HOME
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#type">
-                  <img src="images/books icon category.png" alt="Category Icon" style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">BOOK TYPES
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#series">
-                  <img src="images/books icon series.png" alt="Series Icon" style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">BOOKS SERIES
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">
-                  <img src="images/books icon contact.png" alt="Contact Icon" style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">CONTACT FORM
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="container" style="padding: 70px 0px 50px 0px;">
-    <div class="row">
-      <div class="col-sm-12">
+    <div class="container-fluid">
         <div class="row">
-          <!-- Title row home -->
-          <div class="col-sm-12">
-            <h1 style="display: inline-block;">
-              <b class="text-main">Online Book Store</b>
-              <img src="images/book1.gif" alt="Online Bookstore GIF" style="height: 50px; width: auto; vertical-align: middle;" />
-            </h1>
-            <p style="font-style: italic;" class="text-second">
-              Explore a world of knowledge!
-            </p>
-          </div>
-          <!-- Slide row home (for books) -->
-          <div class="col-sm-12">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="images/Books slide1.jpg" alt="First slide" />
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/Books slide2.jpg" alt="Second slide" />
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/Books slide3.jpg" alt="Third slide" />
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/Books slide4.jpg" alt="Fourth slide" />
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/Books slide5.png" alt="Fifth slide" />
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="images/Books slide6.jpg" alt="Sixth slide" />
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+            <div class="col-sm-12">
+                <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav nav-fill w-100">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    <img src="images/books icon home.png" alt="Home Icon"
+                                        style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">
+                                    HOME
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="showCategoriesButton" class="nav-link" href="#type">
+                                    <img src="images/books icon category.png" alt="Category Icon"
+                                        style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">BOOK
+                                    TYPES
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#series">
+                                    <img src="images/books icon series.png" alt="Series Icon"
+                                        style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">BOOKS
+                                    SERIES
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact">
+                                    <img src="images/books icon contact.png" alt="Contact Icon"
+                                        style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">CONTACT
+                                    FORM
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-          </div>
-
-          <!-- Slide row home (for books) -->
-          <div class="col-sm-12">
-            <!-- You can add your book images and details here -->
-            <div id="bookList" class="row">
-              <!-- Books will be appended here using JavaScript -->
-            </div>
-          </div>
-
-          <!-- Title advantages of the store -->
-          <div class="col-sm-12 text-center p-4 mt-4">
-            <h2><b class="p-2 border-bottom">Why Choose Us?</b></h2>
-          </div>
-
-          <!-- Content advantages of the store -->
-          <div class="col-sm-12">
-            <!-- You can add content about advantages of your book store here -->
-          </div>
         </div>
-
-        <div id="type" class="row">
-          <!-- Title Book Types -->
-          <div class="col-sm-12 text-center p-4 mt-4">
-            <h2><b class="p-2 border-bottom">Choose Book Types</b></h2>
-          </div>
-
-          <!-- Content for different Book Types -->
-          <div class="col-sm-12">
-            <div class="row" id="bookTypesRow">
-              <!-- Book types will be appended here -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Section for different book sizes (similar to pizza sizes) -->
-        <div id="series" class="row">
-          <!-- Title Book Sizes -->
-          <div class="col-sm-12 text-center p-4 mt-4">
-            <h2><b class="p-1 border-bottom">Book Series</b></h2>
-            <p><span class="p-2">Choose the Book Series you prefer</span></p>
-          </div>
-
-          <!-- Content for different Book Sizes -->
-          <div class="col-sm-12">
-            <!-- You can add content for different sizes of books here -->
-          </div>
-        </div>
-
-        <!-- Section for different book types (similar to pizza types) -->
-        
-
-        <!-- Section for contact form -->
-        <div id="contact" class="row">
-          <!-- Title Contact Form -->
-          <div class="col-sm-12 text-center p-4 mt-4">
-            <h2><b class="p-2 border-bottom">Contact Form</b></h2>
-          </div>
-
-          <!-- Content Contact Form -->
-          <div class="col-sm-12 p-2 jumbotron">
-            <!-- You can add a contact form for users to reach out -->
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <div class="container-fluid bg-light p-3">
-    <div class="row text-center">
-      <div class="col-sm-12">
-        <h4 class="m-2">Bestselling Books</h4>
-        <div class="row" id="bestsellingBooks">
-          
-        </div>
-        <a href="#" class="btn bg-main-brand text-white m-3"><i class="fa fa-arrow-up mr-2"></i>To the top</a>
-        <div class="m-2">
-          <i class="fa fa-facebook-official text-main"></i>
-          <i class="fa fa-instagram text-main"></i>
-          <i class="fa fa-snapchat text-main"></i>
-          <i class="fa fa-pinterest-p text-main"></i>
-          <i class="fa fa-twitter text-main"></i>
-          <i class="fa fa-linkedin text-main"></i>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- Content -->
+    <div class="container" style="padding: 70px 0px 50px 0px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <!-- Title row home -->
+                    <div class="col-sm-12">
+                        <h1 style="display: inline-block;">
+                            <b class="text-main">Online Book Store</b>
+                            <img src="images/book1.gif" alt="Online Bookstore GIF"
+                                style="height: 50px; width: auto; vertical-align: middle;" />
+                        </h1>
+                        <p style="font-style: italic;" class="text-second">
+                            Explore a world of knowledge!
+                        </p>
+                    </div>
+                    <!-- Slide row home (for books) -->
+                    <div class="col-sm-12">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="images/Books slide1.jpg" alt="First slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/Books slide2.jpg" alt="Second slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/Books slide3.jpg" alt="Third slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/Books slide4.jpg" alt="Fourth slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/Books slide5.png" alt="Fifth slide" />
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/Books slide6.jpg" alt="Sixth slide" />
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
 
-  <script>
-    $(document).ready(function(){
-      // Đọc dữ liệu từ tệp CSV
-      $.ajax({
-        type: "GET",
-        url: "Quantity Each Genres.csv",
-        dataType: "text",
-        success: function(data) {
-          processData(data);
-        }
-      });
+                    <!-- Slide row home (for books) -->
+                    <div class="col-sm-12">
+                        <!-- You can add your book images and details here -->
+                        <div id="bookList" class="row">
+                            <!-- Books will be appended here using JavaScript -->
+                        </div>
+                    </div>
 
-      // Hàm xử lý dữ liệu từ tệp CSV
-      function processData(allText) {
-        var allRows = allText.split(/\r\n|\n/);
-        var genresData = [];
+                    <!-- Title advantages of the store -->
+                    <div class="col-sm-12 text-center p-4 mt-4">
+                        <h2><b class="p-2 border-bottom">Why Choose Us?</b></h2>
+                    </div>
 
-        for (var i = 0; i < allRows.length; i++) {
-          var row = allRows[i].split(',');
-          genresData.push({
-            Genre: row[0],
-            Quantity: parseInt(row[1])
-          });
-        }
+                    <!-- Content advantages of the store -->
+                    <div class="col-sm-12">
+                        <!-- You can add content about advantages of your book store here -->
+                    </div>
+                </div>
 
-        // Sắp xếp dữ liệu theo số lượng giảm dần
-        genresData.sort((a, b) => b.Quantity - a.Quantity);
+                <div id="type" class="row">
+                    <!-- Title Book Types -->
+                    <div class="col-sm-12 text-center p-4 mt-4">
+                        <h2><b class="p-2 border-bottom">Choose Book Types</b></h2>
+                    </div>
 
-        // Lấy 6 thể loại sách phổ biến nhất
-        var topGenres = genresData.slice(0, 6);
+                    <!-- Content for different Book Types -->
+                    <div class="col-sm-12">
+                        <button id="showCategoriesButton" class="btn btn-primary">Show Categories</button>
+                        <div class="row" id="bookTypesRow">
+                            <div id="bookTypeList" class="category-list">
+                                <table>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                        <th>Category</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Erotica</td>
+                                        <td>Biography</td>
+                                        <td>Childrens</td>
+                                        <td>Fiction</td>
+                                        <td>Romance</td>
+                                        <td>Mystery</td>
+                                        <td>Politics</td>
+                                        <td>Business</td>
+                                        <td>Thriller</td>
+                                        <td>Christian Fiction</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humor</td>
+                                        <td>Psychology</td>
+                                        <td>Autobiography</td>
+                                        <td>Self Help</td>
+                                        <td>Philosophy</td>
+                                        <td>New Adult</td>
+                                        <td>Crime</td>
+                                        <td>Contemporary</td>
+                                        <td>Food and Drink</td>
+                                        <td>Sports and Games</td>
+                                    </tr>
+                                    <tr>
+                                        <td>History</td>
+                                        <td>Historical</td>
+                                        <td>Science Fiction</td>
+                                        <td>Novels</td>
+                                        <td>Religion</td>
+                                        <td>Classics</td>
+                                        <td>Young Adult</td>
+                                        <td>Short Stories</td>
+                                        <td>Health</td>
+                                        <td>Nonfiction</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Science</td>
+                                        <td>Suspense</td>
+                                        <td>Sequential Art</td>
+                                        <td>Academic</td>
+                                        <td>Adult Fiction</td>
+                                        <td>Poetry</td>
+                                        <td>Music</td>
+                                        <td>Cultural</td>
+                                        <td>Historical Fiction</td>
+                                        <td>Womens Fiction</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paranormal</td>
+                                        <td>Travel</td>
+                                        <td>Horror</td>
+                                        <td>Default</td>
+                                        <td>Art</td>
+                                        <td>Parenting</td>
+                                        <td>Spirituality</td>
+                                        <td>Fantasy</td>
+                                        <td>Add a comment</td>
+                                        <td>Christian</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        // Thêm các thể loại sách vào phần "Choose Book Types"
-        topGenres.forEach(function(genre){
-          $('#bookTypesRow').append(`
-            <div class="col-sm-2">
-              <img src="path_to_image/${genre.Genre}.png" alt="${genre.Genre}" class="img-fluid">
-              <p>${genre.Genre}</p>
+                <!-- Section for different book sizes (similar to pizza sizes) -->
+                <div id="series" class="row">
+                    <!-- Title Book Sizes -->
+                    <div class="col-sm-12 text-center p-4 mt-4">
+                        <h2><b class="p-1 border-bottom">Book Series</b></h2>
+                        <p><span class="p-2">Choose the Book Series you prefer</span></p>
+                    </div>
+
+                    <!-- Content for different Book Sizes -->
+                    <div class="col-sm-12">
+                        <!-- You can add content for different sizes of books here -->
+                    </div>
+                </div>
+
+                <!-- Section for contact form -->
+                <div id="contact" class="row">
+                    <!-- Title Contact Form -->
+                    <div class="col-sm-12 text-center p-4 mt-4">
+                        <h2><b class="p-2 border-bottom">Contact Form</b></h2>
+                    </div>
+
+                    <!-- Content Contact Form -->
+                    <div class="col-sm-12 p-2 jumbotron">
+                        <!-- You can add a contact form for users to reach out -->
+                    </div>
+                </div>
             </div>
-          `);
-        });
-      }
-    });
-  </script>
+        </div>
+    </div>
 
+    <!-- Footer -->
+    <div class="container-fluid bg-light p-3">
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <h4 class="m-2">Bestselling Books</h4>
+                <div class="row" id="bestsellingBooks">
+
+                </div>
+                <a href="#" class="btn bg-main-brand text-white m-3"><i class="fa fa-arrow-up mr-2"></i>To the
+                    top</a>
+                <div class="m-2">
+                    <i class="fa fa-facebook-official text-main"></i>
+                    <i class="fa fa-instagram text-main"></i>
+                    <i class="fa fa-snapchat text-main"></i>
+                    <i class="fa fa-pinterest-p text-main"></i>
+                    <i class="fa fa-twitter text-main"></i>
+                    <i class="fa fa-linkedin text-main"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
+<script>
+$(document).ready(function () {
+            $("#showCategoriesButton").hover(function () {
+                $("#bookTypeList").css("display", "block");
+            }, function () {
+                $("#bookTypeList").css("display", "none");
+            });
+        });
+
+</script>
