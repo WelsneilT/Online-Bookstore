@@ -84,3 +84,29 @@ button:active,
 button:focus {
     outline: none;
 }
+
+.category-list {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+}
+
+/* CSS for styling the category list */
+.category-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.category-list th,
+.category-list td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.category-list th {
+    background-color: #f2f2f2;
+}
