@@ -21,4 +21,5 @@ Chào mừng đến với Online Book Store! Đây là một sản phẩm cung c
 - **Authentication**:
 - **Payment Gateway**:
 
-## Nhiệm vụ thành viên (1/4 - 6/4) vào mục Book dataset tìm sách có thể loại #DEFAUT và chỉnh thành 1 thể loại khác so với các thể loại đã có(Tra sách trên mạng và chọn 1 thể loại nổi bật) và cập nhật lại vào dataset
+## Nhiệm vụ thành viên (1/4 - 6/4)
+- Vào mục Book dataset tìm sách có thể loại #DEFAUT và chỉnh thành 1 thể loại khác so với các thể loại đã có(Tra sách trên mạng và chọn 1 thể loại nổi bật) và cập nhật lại vào dataset
