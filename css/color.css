@@ -110,3 +110,7 @@ button:focus {
 .category-list th {
     background-color: #f2f2f2;
 }
+
+.body {
+    padding-bottom: 70px;
+}
