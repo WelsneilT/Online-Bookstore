@@ -114,3 +114,71 @@ button:focus {
 .body {
     padding-bottom: 70px;
 }
+
+/* Style cho bảng loại sách */
+#bookTypeList {
+    display: none; /* Ẩn bảng mặc định */
+    position: absolute; /* Đặt bảng theo định vị tuyệt đối */
+    width: auto; /* Độ rộng tự động */
+    background-color: #fff; /* Màu nền */
+    border: 1px solid #ccc; /* Viền bảng */
+    padding: 10px; /* Đệm quanh nội dung */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Bóng đổ cho bảng */
+    z-index: 1000; /* Đảm bảo bảng nằm trên các phần tử khác */
+}
+
+/* Style cho các mục danh sách trong bảng */
+#bookTypeList li {
+    list-style-type: none; /* Không có bullets */
+    padding: 5px 0; /* Đệm cho mỗi mục */
+}
+
+/* Style cho nút khi hover */
+#showCategoriesButton:hover + #bookTypeList {
+    display: block; /* Hiển thị bảng khi hover */
+}
+
+/* Apply a base style to the entire table */
+.table-striped {
+    width: 1200px;
+    border-collapse: collapse;
+}
+
+
+
+/* Style for the heading */
+h6 {
+    margin-top: 10;
+    color: #333; /* default color, with 'BESTSELLERS' being red */
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* Overriding style for 'BESTSELLERS' heading */
+h6[style="color: red"] {
+    color: red;
+}
+
+/* Style for the unordered lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0px;
+}
+
+/* Style for list items */
+li {
+    font-size: 12px;
+    line-height: 1.5;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+/* If the table rows are to be striped */
+.table-striped tr:nth-child(odd) {
+    background-color: #f9f9f9; /* light grey for odd rows */
+}
+
+.table-striped tr:nth-child(even) {
+    background-color: #ffffff; /* white for even rows */
+}
