@@ -182,3 +182,24 @@ li {
 .table-striped tr:nth-child(even) {
     background-color: #ffffff; /* white for even rows */
 }
+
+
+
+.btn-contact-animate {
+    animation: btnani 2s linear infinite;
+}
+
+@keyframes btnani {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

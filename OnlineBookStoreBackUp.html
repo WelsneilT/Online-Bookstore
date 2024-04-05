@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src=""></script>
     <link rel="stylesheet" href="css/stylemin.css" />
     <link rel="stylesheet" href="css/color.css" />
     <title>Online Bookstore</title>
@@ -59,10 +60,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  class="nav-link" >
+                                <a class="nav-link"  class="nav-link" href="About Us/Contact-us.html">
+                                    <span class ="btn-contact-content"><span class ="btn-contact-top"></span></span>
                                     <img src="images/books icon contact.png" alt="Contact Icon" class="btn-contact-animate"
                                         style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;"> 
-                                        <button style="border: none; background: none; padding: 0; margin: 0;" id="btn-contact" >CONTACT FORM</button>
+                                        CONTACT FORM
                                 </a>
                             </li>
                         </ul>
@@ -70,7 +72,6 @@
                 </nav>
             </div>
         </div>
-        <div id="iframeContainer" style="display:none;"></div>
     </div>
 
     <!-- Content -->
@@ -342,31 +343,36 @@
 <script>
 
 $(document).ready(function() {
-            // Khi di chuột qua nút, hiển thị bảng loại sách
-            $("#showCategoriesButton").hover(function() {
-                $("#bookTypeList").css("display", "block");
-            });
+    // Khi di chuột qua nút, hiển thị bảng loại sách
+    $("#showCategoriesButton").hover(function() {
+        $("#bookTypeList").css("display", "block");
+    });
 
-            // Khi di chuột ra khỏi bảng loại sách, ẩn nó đi
-            $("#bookTypeList").mouseleave(function() {
-                $(this).css("display", "none");
-            });
+    // Khi di chuột ra khỏi bảng loại sách, ẩn nó đi
+    $("#bookTypeList").mouseleave(function() {
+        $(this).css("display", "none");
+    });
+});
 
-            // Event listener for the contact button
-            $("#btn-contact").click(function() {
-            // Tạo iframe với URL trang web cần chuyển
-            const iframe = document.createElement("iframe");
-            iframe.src = "About Us/Contact-us.html";
-            iframe.style.width = "100%";
-            iframe.style.height = "100vh"; // Chiều cao được thiết lập để chiếm toàn bộ màn hình
-            iframe.style.border = "none";
+const btnChuyenTrangContact = document.getElementById("btn-contact");
 
-            // Xóa hoặc ẩn tất cả nội dung khác của trang
-            document.body.innerHTML = ""; // Xóa tất cả nội dung hiện tại trên trang
+btnChuyenTrangContact.addEventListener("click", () => {
+    // Lấy URL trang web cần chuyển
+    const urlTrangWeb = "About Us/Contact-us.html";
 
-            // Thêm iframe vào đầu <body>
-            document.body.appendChild(iframe);
-        });
-        });
+    // Tạo iframe với URL trang web cần chuyển
+    const iframe = document.createElement("iframe");
+    iframe.src = urlTrangWeb;
+    iframe.style.width = "100%";
+    iframe.style.height = "500px";
+
+    // Xóa nội dung main hiện tại
+    const mainElement = document.querySelector("main");
+    mainElement.innerHTML = "";
+
+    // Thêm iframe vào main
+    mainElement.appendChild(iframe);
+});
+
 
 </script>
