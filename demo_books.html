@@ -16,14 +16,14 @@
     justify-content: flex-start; /* Đảm bảo các card bắt đầu từ cùng một điểm */
   }
   .book {
-    flex: 0 1 calc(15% - 20px); /* Cho phép mỗi sách chiếm 20% không gian, trừ khoảng cách */
+    flex: 0 1 calc(15% - 20px); 
     padding: 10px;
     border-radius: 5px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Căn giữa nội dung trong mỗi book div */
-    background-color: #f9f9f9; /* Màu nền cho mỗi card */
+    align-items: center; 
+    background-color: #f9f9f9; 
   }
 
   .book img {
@@ -34,18 +34,18 @@
   }
 
   .book h3 {
-  font-size: 16px; /* Set font size to match the design */
-  color: #333; /* Title color */
-  margin: 10px 0; /* Spacing above and below the title */
+  font-size: 16px; 
+  color: #333; 
+  margin: 10px 0; 
 }
 
 .book p.author {
-  color: #555; /* Author color */
-  font-size: 14px; /* Set font size to match the design */
-  margin: 0; /* Remove margin if any */
+  color: #555; 
+  font-size: 14px; 
+  margin: 0; 
 }
 
-/* Continue with existing styles */
+
 
 
 </style>
@@ -64,9 +64,7 @@
   function displayBooks() {
   const booksContainer = document.getElementById('books-container');
 
-  // Sort bookData by title
   const sortedBooks = bookData.sort((a, b) => {
-    // Use localeCompare for case-insensitive sorting and to handle unicode characters better
     return a.title.localeCompare(b.title);
   });
 
@@ -89,7 +87,7 @@
     authorP.textContent = `By ${book.author}`;
     bookDiv.appendChild(authorP);
 
-    // If you have pricing information, you can append it here as well
+
 
     booksContainer.appendChild(bookDiv);
   });
