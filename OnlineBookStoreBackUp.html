@@ -16,7 +16,18 @@
     <title>Back Up</title>
 </head>
 <style>
-    
+    html {
+            height: 100%;
+            overflow-x: hidden; /* Prevents horizontal scrollbar */
+            overflow-y: auto; /* Keeps vertical scroll if needed, change to 'hidden' to remove */
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden; /* Prevents horizontal scrollbar */
+            overflow-y: auto; /* Keeps vertical scroll if needed, change to 'hidden' to remove */
+        }
 </style>
     
 
@@ -62,11 +73,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  class="nav-link" href="About Us/Contact-us.html">
-                                    <span class ="btn-contact-content"><span class ="btn-contact-top"></span></span>
+                                <a class="nav-link"  class="nav-link" >  
                                     <img src="images/books icon contact.png" alt="Contact Icon" class="btn-contact-animate"
                                         style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;"> 
-                                        CONTACT FORM
+                                    <button id ="btn-chuyen-trang"> CONTACT FORM  </button>  
                                 </a>
                             </li>
                         </ul>                       
@@ -75,6 +85,7 @@
             </div>
         </div>
     </div>
+    <main></main>
 
     <!-- Content -->
     <div class="container" style="padding: 70px 0px 50px 0px;">
@@ -356,9 +367,9 @@ $(document).ready(function() {
     });
 });
 
-const btnChuyenTrangContact = document.getElementById("btn-contact");
+const btnChuyenTrang = document.getElementById("btn-chuyen-trang");
 
-btnChuyenTrangContact.addEventListener("click", () => {
+btnChuyenTrang.addEventListener("click", () => {
     // Lấy URL trang web cần chuyển
     const urlTrangWeb = "About Us/Contact-us.html";
 
@@ -366,15 +377,16 @@ btnChuyenTrangContact.addEventListener("click", () => {
     const iframe = document.createElement("iframe");
     iframe.src = urlTrangWeb;
     iframe.style.width = "100%";
-    iframe.style.height = "500px";
+    iframe.style.height = "1000px";
+    iframe.style.border = "none"; /* Add this to remove iframe border */
 
     // Xóa nội dung main hiện tại
     const mainElement = document.querySelector("main");
+
     mainElement.innerHTML = "";
 
     // Thêm iframe vào main
     mainElement.appendChild(iframe);
 });
-
 
 </script>
