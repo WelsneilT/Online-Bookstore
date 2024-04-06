@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src=""></script>
     <link rel="stylesheet" href="css/stylemin.css" />
     <link rel="stylesheet" href="css/color.css" />
-    <title>Online Bookstore</title>
+    <script src="https://kit.fontawesome.com/235ee6b851.js" crossorigin="anonymous"></script>
+    <title>Back Up</title>
 </head>
 <style>
     
@@ -22,13 +24,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav nav-fill w-100">
+                    <div class="collapse navbar-collapse menu-bar-content" id="navbarNav">       
+                        <ul class="navbar-nav nav-fill w-100" >
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">
                                     <img src="images/books icon home.png" alt="Home Icon"
@@ -48,6 +50,7 @@
                                     <img src="images/books icon category.png" alt="Category Icon"
                                         style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;">BOOK
                                     TYPES
+                                    <i class="fa-solid fa-sort"></i>
                                 </a>
                                 
                             </li>
@@ -59,18 +62,18 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  class="nav-link" >
+                                <a class="nav-link"  class="nav-link" href="About Us/Contact-us.html">
+                                    <span class ="btn-contact-content"><span class ="btn-contact-top"></span></span>
                                     <img src="images/books icon contact.png" alt="Contact Icon" class="btn-contact-animate"
                                         style="height: 30px; width: auto; vertical-align: middle; margin-right: 10px;"> 
-                                        <button style="border: none; background: none; padding: 0; margin: 0;" id="btn-contact" >CONTACT FORM</button>
+                                        CONTACT FORM
                                 </a>
                             </li>
-                        </ul>
+                        </ul>                       
                     </div>
                 </nav>
             </div>
         </div>
-        <div id="iframeContainer" style="display:none;"></div>
     </div>
 
     <!-- Content -->
@@ -225,7 +228,7 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="images/Books slide1.jpg" alt="First slide" />
+                                    <img class="d-block w-100" src="images/Gone with the wild.jpg" alt="First slide" />
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="images/Books slide2.jpg" alt="Second slide" />
@@ -342,31 +345,36 @@
 <script>
 
 $(document).ready(function() {
-            // Khi di chuột qua nút, hiển thị bảng loại sách
-            $("#showCategoriesButton").hover(function() {
-                $("#bookTypeList").css("display", "block");
-            });
+    // Khi di chuột qua nút, hiển thị bảng loại sách
+    $("#showCategoriesButton").hover(function() {
+        $("#bookTypeList").css("display", "block");
+    });
 
-            // Khi di chuột ra khỏi bảng loại sách, ẩn nó đi
-            $("#bookTypeList").mouseleave(function() {
-                $(this).css("display", "none");
-            });
+    // Khi di chuột ra khỏi bảng loại sách, ẩn nó đi
+    $("#bookTypeList").mouseleave(function() {
+        $(this).css("display", "none");
+    });
+});
 
-            // Event listener for the contact button
-            $("#btn-contact").click(function() {
-            // Tạo iframe với URL trang web cần chuyển
-            const iframe = document.createElement("iframe");
-            iframe.src = "About Us/Contact-us.html";
-            iframe.style.width = "100%";
-            iframe.style.height = "100vh"; // Chiều cao được thiết lập để chiếm toàn bộ màn hình
-            iframe.style.border = "none";
+const btnChuyenTrangContact = document.getElementById("btn-contact");
 
-            // Xóa hoặc ẩn tất cả nội dung khác của trang
-            document.body.innerHTML = ""; // Xóa tất cả nội dung hiện tại trên trang
+btnChuyenTrangContact.addEventListener("click", () => {
+    // Lấy URL trang web cần chuyển
+    const urlTrangWeb = "About Us/Contact-us.html";
 
-            // Thêm iframe vào đầu <body>
-            document.body.appendChild(iframe);
-        });
-        });
+    // Tạo iframe với URL trang web cần chuyển
+    const iframe = document.createElement("iframe");
+    iframe.src = urlTrangWeb;
+    iframe.style.width = "100%";
+    iframe.style.height = "500px";
+
+    // Xóa nội dung main hiện tại
+    const mainElement = document.querySelector("main");
+    mainElement.innerHTML = "";
+
+    // Thêm iframe vào main
+    mainElement.appendChild(iframe);
+});
+
 
 </script>
