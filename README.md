@@ -2,7 +2,7 @@
 
 ## SET UP môi trường
 
-- pip pipenv shell
+- pipenv shell
 - python manage.py runserver
 
 ## Truy cập link dưới
