@@ -12,6 +12,13 @@ import json
 
 class BooksListView(ListView):
     model = Book
+    
+    def get_queryset(self):
+        # Get the queryset of all Book objects
+        queryset = super().get_queryset()
+        # Limit the queryset to the first 100 objects
+        return queryset[:100]
+    
     template_name = 'list.html'
 
 
