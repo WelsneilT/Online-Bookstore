@@ -26,12 +26,16 @@
                                 <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 100px">
                             </a>
                         </div>
+                        
+
                         <div class="col-lg-5">
-                            <div class="header-search-block">
-                                <input type="text" placeholder="Search entire store here">
-                                <button>Search</button>
-                            </div>
+                            <form class="search" action="{% url 'search_results' %}" method="get">
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+                                <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search...">
+                                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                            </form>
                         </div>
+                        
                         <div class="col-lg-4">
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
