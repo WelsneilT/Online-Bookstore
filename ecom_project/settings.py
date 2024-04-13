@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # my apps,				# changes
+    'homepage.apps.HomepageConfig',  # Thêm dòng này
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',  # changes
 ]

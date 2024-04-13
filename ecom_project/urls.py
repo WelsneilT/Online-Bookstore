@@ -19,7 +19,8 @@ from django.urls import path, include # changes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('books.urls')),  # changes
-    path('', include("accounts.urls")),  # changes
+    path('books/', include('books.urls')),  # changes
+    path('accounts/', include("accounts.urls")),  # changes
     path('accounts/', include("django.contrib.auth.urls")),   # working for logins
+    path('', include('homepage.urls')),  # Đường dẫn gốc dẫn tới trang chủ
 ]
