@@ -28505,18 +28505,20 @@ p.form-messege.error {
   padding: 0 30px 30px;
 }
 
-div[data-bg] {
-  background: var(--bg-url); /* Sử dụng biến CSS để lấy giá trị */
-  background-size: cover;
-  /* Các thuộc tính khác */
-}
 
-.carousel-image {
-  position: relative;
+.carousel-image img {
+  width: 180%;  /* đảm bảo ảnh rộng bằng container của nó */
+  height: 180%; /* chiều cao tự động điều chỉnh theo tỉ lệ của ảnh */
+  min-height: 200px; /* đặt chiều cao tối thiểu cho ảnh nếu ảnh quá nhỏ */
+
+  object-fit: cover;
 }
 
 .carousel-caption {
-  position: absolute;
+ 
 
   text-align: left;
+}
+.carousel-item {
+  width:100%;
 }
