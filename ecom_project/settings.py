@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 # with static files within a project so Python brackets [] , 
 # which denote a list 120 , are typically added here to 
 # accommodate future additions.
-2
+
 STATICFILES_FINDERS = [
 "django.contrib.staticfiles.finders.FileSystemFinder",
 "django.contrib.staticfiles.finders.AppDirectoriesFinder",

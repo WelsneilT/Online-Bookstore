@@ -13,6 +13,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{%static 'website/image/favicon.ico' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="{% static 'website/js/jquery.min.js' %}"></script>
+    <script src="{% static 'website/js/popper.min.js' %}"></script>
+    <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'website/js/ajax-mail.js' %}"></script>
     <script src="{% static 'website/js/custom.js' %}"></script>
     <script src="{% static 'website/js/plugins.js' %}"></script>
@@ -30,13 +32,14 @@
                             </a>
                         </div>
                         
-
                         <div class="col-lg-5">
-                            <form class="search" action="{% url 'search_results' %}" method="get">
+                            <div class ="header-search-block">
+                                <form class="search" action="{% url 'search_results' %}" method="get">
                                 
-                                <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search...">
-                                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
-                            </form>
+                                    <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search entire store here">
+                                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                                </form> 
+                            </div>
                         </div>
                         
                         <div class="col-lg-4">
@@ -891,7 +894,7 @@
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
-                                        <img src="image/products/product-2.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-2.jpg' %}" alt="" >
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -912,7 +915,7 @@
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
-                                        <img src="image/products/product-3.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-3.jpg' %}" alt="">
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -933,7 +936,7 @@
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
-                                        <img src="image/products/product-4.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-4.jpg' %}" alt="">
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -954,7 +957,7 @@
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
-                                        <img src="image/products/product-5.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-5.jpg' %}" alt="">
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -975,7 +978,7 @@
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
-                                        <img src="image/products/product-7.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-7.jpg' %}" alt="">
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -1060,12 +1063,12 @@
                 <div class="row space-db--30">
                     <div class="col-lg-6 mb--30">
                         <a href="#" class="promo-image promo-overlay">
-                            <img src="image/bg-images/promo-banner-with-text.jpg" alt="">
+                            <img src="{% static 'website/image/bg-images/promo-banner-with-text.jpg' %}" alt="" >
                         </a>
                     </div>
                     <div class="col-lg-6 mb--30">
                         <a href="#" class="promo-image promo-overlay">
-                            <img src="image/bg-images/promo-banner-with-text-2.jpg" alt="">
+                            <img src="{% static 'website/image/bg-images/promo-banner-with-text-2.jpg' %}" alt="">
                         </a>
                     </div>
                 </div>
@@ -1127,7 +1130,7 @@
                                         </div>
                                         <div class="product-card--body">
                                             <div class="card-image">
-                                                <img src="image/products/product-1.jpg" alt="">
+                                                <img src="{% static 'website/image/products/product-1.jpg' %}" alt="">
                                                 <div class="hover-contents">
                                                     <a href="product-details.html" class="hover-image">
                                                         <img src="image/products/product-1.jpg" alt="">
@@ -4190,7 +4193,7 @@
             <div class="container">
                 <p class="copyright-heading">Được thành lập và phát triển bởi Online Bookstore</p>
                 <a href="#" class="payment-block">
-                    <img src="image/icon/payment.png" alt="">
+                    <img src="{% static 'website/image/icon/payment.png' %}" alt="">
                 </a>
                 <p class="copyright-text">Copyright © 2022 <a href="#" class="author">Online Book Store</a>. All Right Reserved.
                     <br>
