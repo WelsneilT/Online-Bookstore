@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
-<!-- Mirrored from htmldemo.net/Online Book Store/Online Book Store/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Apr 2024 10:57:05 GMT -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +10,13 @@
     <!-- Use Minified Plugins Version For Fast Page Load -->
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/plugins.css'%}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/main.css' %}" />
-    <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{%static 'website/image/favicon.ico' %}">
+    <script src="{% static 'website/js/jquery.min.js' %}"></script>
+    <script src="{% static 'website/js/ajax-mail.js' %}"></script>
+    <script src="{% static 'website/js/custom.js' %}"></script>
+    <script src="{% static 'website/js/plugins.js' %}"></script>
 </head>
-
+    
 <body>
     <div class="site-wrapper" id="top">
         <div class="site-header header-2 mb--20 d-none d-lg-block">
@@ -60,7 +62,7 @@
                                             <div class=" single-cart-block ">
                                                 <div class="cart-product">
                                                     <a href="product-details.html" class="image">
-                                                        <img src="image/products/cart-product-1.jpg" alt="">
+                                                        <img src=" {% static 'website/image/products/cart-product-1.jpg' %}" alt="">
                                                     </a>
                                                     <div class="content">
                                                         <h3 class="title"><a href="product-details.html">Kodak PIXPRO
@@ -343,7 +345,7 @@
                     <div class="row align-items-sm-end align-items-center">
                         <div class="col-md-4 col-7">
                             <a href="index.html" class="site-brand">
-                                <img src="image/logo1.png" alt="">
+                                <img src="i{% static 'website/image/logo1.png' % }" alt="">
                             </a>
                         </div>
                         <div class="col-md-5 order-3 order-md-2">
@@ -646,7 +648,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <a href="index.html" class="site-brand">
-                            <img src="image/logo1.png" alt="">
+                            <img src="{% static 'website/image/logo1.png' %}" alt="">
                         </a>
                     </div>
                     <div class="col-lg-8">
@@ -776,83 +778,81 @@
                 <div class="row align-items-lg-center">
                     <div class="col-lg-8">
                         <div class="sb-slick-slider" data-slick-setting='{
-                                                                "autoplay": true,
-                                                                "autoplaySpeed": 8000,
-                                                                "slidesToShow": 1,
-                                                                "dots":true
-                                                                }'>
+                        "autoplay": true,
+                        "autoplaySpeed": 8000,
+                        "slidesToShow": 1,
+                        "dots":true
+                        }'>
                             <div class="single-slide bg-image bg-position-left bg-position-lg-center"
-                                data-bg="images/pexels-pixabay-207607.jpg">
-                                <div class="home-content text-left text-md-center pl--30 pl-md--0">
-                                    <div class="row">
-                                        <div class="col-lg-7 col-xl-5 col-md-6 col-sm-6">
-                                            <h3 style="color: white">Đắm chìm</h3>
-                                            <p style="color: white">vào thế giới sách
-                                                <br>của riêng mình</p>
-                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white">
-                                                Shop Now
-                                            </a>
-                                        </div>
+                            data-bg="{% static 'images/pexels-pixabay-207607.jpg' %}">
+                            <div class="home-content text-left text-md-center pl--30 pl-md--0">
+                                <div class="row">
+                                    <div class="col-lg-7 col-xl-5 col-md-6 col-sm-6">
+                                        <h3 style="color: white">Đắm chìm</h3>
+                                        <p style="color: white">vào thế giới sách
+                                            <br>của riêng mình</p>
+                                        <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white">
+                                            Shop Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-slide bg-image" data-bg="images/pexels-lepta-studio-13929613.jpg">
-                                <div class="home-content pl--30">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            
-                                            <h3 class="h2-v2" style = "color: white">Khám phá</h3>
-                                            <p style="color: white">Biển rộng kiến thức
-                                                <br style="padding-left: 50px;">bao la rộng lớn</p>
-                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white" >
-                                                Shop Now
-                                            </a>
-                                        </div>
+                        </div>
+                        <div class="single-slide bg-image" data-bg="{% static 'images/pexels-lepta-studio-13929613.jpg' %}">
+                            <div class="home-content pl--30">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <h3 class="h2-v2" style="color: white">Khám phá</h3>
+                                        <p style="color: white">Biển rộng kiến thức
+                                            <br>bao la rộng lớn</p>
+                                        <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white">
+                                            Shop Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-slide bg-image" data-bg="images/pexels-anne-981110.jpg">
-                                <div class="home-content pl--30">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <h3 style = "color: white">Tận hưởng</h3>
-                                            <p style="color: white"> và cảm nhận không khí 
-                                                <br>thiên nhiên tươi đẹp</p>
-                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white; background-color: grey;" >
-                                                Shop Now
-                                            </a>
-                                        </div>
+                        </div>
+                        <div class="single-slide bg-image" data-bg="{% static 'images/pexels-anne-981110.jpg' %}">
+                            <div class="home-content pl--30">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <h3 style="color: white">Tận hưởng</h3>
+                                        <p style="color: white"> và cảm nhận không khí 
+                                            <br>thiên nhiên tươi đẹp</p>
+                                        <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white; background-color: grey;">
+                                            Shop Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-slide bg-image" data-bg="images/pexels-josh-hild-4256852.jpg">
-                                <div class="home-content pl--30">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <h3 style = "color: white" class="h2-v2">Bạn đồng hành</h3>
-                                            <p style = "color: white">cùng tiến tới ước mơ 
-                                                <br>tương lai phía trước</p>
-                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style = "color: white"> 
-                                                Shop Now Here
-                                            </a>
-                                        </div>
+                        </div>
+                        <div class="single-slide bg-image" data-bg="{% static 'images/pexels-josh-hild-4256852.jpg' %}">
+                            <div class="home-content pl--30">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <h3 style="color: white" class="h2-v2">Bạn đồng hành</h3>
+                                        <p style="color: white">cùng tiến tới ước mơ 
+                                            <br>tương lai phía trước</p>
+                                        <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white">
+                                            Shop Now Here
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-slide bg-image" data-bg="images/front-view-young-woman-reading-book.jpg">
-                                <div class="home-content pl--30">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <h3 class="h2-v2">Cùng trải nghiệm</h3>
-                                            <p>những quyển sách thú vị 
-                                                <br>tại Online Bookstore</p>
-                                            <a href="shop-grid.html" class="btn btn-outlined--primary">
-                                                Shop Now
-                                            </a>
-                                        </div>
+                        </div>
+                        <div class="single-slide bg-image" data-bg="{% static 'images/front-view-young-woman-reading-book.jpg' %}">
+                            <div class="home-content pl--30">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <h3 class="h2-v2">Cùng trải nghiệm</h3>
+                                        <p>những quyển sách thú vị 
+                                            <br>tại Online Bookstore</p>
+                                        <a href="shop-grid.html" class="btn btn-outlined--primary">
+                                            Shop Now
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
                     <div class="col-lg-4 mt--30 mt-lg--0">
@@ -869,7 +869,7 @@
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
-                                        <img src="image/products/product-1.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-1.jpg' %}" alt="">
                                     </div>
                                     <div class="product-card--body">
                                         <div class="product-header">
@@ -4124,14 +4124,12 @@
                 <div class=" col-xl-3 col-lg-4 col-sm-6">
                     <div class="single-footer pb--40">
                         <div class="brand-footer footer-title">
-                            <img src="image/logo--footer.png" alt="">
+                            <img src="{% static 'website/image/logo1.png' %}" alt="">
                         </div>
                         <div class="footer-contact">
-                            <p><span class="label">Address:</span><span class="text">Example Street 98, HH2 BacHa, New
-                                    York,
-                                    USA</span></p>
-                            <p><span class="label">Phone:</span><span class="text">+18088 234 5678</span></p>
-                            <p><span class="label">Email:</span><span class="text">suport@hastech.com</span></p>
+                            <p><span class="label">Address:</span><span class="text">UET 301-G2</span></p>
+                            <p><span class="label">Phone:</span><span class="text">0327728199</span></p>
+                            <p><span class="label">Email:</span><span class="text">td.tan2711@gmail.comm</span></p>
                         </div>
                     </div>
                 </div>
@@ -4189,9 +4187,7 @@
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p class="copyright-heading">Suspendisse in auctor augue. Cras fermentum est ac fermentum tempor. Etiam
-                    vel
-                    magna volutpat, posuere eros</p>
+                <p class="copyright-heading">Được thành lập và phát triển bởi Online Bookstore</p>
                 <a href="#" class="payment-block">
                     <img src="image/icon/payment.png" alt="">
                 </a>
@@ -4202,29 +4198,8 @@
         </div>
     </footer>
     <!-- Use Minified Plugins Version For Fast Page Load -->
-    <script src="js/plugins.js"></script>
-    <script src="js/ajax-mail.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
-    <script src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'js/vendor/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/plugins/slick.min.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.syotimer.min.js' %}"></script>
-    <script src="{% static 'js/plugins/waypoints.js' %}"></script>
-    <script src="{% static 'js/plugins/wow.min.js' %}"></script>
-    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
-    <script src="{% static 'js/plugins/magnific-popup.min.js' %}"></script>
-    <script src="{% static 'js/plugins/select2.min.js' %}"></script>
-    <script src="{% static 'js/plugins/counterup.min.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.countdown.min.js' %}"></script>
-    <script src="{% static 'js/plugins/images-loaded.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/plugins/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/plugins/scrollup.min.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.vticker-min.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.knob.min.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.elevatezoom.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+
+
 </body>
 
 </html>
