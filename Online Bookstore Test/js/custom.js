@@ -121,6 +121,8 @@ jQuery(document).ready(function($) {
         var $body = $('body');
         var $uptimoSlickSlider = $('.sb-slick-slider');
 
+        
+
         /*For RTL*/
         if ($html.attr("dir") == "rtl" || $body.attr("dir") == "rtl") {
             $uptimoSlickSlider.attr("dir", "rtl");

@@ -28504,3 +28504,10 @@ p.form-messege.error {
 .accordion .card .card-body {
   padding: 0 30px 30px;
 }
+
+div[data-bg] {
+  background: var(--bg-url); /* Sử dụng biến CSS để lấy giá trị */
+  background-size: cover;
+  /* Các thuộc tính khác */
+}
+

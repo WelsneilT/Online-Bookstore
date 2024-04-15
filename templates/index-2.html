@@ -11,13 +11,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/plugins.css'%}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/main.css' %}" />
     <link rel="shortcut icon" type="image/x-icon" href="{%static 'website/image/favicon.ico' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
     <script src="{% static 'website/js/jquery.min.js' %}"></script>
     <script src="{% static 'website/js/popper.min.js' %}"></script>
     <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'website/js/ajax-mail.js' %}"></script>
     <script src="{% static 'website/js/custom.js' %}"></script>
     <script src="{% static 'website/js/plugins.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 </head>
     
 <body>
@@ -786,9 +790,8 @@
                         "autoplaySpeed": 8000,
                         "slidesToShow": 1,
                         "dots":true
-                        }'>
-                            <div class="single-slide bg-image bg-position-left bg-position-lg-center"
-                            data-bg="{% static 'images/pexels-pixabay-207607.jpg' %}">
+                        }'> 
+                        <div class="single-slide bg-image bg-position-left bg-position-lg-center" style="background-image: url('{% static 'website/images/pexels-lepta-studio-13929613.jpg' %}')">
                             <div class="home-content text-left text-md-center pl--30 pl-md--0">
                                 <div class="row">
                                     <div class="col-lg-7 col-xl-5 col-md-6 col-sm-6">
@@ -802,7 +805,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="single-slide bg-image" data-bg="{% static 'images/pexels-lepta-studio-13929613.jpg' %}">
+                        <!--
+                        <div class="single-slide bg-image bg-position-left bg-position-lg-center" style="background-image: url('{% static 'website/images/front-view-young-woman-reading-book.jpg' %}')">
+                            <div class="home-content text-left text-md-center pl--30 pl-md--0">
+                                <div class="row">
+                                    <div class="col-lg-7 col-xl-5 col-md-6 col-sm-6">
+                                        <h3 style="color: white">Đắm chìm</h3>
+                                        <p style="color: white">vào thế giới sách
+                                            <br>của riêng mình</p>
+                                        <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white">
+                                            Shop Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-slide bg-image" style="background-image: url('{% static 'website/images/front-view-young-woman-reading-book.jpg' %}')">
                             <div class="home-content pl--30">
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -816,8 +834,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="single-slide bg-image" data-bg="{% static 'images/pexels-anne-981110.jpg' %}">
-                            <div class="home-content pl--30">
+                        <div class="single-slide bg-image" style="background-image: url('{% static 'website/images/front-view-young-woman-reading-book.jpg' %}')">
                                 <div class="row">
                                     <div class="col-lg-7">
                                         <h3 style="color: white">Tận hưởng</h3>
@@ -828,10 +845,8 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="single-slide bg-image" data-bg="{% static 'images/pexels-josh-hild-4256852.jpg' %}">
-                            <div class="home-content pl--30">
+                            </div> 
+                        <div class="single-slide bg-image" style="background-image: url('{% static 'website/images/front-view-young-woman-reading-book.jpg' %}')">
                                 <div class="row">
                                     <div class="col-lg-7">
                                         <h3 style="color: white" class="h2-v2">Bạn đồng hành</h3>
@@ -844,7 +859,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="single-slide bg-image" data-bg="{% static 'images/front-view-young-woman-reading-book.jpg' %}">
+                        <div class="single-slide bg-image" style="background-image: url('{% static 'website/images/front-view-young-woman-reading-book.jpg' %}')">
+
                             <div class="home-content pl--30">
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -858,6 +874,7 @@
                                 </div>
                             </div>                            
                         </div>
+                        -->
                     </div>
                     <div class="col-lg-4 mt--30 mt-lg--0">
                         <div class="sb-slick-slider hero-products-group-slider product-border-reset" data-slick-setting='{

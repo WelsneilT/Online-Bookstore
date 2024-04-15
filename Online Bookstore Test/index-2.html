@@ -11,6 +11,10 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/plugins.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -640,7 +644,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <a href="index.html" class="site-brand">
-                            <img src="image/logo1.png" alt="">
+                            <img src="image/logo1.png" alt="" style="width: 100px">
                         </a>
                     </div>
                     <div class="col-lg-8">
@@ -769,6 +773,97 @@
             <div class="container">
                 <div class="row align-items-lg-center">
                     <div class="col-lg-8">
+                        <div id="bookCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                          
+                              <div class="carousel-item active bg-image single-slide bg-position-left bg-position-lg-center" data-bg="images/pexels-pixabay-207607.jpg">
+                                <div class="home-content text-left text-md-center pl--30 pl-md--0">
+                                    <div class="row">
+                                        <div class="col-lg-7 col-xl-5 col-md-6 col-sm-6">
+                                            <h3 style="color: white">Đắm chìm</h3>
+                                            <p style="color: white">vào thế giới sách
+                                                <br>của riêng mình</p>
+                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white">
+                                                Shop Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                          
+                              <div class="carousel-item bg-image single-slide bg-image" data-bg="images/pexels-lepta-studio-13929613.jpg">
+                                <div class="home-content pl--30">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            
+                                            <h3 class="h2-v2" style = "color: white">Khám phá</h3>
+                                            <p style="color: white">Biển rộng kiến thức
+                                                <br style="padding-left: 50px;">bao la rộng lớn</p>
+                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white" >
+                                                Shop Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                          
+                              <div class="carousel-item bg-image single-slide bg-image" data-bg="images/pexels-anne-981110.jpg">
+                                <div class="home-content pl--30">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h3 style = "color: white">Tận hưởng</h3>
+                                            <p style="color: white"> và cảm nhận không khí 
+                                                <br>thiên nhiên tươi đẹp</p>
+                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style="color: white; background-color: grey;" >
+                                                Shop Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                          
+                              <div class="carousel-item bg-image single-slide bg-image" data-bg="images/pexels-josh-hild-4256852.jpg">
+                                <div class="home-content pl--30">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h3 style = "color: white" class="h2-v2">Bạn đồng hành</h3>
+                                            <p style = "color: white">cùng tiến tới ước mơ 
+                                                <br>tương lai phía trước</p>
+                                            <a href="shop-grid.html" class="btn btn-outlined--primary" style = "color: white"> 
+                                                Shop Now Here
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                          
+                              <div class="carousel-item bg-image single-slide bg-image" data-bg="images/front-view-young-woman-reading-book.jpg">
+                                <div class="home-content pl--30">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h3 class="h2-v2">Cùng trải nghiệm</h3>
+                                            <p>những quyển sách thú vị 
+                                                <br>tại Online Bookstore</p>
+                                            <a href="shop-grid.html" class="btn btn-outlined--primary">
+                                                Shop Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                          
+                            </div>
+                          
+                            <a class="carousel-control-prev" href="#bookCarousel" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#bookCarousel" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--
                         <div class="sb-slick-slider" data-slick-setting='{
                                                                 "autoplay": true,
                                                                 "autoplaySpeed": 8000,
@@ -844,12 +939,10 @@
                                                 Shop Now
                                             </a>
                                         </div>
-                                    </div>
+                                    </div>  
                                 </div>
                             </div>
-                            
-
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-lg-4 mt--30 mt-lg--0">
                         <div class="sb-slick-slider hero-products-group-slider product-border-reset" data-slick-setting='{
@@ -4120,14 +4213,12 @@
                 <div class=" col-xl-3 col-lg-4 col-sm-6">
                     <div class="single-footer pb--40">
                         <div class="brand-footer footer-title">
-                            <img src="image/logo--footer.png" alt="">
+                            <img src="image/logo1.png" alt="" style ="width: 200px">
                         </div>
                         <div class="footer-contact">
-                            <p><span class="label">Address:</span><span class="text">Example Street 98, HH2 BacHa, New
-                                    York,
-                                    USA</span></p>
-                            <p><span class="label">Phone:</span><span class="text">+18088 234 5678</span></p>
-                            <p><span class="label">Email:</span><span class="text">suport@hastech.com</span></p>
+                            <p><span class="label">Address:</span><span class="text">UET 301-G2</span></p>
+                            <p><span class="label">Phone:</span><span class="text">0327728199</span></p>
+                            <p><span class="label">Email:</span><span class="text">td.tan2711@gmail.,com</span></p>
                         </div>
                     </div>
                 </div>
