@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/plugins.css'%}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/main.css' %}" />
     <link rel="shortcut icon" type="image/x-icon" href="{%static 'website/image/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="{% static 'website/js/jquery.min.js' %}"></script>
     <script src="{% static 'website/js/ajax-mail.js' %}"></script>
     <script src="{% static 'website/js/custom.js' %}"></script>
@@ -32,7 +33,7 @@
 
                         <div class="col-lg-5">
                             <form class="search" action="{% url 'search_results' %}" method="get">
-                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+                                
                                 <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search...">
                                 <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
                             </form>
