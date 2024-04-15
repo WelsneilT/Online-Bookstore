@@ -28511,3 +28511,12 @@ div[data-bg] {
   /* Các thuộc tính khác */
 }
 
+.carousel-image {
+  position: relative;
+}
+
+.carousel-caption {
+  position: absolute;
+
+  text-align: left;
+}
