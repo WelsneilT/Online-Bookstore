@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include # changes
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +27,11 @@ urlpatterns = [
     path('accounts/', include("accounts.urls")),  # changes
     path('carousel1/', include('carousel1.urls')),
     path('accounts/', include("django.contrib.auth.urls")),   # working for logins
+    path('shop-grid.html', TemplateView.as_view(template_name='html/shop-grid.html'), name='shop-grid'),
+    path('shop-list.html', TemplateView.as_view(template_name='html/shop-list.html'), name='shop-list'),
+    path('product-details-affiliate.html', TemplateView.as_view(template_name='html/product-details-affiliate.html'), name='product-details'),
+    path('blog.html', TemplateView.as_view(template_name='html/blog.html'), name='blog'),
+    path('blog-details.html', TemplateView.as_view(template_name='html/blog-details.html'), name='blog-details'),
     path('', include('homepage.urls')),  # Đường dẫn gốc dẫn tới trang chủ
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
