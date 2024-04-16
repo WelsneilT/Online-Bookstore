@@ -28522,3 +28522,14 @@ p.form-messege.error {
 .carousel-item {
   width:100%;
 }
+
+body{
+  font-family: 'Coiny', cursive;
+}
+
+.carousel-inner .carousel-caption{
+  padding-bottom: 170px;
+}
+.carousel-inner .carousel-caption h1{
+  font-size: 52px;
+}

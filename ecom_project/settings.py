@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',  # Thêm dòng này
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',  # changes
+    'carousel1.apps.Carousel1Config',
 ]
 
 MIDDLEWARE = [
@@ -124,8 +125,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # requires collectstatic com
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    '/var/www/static/',
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # It’s often the case that there will be multiple directories
 # with static files within a project so Python brackets [] , 

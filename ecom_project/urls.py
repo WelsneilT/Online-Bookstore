@@ -16,11 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # changes
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', include('books.urls')),  # changes
     path('accounts/', include("accounts.urls")),  # changes
+    path('carousel1/', include('carousel1.urls')),
     path('accounts/', include("django.contrib.auth.urls")),   # working for logins
     path('', include('homepage.urls')),  # Đường dẫn gốc dẫn tới trang chủ
 ]
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
