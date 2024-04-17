@@ -52,6 +52,8 @@
       <i class="fas fa-search"></i>
       <input name="q" class="fas fa-search" type="text" autocomplete="off" placeholder="okay bro ?">
     </form>
+    <a type="button" role="button" href="{% url "contact:index" %}"
+    class="btn btn-outline-secondary"></a>
     <a type="button" role="button" href="{% url "basket:basket_summary" %}"
     class="btn btn-outline-secondary">
     {% with total_qty=basket|length %}
