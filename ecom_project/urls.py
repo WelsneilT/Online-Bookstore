@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # changes
-
+from contact.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
     path('', include('books.urls')),  # changes
     path('', include("accounts.urls")),  # changes
     path('basket/',include('basket.urls', namespace = 'basket')),
