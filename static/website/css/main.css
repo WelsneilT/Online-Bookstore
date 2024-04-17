@@ -22911,7 +22911,7 @@ input[type=number] {
   .category-menu .has-children:hover > .sub-menu {
     left: 100%;
     visibility: visible;
-    opacity: 1;
+    opacity: 2;
     pointer-events: visible;
   }
 }
@@ -22947,7 +22947,7 @@ input[type=number] {
 @media (min-width: 992px) {
   .category-menu .has-children.mega-menu > .sub-menu {
     padding: 30px 30px 8px 30px;
-    width: 600px;
+    width: 700px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -22962,8 +22962,8 @@ input[type=number] {
   .category-menu .has-children.mega-menu > .sub-menu .single-block {
     margin-bottom: 22px;
     -webkit-box-flex: 50%;
-        -ms-flex: 50%;
-            flex: 50%;
+        -ms-flex: 20%;
+            flex: 20%;
   }
 }
 .category-menu .has-children.mega-menu > .sub-menu .single-block li > a {
