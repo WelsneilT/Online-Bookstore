@@ -3,6 +3,8 @@
 ## SET UP môi trường
 
 - pipenv shell
+- pipenv install django
+- python manage.py check
 - python manage.py runserver
 
 ## Truy cập link dưới
