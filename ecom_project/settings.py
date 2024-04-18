@@ -28,8 +28,8 @@ SESSION_SAVE_EVERY_REQUEST = True
 ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_HOST_USER = 'ec5a000bb7e54c'
-EMAIL_HOST_PASSWORD = '7bf8180179a356'
+EMAIL_HOST_USER = 'e9f68afa303775'
+EMAIL_HOST_PASSWORD = '764722bcea11b7'
 EMAIL_PORT = '2525'
 # Application definition
 
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     # my apps,				# changes
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',  # changes
-    'basket.apps.BasketConfig'
+    'basket.apps.BasketConfig',
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [
