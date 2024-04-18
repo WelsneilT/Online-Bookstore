@@ -39,7 +39,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-3">
-                            <a href="index.html" class="site-brand">
+                            <a href="{% url 'index' %}" class="site-brand">
                                 <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 100px">
                             </a>
                         </div>
@@ -78,7 +78,7 @@
                                             <div class=" single-cart-block ">
                                                 <div class="cart-product">
                                                     <a href="product-details.html" class="image">
-                                                        <img src=" {% static 'website/image/products/cart-product-1.jpg' %}" alt="">
+                                                        <img src="{% static 'website/image/products/cart-product-1.jpg' %}" alt="">
                                                     </a>
                                                     <div class="content">
                                                         <h3 class="title"><a href="product-details.html">Kodak PIXPRO
@@ -238,7 +238,7 @@
                                         <a href="javascript:void(0)">Home <i
                                                 class="fas fa-chevron-down dropdown-arrow"></i></a>
                                         <ul class="sub-menu">
-                                            <li> <a href="index.html">Home One</a></li>
+                                            <li> <a href="{% url 'index' %}">Home One</a></li>
                                             <li> <a href="index-2.html">Home Two</a></li>
                                             <li> <a href="index-3.html">Home Three</a></li>
                                             <li> <a href="index-4.html">Home Four</a></li>
@@ -353,8 +353,8 @@
                 <div class="container">
                     <div class="row align-items-sm-end align-items-center">
                         <div class="col-md-4 col-7">
-                            <a href="index.html" class="site-brand">
-                                <img src="i{% static 'website/image/logo1.png' % }" alt="">
+                            <a href="{% url 'index' %}" class="site-brand">
+                                <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 100px">
                             </a>
                         </div>
                         <div class="col-md-5 order-3 order-md-2">
@@ -506,7 +506,7 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">Home</a>
                                     <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
+                                        <li> <a href="{% url 'index' %}">Home One</a></li>
                                         <li> <a href="index-2.html">Home Two</a></li>
                                         <li> <a href="index-3.html">Home Three</a></li>
                                         <li> <a href="index-4.html">Home Four</a></li>
@@ -656,8 +656,8 @@
             <div class="container d-none d-lg-block">
                 <div class="row align-items-center">
                     <div class="col-lg-4">
-                        <a href="index.html" class="site-brand">
-                            <img src="{% static 'website/image/logo1.png' %}" alt="">
+                        <a href="{% url 'index' %}" class="site-brand">
+                            <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 120px">
                         </a>
                     </div>
                     <div class="col-lg-8">
@@ -667,7 +667,7 @@
                                     <a href="javascript:void(0)">Home <i
                                             class="fas fa-chevron-down dropdown-arrow"></i></a>
                                     <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
+                                        <li> <a href="{% url 'index' %}">Home One</a></li>
                                         <li> <a href="index-2.html">Home Two</a></li>
                                         <li> <a href="index-3.html">Home Three</a></li>
                                         <li> <a href="index-4.html">Home Four</a></li>
@@ -785,7 +785,7 @@
 				<div class="breadcrumb-contents">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+							<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
 							<li class="breadcrumb-item active">Product Details</li>
 						</ol>
 					</nav>
@@ -806,19 +806,19 @@
 							"asNavFor": ".product-slider-nav"
 							}'>
 							<div class="single-slide">
-								<img src="images/shop_product1.jpg" alt="">
+								<img src="{% static 'website/images/shop_product1.jpg' %}" alt="">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product2.jpg" alt="">
+								<img src="{% static 'website/images/shop_product2.jpg' %}" alt="">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product3.jpg" alt="">
+								<img src="{% static 'website/images/shop_product3.jpg' %}" alt="">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product4.jpg" alt="">
+								<img src="{% static 'website/images/shop_product4.jpg' %}" alt="">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product5.jpg" alt="">
+								<img src="{% static 'website/images/shop_product5.jpg' %}" alt="">
 							</div>
 						</div>
 						<!-- Product Details Slider Nav -->
@@ -834,19 +834,19 @@
 							"focusOnSelect": true
 							}'>
 							<div class="single-slide">
-								<img src="images/shop_product1.jpg" alt="" style="width: 83px; height: 116px">
+								<img src="{% static 'website/images/shop_product1.jpg' %}" alt="" style="width: 83px; height: 116px">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product2.jpg" alt="" style="width: 83px; height: 116px">
+								<img src="{% static 'website/images/shop_product2.jpg' %}" alt="" style="width: 83px; height: 116px">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product3.jpg" alt="" style="width: 83px; height: 116px">
+								<img src="{% static 'website/images/shop_product3.jpg' %}" alt="" style="width: 83px; height: 116px">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product4.jpg" alt="" style="width: 83px; height: 116px">
+								<img src="{% static 'website/images/shop_product4.jpg' %}" alt="" style="width: 83px; height: 116px">
 							</div>
 							<div class="single-slide">
-								<img src="images/shop_product5.jpg" alt="" style="width: 83px; height: 116px">
+								<img src="{% static 'website/images/shop_product5.jpg' %}" alt="" style="width: 83px; height: 116px">
 							</div>
 						</div>
 					</div>
@@ -927,7 +927,7 @@
 								<h2 class="title-lg mb--20">2 REVIEWS</h2>
 								<div class="review-comment mb--20">
 									<div class="avatar">
-										<img src="images/Khôi.jpg" alt="">
+										<img src="{% static 'website/images/Khôi.jpg' %}" alt="">
 									</div>
 									<div class="text">
 										<div class="rating-block mb--15">
@@ -945,7 +945,7 @@
 								</div>
 								<div class="review-comment mb--20">
 									<div class="avatar">
-										<img src="images/Tuấn.png" alt="">
+										<img src="{% static 'website/images/Tuấn.png' %}" alt="">
 									</div>
 									<div class="text">
 										<div class="rating-block mb--15">
@@ -1064,10 +1064,10 @@
 								</div>
 								<div class="product-card--body">
 									<div class="card-image">
-										<img src="images/shop_product6.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+										<img src="{% static 'website/images/shop_product6.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 										<div class="hover-contents">
 											<a href="product-details.html" class="hover-image">
-												<img src="images/shop_product6.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+												<img src="{% static 'website/images/shop_product6.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 											</a>
 											<div class="hover-btns">
 												<a href="cart.html" class="single-btn">
@@ -1104,10 +1104,10 @@
 								</div>
 								<div class="product-card--body">
 									<div class="card-image">
-										<img src="images/shop_product7.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+										<img src="{% static 'website/images/shop_product7.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 										<div class="hover-contents">
 											<a href="product-details.html" class="hover-image">
-												<img src="images/shop_product7.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+												<img src="{% static 'website/images/shop_product7.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 											</a>
 											<div class="hover-btns">
 												<a href="cart.html" class="single-btn">
@@ -1144,10 +1144,10 @@
 								</div>
 								<div class="product-card--body">
 									<div class="card-image">
-										<img src="images/shop_product8.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+										<img src="{% static 'website/images/shop_product8.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 										<div class="hover-contents">
 											<a href="product-details.html" class="hover-image">
-												<img src="images/shop_product8.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+												<img src="{% static 'website/images/shop_product8.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 											</a>
 											<div class="hover-btns">
 												<a href="cart.html" class="single-btn">
@@ -1184,10 +1184,10 @@
 								</div>
 								<div class="product-card--body">
 									<div class="card-image">
-										<img src="images/shop_product9.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+										<img src="{% static 'website/images/shop_product9.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 										<div class="hover-contents">
 											<a href="product-details.html" class="hover-image">
-												<img src="images/shop_product9.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+												<img src="{% static 'website/images/shop_product9.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 											</a>
 											<div class="hover-btns">
 												<a href="cart.html" class="single-btn">
@@ -1224,10 +1224,10 @@
 								</div>
 								<div class="product-card--body">
 									<div class="card-image">
-										<img src="images/shop_product10.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+										<img src="{% static 'website/images/shop_product10.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 										<div class="hover-contents">
 											<a href="product-details.html" class="hover-image">
-												<img src="images/shop_product10.jpg" alt="" style="height: 200pt; display: block; margin: 0 auto;">
+												<img src="{% static 'website/images/shop_product10.jpg' %}" alt="" style="height: 200pt; display: block; margin: 0 auto;">
 											</a>
 											<div class="hover-btns">
 												<a href="cart.html" class="single-btn">
@@ -1276,48 +1276,48 @@
                                     "asNavFor": ".product-slider-nav"
                                     }'>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-1.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-1.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-2.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-2.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-3.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-3.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-4.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-4.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-5.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-5.jpg' %}" alt="">
                                     </div>
                                 </div>
                                 <!-- Product Details Slider Nav -->
                                 <div class="mt--30 product-slider-nav sb-slick-slider arrow-type-two"
                                     data-slick-setting='{
-            "infinite":true,
-              "autoplay": true,
-              "autoplaySpeed": 8000,
-              "slidesToShow": 4,
-              "arrows": true,
-              "prevArrow":{"buttonClass": "slick-prev","iconClass":"fa fa-chevron-left"},
-              "nextArrow":{"buttonClass": "slick-next","iconClass":"fa fa-chevron-right"},
-              "asNavFor": ".product-details-slider",
-              "focusOnSelect": true
-              }'>
+                                    "infinite":true,
+                                    "autoplay": true,
+                                    "autoplaySpeed": 8000,
+                                    "slidesToShow": 4,
+                                    "arrows": true,
+                                    "prevArrow":{"buttonClass": "slick-prev","iconClass":"fa fa-chevron-left"},
+                                    "nextArrow":{"buttonClass": "slick-next","iconClass":"fa fa-chevron-right"},
+                                    "asNavFor": ".product-details-slider",
+                                    "focusOnSelect": true
+                                    }'>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-1.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-1.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-2.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-2.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-3.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-3.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-4.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-4.jpg' %}" alt="">
                                     </div>
                                     <div class="single-slide">
-                                        <img src="image/products/product-details-5.jpg" alt="">
+                                        <img src="{% static 'website/image/products/product-details-5.jpg' %}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -1409,28 +1409,28 @@
                 {"breakpoint":320, "settings": {"slidesToShow": 1} }
             ]'>
 				<div class="single-slide">
-					<img src="image/others/brand-1.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-1.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-2.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-2.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-3.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-3.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-4.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-4.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-5.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-5.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-6.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-6.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-1.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-1.jpg' %}" alt="">
 				</div>
 				<div class="single-slide">
-					<img src="image/others/brand-2.jpg" alt="">
+					<img src="{% static 'website/image/others/brand-2.jpg' %}" alt="">
 				</div>
 			</div>
 		</div>
@@ -1444,7 +1444,7 @@
 				<div class=" col-xl-3 col-lg-4 col-sm-6">
 					<div class="single-footer pb--40">
 						<div class="brand-footer footer-title">
-							<img src="image/logo1.png" alt="" style ="width: 200px">
+							<img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 200px">
 						</div>
 						<div class="footer-contact">
 							<p><span class="label">Address:</span><span class="text">UET, 301-G2</span></p>
@@ -1509,9 +1509,9 @@
 			<div class="container">
 				<p class="copyright-heading">Được thành lập và phát triển bởi Online Bookstore</p>
 				<a href="#" class="payment-block">
-					<img src="image/icon/payment.png" alt="">
+					<img src="{% static 'website/image/icon/payment.png' %}" alt="">
 				</a>
-				<p class="copyright-text">Copyright © 2024 <a href="#" class="author">Online Bookstore</a>. All Right Reserved.
+				<p class="copyright-text">Copyright © 2024 <a href="{% url 'index' %}" class="author">Online Bookstore</a>. All Right Reserved.
 					<br>
 					Design By Online Bookstore</p>
 			</div>

@@ -695,7 +695,7 @@
                                         <a href="javascript:void(0)">Home <i
                                                 class="fas fa-chevron-down dropdown-arrow"></i></a>
                                         <ul class="sub-menu">
-                                            <li> <a href="index.html">Home One</a></li>
+                                            <li> <a href="{% url 'index' %}">Home One</a></li>
                                             <li> <a href="index-2.html">Home Two</a></li>
                                             <li> <a href="index-3.html">Home Three</a></li>
                                             <li> <a href="index-4.html">Home Four</a></li>
@@ -811,7 +811,7 @@
                     <div class="row align-items-sm-end align-items-center">
                         <div class="col-md-4 col-7">
                             <a href="{% url 'index' %}" class="site-brand">
-                                <img src="i{% static 'website/image/logo1.png' % }" alt="">
+                                <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 100px">
                             </a>
                         </div>
                         <div class="col-md-5 order-3 order-md-2">
@@ -963,7 +963,7 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">Home</a>
                                     <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
+                                        <li> <a href="{% url 'index' %}">Home One</a></li>
                                         <li> <a href="index-2.html">Home Two</a></li>
                                         <li> <a href="index-3.html">Home Three</a></li>
                                         <li> <a href="index-4.html">Home Four</a></li>
@@ -1114,7 +1114,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <a href="{% url 'index' %}" class="site-brand">
-                            <img src="{% static 'website/image/logo1.png' %}" alt="">
+                            <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 120px">
                         </a>
                     </div>
                     <div class="col-lg-8">
@@ -1124,7 +1124,7 @@
                                     <a href="javascript:void(0)">Home <i
                                             class="fas fa-chevron-down dropdown-arrow"></i></a>
                                     <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
+                                        <li> <a href="{% url 'index' %}">Home One</a></li>
                                         <li> <a href="index-2.html">Home Two</a></li>
                                         <li> <a href="index-3.html">Home Three</a></li>
                                         <li> <a href="index-4.html">Home Four</a></li>
@@ -4591,7 +4591,7 @@
                 <div class=" col-xl-3 col-lg-4 col-sm-6">
                     <div class="single-footer pb--40">
                         <div class="brand-footer footer-title">
-                            <img src="{% static 'website/image/logo1.png' %}" alt="">
+                            <img src="{% static 'website/image/logo1.png' %}" alt="" style ="width: 200px">
                         </div>
                         <div class="footer-contact">
                             <p><span class="label">Address:</span><span class="text">UET 301-G2</span></p>
@@ -4658,7 +4658,7 @@
                 <a href="#" class="payment-block">
                     <img src="{% static 'website/image/icon/payment.png' %}" alt="">
                 </a>
-                <p class="copyright-text">Copyright © 2022 <a href="#" class="author">Online Book Store</a>. All Right Reserved.
+                <p class="copyright-text">Copyright © 2022 <a href="{% url 'index' %}" class="author">Online Book Store</a>. All Right Reserved.
                     <br>
                     Design By Online Book Store</p>
             </div>
