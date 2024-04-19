@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',  # changes
     'carousel1.apps.Carousel1Config',
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [

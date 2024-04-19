@@ -27,7 +27,8 @@ urlpatterns = [
     path('accounts/', include("accounts.urls")),  # changes
     path('carousel1/', include('carousel1.urls')),
     path('accounts/', include("django.contrib.auth.urls")),   # working for logins
-
+    path('contact/', include('contact.urls' , namespace = 'contact')),  # changes
+    
     path('shop-grid.html', TemplateView.as_view(template_name='html/shop-grid.html'), name='shop-grid'),
     path('shop-list.html', TemplateView.as_view(template_name='html/shop-list.html'), name='shop-list'),
     path('product-details-affiliate.html', TemplateView.as_view(template_name='html/product-details-affiliate.html'), name='product-details'),
