@@ -21,11 +21,11 @@ def index(request):
                 'form': form
             })
 
-            send_mail('The contact form subject', 'This is the message', 'nguyentienkhoi210@gmail.com', ['nguyentienkhoi210@gmail.com'], html_message=html)
+            send_mail('The contact form subject', 'This is the message', 'td.tan2711@gmail.com', ['td.tan2711@gmail.com'], html_message=html)
 
     else:
         form = ContactForm()
 
-    return render(request, 'contact/index.html', {
+    return render(request, 'contact/index2.html', {
         'form': form
     })

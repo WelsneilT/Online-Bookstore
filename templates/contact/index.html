@@ -9,7 +9,7 @@
     <form method="post" action=".">
         {% csrf_token %}
 
-        <p><label for="id_name">Name:</label>{{ form.name }}</p>
+        <p><label for="id_name" class ="form-control">Name:</label>{{ form.name }}</p>
         <p><label for="id_email">E-mail:</label>{{ form.email }}</p>
         <p><label for="id_content">Message:</label><br>{{ form.content }}</p>
 
