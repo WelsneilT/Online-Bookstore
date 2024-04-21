@@ -46,7 +46,7 @@ urlpatterns = [
     path('blog.html', TemplateView.as_view(template_name='html/blog.html'), name='blog'),
     path('blog-details.html', TemplateView.as_view(template_name='html/blog-details.html'), name='blog-details'),
     path('index-2.html', TemplateView.as_view(template_name='index-2.html'), name='index'),
-
+    path('basket/',include('basket.urls', namespace = 'basket')),
     path('', include('homepage.urls')),  # Đường dẫn gốc dẫn tới trang chủ
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
