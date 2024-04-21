@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import SignUpView
+from .views import SignUpView, LogOutView
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('accounts/', SignUpView.as_view(), name = 'signup'),
+    path('accounts/signup/', SignUpView.as_view(), name = 'signup'),
+    path('accounts/logout/', LogOutView.as_view(), name='logout'),
 ]

@@ -21,7 +21,7 @@
     <a class="navbar-brand" href="{% url 'list' %}">Online Bookstore</a>
     <div class="btn-group dropright">
       <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{user}}
+        {{user.username|default:"Account"}}
       </a>
 
     <!--login conditions -->
