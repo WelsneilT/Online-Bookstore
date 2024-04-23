@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/checkout/', BookCheckoutView.as_view(), name = 'checkout'),
     path('complete/', paymentComplete, name = 'complete'),
     path('search/', SearchResultsListView.as_view(), name = 'search_results'),
+
 ]

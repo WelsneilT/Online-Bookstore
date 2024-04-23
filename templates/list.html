@@ -8,9 +8,9 @@
 
 
 <div class="row">
-    {% for each in object_list %}
+    {% for each in list_books %}
     <div class="col">
-        <div class="card" style="width: 13rem;">
+        <div class="card" style="width: 13rem;" id="list_">
             <img src="{{ each.image_url }}" class="card-img-top" alt="..." style="height: 350px; width: auto; object-fit: cover;">
             <div class="card-body">
                 <h5 class="card-title" style="font-size: 18px;">{{ each.title|slice:":100"}} ...</h5>

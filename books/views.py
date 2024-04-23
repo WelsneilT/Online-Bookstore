@@ -7,17 +7,21 @@ from django.urls import reverse_lazy
 from django.db.models import Q # for search method
 from django.http import JsonResponse
 import json
+from django.http import HttpResponse
+from django.template import loader
 
 
-
+    
 class BooksListView(ListView):
     model = Book
-    
-    def get_queryset(self):
-        # Get the queryset of all Book objects
-        queryset = super().get_queryset()
-        # Limit the queryset to the first 100 objects
-        return queryset[:100]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Thêm queryset từ BooksSliderView
+        context['slider_books'] = Book.objects.filter(book_available=True)[:6]
+        # Thêm queryset từ BooksListView
+        context['list_books'] = Book.objects.all()[:100]
+        return context
     
     template_name = 'list.html'
 
@@ -51,3 +55,4 @@ def paymentComplete(request):
 		product=product
 	)
 	return JsonResponse('Payment completed!', safe=False)
+
