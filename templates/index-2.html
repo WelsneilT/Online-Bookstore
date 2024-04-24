@@ -248,7 +248,7 @@ Home Slider Tab
                                 
                                 <div class="product-card--body">
                                     <div class="card-image">
-                                        <img src="{{ book.image_url }}" alt="{{ book.title }}">
+                                        <img src="{{ book.image_url }}" alt="{{ book.title }}" style="max-height: 320px;">
                                     </div>
                                     
                                 </div>
@@ -356,7 +356,7 @@ Home Two Column Section
         <div class="row">
             <div class="col-lg-4 mb--30 mb-lg--0">
                 <div class="home-left-sidebar">
-                    <div class="single-side  bg-white">
+                    <div class="bg-white" style="height: 930px">
                         <h2 class="home-sidebar-title">
                             Special offer
                         </h2>
@@ -369,331 +369,39 @@ Home Two Column Section
                             }' data-slick-responsive='[
                                 {"breakpoint":992, "settings": {"slidesToShow": 2} },
                                 {"breakpoint":480, "settings": {"slidesToShow": 1} }
-                            ]'>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            xpple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">Koss KPH7 Lightweight Portable
-                                                Headphone</a></h3>
-                                    </div>
+                            ]' style="height: 750px">
+                            {% for book in special_offers %}
+                            <div class="single-slide" >
+                                <div class="product-card" style="height:700px">
+                                    
                                     <div class="product-card--body">
                                         <div class="card-image">
-                                            <img src=" {% static 'website/image/products/product-2.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-2.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <img src="{{ book.image_url }}" alt="{{ book.title }}">
                                         </div>
+                                        
+                                    </div>
+                                    <div class="product-header">
+                                        <a href="#" class="author">
+                                            {{ book.author }}
+                                        </a>
+                                        <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
                                         <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
+                                            <span class="price">£{{ book.price }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            Ypple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">Beats EP Wired On-Ear
-                                                digital Headphone-Black                    
-                                               
-                          </a></h3>
-                                    </div>
-                                    <div class="product-card--body">
-                                        <div class="card-image">
-                                            <img src="{% static 'website/image/products/product-2.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-3.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            Kpple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">Beats Solo2 Solo2 2  Wired On-Ear
-                                                Headphone</a></h3>
-                                    </div>
-                                    <div class="product-card--body">
-                                        <div class="card-image">
-                                            <img src="{% static 'website/image/products/product-4.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-3.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            Zpple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">3 Ways To Have (A) More Appealing
-                                                BOOK</a></h3>
-                                    </div>
-                                    <div class="product-card--body">
-                                        <div class="card-image">
-                                            <img src="{% static 'website/image/products/product-5.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-4.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            Rpple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">In 10 Minutes, I'll Give You The
-                                                Truth About</a></h3>
-                                    </div>
-                                    <div class="product-card--body">
-                                        <div class="card-image">
-                                            <img src="{% static 'website/image/products/product-6.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-5.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            Bpple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">Apple iPad with Retina Display
-                                                MD510LL/A</a></h3>
-                                    </div>
-                                    <div class="product-card--body">
-                                        <div class="card-image">
-                                            <img src="{% static 'website/image/products/product-7.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-6.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-slide">
-                                <div class="product-card">
-                                    <div class="product-header">
-                                        <span class="author">
-                                            Gaple
-                                        </span>
-                                        <h3><a href="{% url 'product-details' %}">5 Ways To Get Through To Your
-                                                BOOK</a></h3>
-                                    </div>
-                                    <div class="product-card--body">
-                                        <div class="card-image">
-                                            <img src="{% static 'website/image/products/product-12.jpg' %}" alt="">
-                                            <div class="hover-contents">
-                                                <a href="{% url 'product-details' %}" class="hover-image">
-                                                    <img src="{% static 'website/image/products/product-11.jpg' %}" alt="">
-                                                </a>
-                                                <div class="hover-btns">
-                                                    <a href="cart.html" class="single-btn">
-                                                        <i class="fas fa-shopping-basket"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" class="single-btn">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                    <a href="compare.html" class="single-btn">
-                                                        <i class="fas fa-random"></i>
-                                                    </a>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quickModal"
-                                                        class="single-btn">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price-block">
-                                            <span class="price">£51.20</span>
-                                            <del class="price-old">£51.20</del>
-                                            <span class="price-discount">20%</span>
-                                        </div>
-                                        <div class="count-down-block">
-                                            <div class="product-countdown" data-countdown="01/05/2020"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    <div class="single-side">
-                        <a href="#" class="promo-image promo-overlay">
-                            <img src="{% static 'website/image/bg-images/promo-banner-small-with-text.jpg' %} " alt="">
-                        </a>
-                    </div>
+                
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="home-right-block">
                     <div class="single-block bg-white">
                         <div class="section-title mt-0">
-                            <h2>BIOGRAPHIES BOOKS</h2>
+                            <h2>FICTION BOOKS</h2>
                         </div>
                         <div class="product-slider product-list-slider sb-slick-slider slider-border-single-row"
                             data-slick-setting='{
@@ -707,7 +415,7 @@ Home Two Column Section
                                                             {"breakpoint":768, "settings": {"slidesToShow": 2} },
                                                             {"breakpoint":575, "settings": {"slidesToShow": 1} },
                                                             {"breakpoint":490, "settings": {"slidesToShow": 1} }
-                                                        ]'>
+                                                        ]' >
                             <div class="single-slide">
                                 <div class="product-card card-style-list">
                                     <div class="card-image">
@@ -1363,7 +1071,7 @@ CHILDREN’S BOOKS SECTION
 <section class="section-margin">
     <div class="container">
         <div class="section-title section-title--bordered">
-            <h2>CHILDREN’S BOOKS</h2>
+            <h2>ADVENTURE BOOKS</h2>
         </div>
         <div class="product-slider product-list-slider slider-border-single-row sb-slick-slider"
             data-slick-setting='{
@@ -1377,130 +1085,27 @@ CHILDREN’S BOOKS SECTION
                                     {"breakpoint":575, "settings": {"slidesToShow": 1} },
                                     {"breakpoint":490, "settings": {"slidesToShow": 1} }
                                 ]'>
+            {% for book in adventure_books %}
             <div class="single-slide">
                 <div class="product-card card-style-list">
                     <div class="card-image">
-                        <img src="{% static 'website/image/products/product-2.jpg' %}" alt="">
+                        <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100px; height: 155px">
                     </div>
                     <div class="product-card--body">
                         <div class="product-header">
-                            <a href="#" class="author">
-                                Bpple
+                            <a href="#" class="author" style="font-size: 14px;">
+                                {{ book.author }}
                             </a>
-                                <h3><a href="{% url 'product-details' %}">3 Ways To Have (A) More Appealing BOOK</a>
-                                </h3>
-                        </div>
+                            <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a>
+                            </h3>
+                        </div> 
                         <div class="price-block">
-                            <span class="price">£51.20</span>
-                            <del class="price-old">£51.20</del>
-                            <span class="price-discount">20%</span>
+                            <span class="price" style="font-size: 22px; margin-top: 20px;">£{{ book.price }}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-slide">
-                <div class="product-card card-style-list">
-                    <div class="card-image">
-                        <img src="{% static 'website/image/products/product-1.jpg' %}" alt="">
-                    </div>
-                    <div class="product-card--body">
-                        <div class="product-header">
-                            <a href="#" class="author">
-                                Lpple
-                            </a>
-                                <h3><a href="{% url 'product-details' %}">Koss KPH7 Lightweight Portable Headphone</a>
-                                </h3>
-                        </div>
-                        <div class="price-block">
-                            <span class="price">£51.20</span>
-                            <del class="price-old">£51.20</del>
-                            <span class="price-discount">20%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slide">
-                <div class="product-card card-style-list">
-                    <div class="card-image">
-                        <img src="{% static 'website/image/products/product-3.jpg' %}" alt="">
-                    </div>
-                    <div class="product-card--body">
-                        <div class="product-header">
-                            <a href="#" class="author">
-                                Cpple
-                            </a>
-                                <h3><a href="{% url 'product-details' %}">Beats Solo3 Wireless On-Ear Headphones 2</a>
-                                </h3>
-                        </div>
-                        <div class="price-block">
-                            <span class="price">£51.20</span>
-                            <del class="price-old">£51.20</del>
-                            <span class="price-discount">20%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slide">
-                <div class="product-card card-style-list">
-                    <div class="card-image">
-                        <img src="{% static 'website/image/products/product-4.jpg' %}" alt="">
-                    </div>
-                    <div class="product-card--body">
-                        <div class="product-header">
-                            <a href="#" class="author">
-                                Epple
-                            </a>
-                                <h3><a href="{% url 'product-details' %}">In 10 Minutes, I'll Give You The Truth
-                                        About</a></h3>
-                        </div>
-                        <div class="price-block">
-                            <span class="price">£51.20</span>
-                            <del class="price-old">£51.20</del>
-                            <span class="price-discount">20%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slide">
-                <div class="product-card card-style-list">
-                    <div class="card-image">
-                        <img src="{% static 'website/image/products/product-5.jpg' %}" alt="">
-                    </div>
-                    <div class="product-card--body">
-                        <div class="product-header">
-                            <a href="#" class="author">
-                                Fpple
-                            </a>
-                                <h3><a href="{% url 'product-details' %}">5 Ways To Get Through To Your BOOK</a></h3>
-                        </div>
-                        <div class="price-block">
-                            <span class="price">£51.20</span>
-                            <del class="price-old">£51.20</del>
-                            <span class="price-discount">20%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slide">
-                <div class="product-card card-style-list">
-                    <div class="card-image">
-                        <img src="{% static 'website/image/products/product-6.jpg' %}" alt="">
-                    </div>
-                    <div class="product-card--body">
-                        <div class="product-header">
-                            <a href="#" class="author">
-                                Gpple
-                            </a>
-                                <h3><a href="{% url 'product-details' %}">What Can You Do To Save Your BOOK</a></h3>
-                        </div>
-                        <div class="price-block">
-                            <span class="price">£51.20</span>
-                            <del class="price-old">£51.20</del>
-                            <span class="price-discount">20%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
