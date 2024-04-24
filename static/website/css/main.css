@@ -28537,33 +28537,33 @@ body{
 
 
 .product-card .product-header .author {
-  display: block; /* or inline-block, depending on your layout */
-  width: 100%; /* or any specific width */
+  display: block; 
+  width: 100%; 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-height: 20px; /* or the height you want to set */
-  line-height: 20px; /* this should be the same as max-height for single line text */
-  margin-bottom: 5px; /* Adjust as needed for spacing */
-  font-size: 0.9em; /* Adjust the font size as needed */
+  max-height: 20px; 
+  line-height: 20px; 
+  margin-bottom: 5px; 
+  font-size: 0.9em; 
   height:50px
 }
 
 /* Image styles */
 .product-card .product-card--body .card-image img {
-  width: 100%; /* Use 100% to make it responsive within the container */
+  width: 100%; 
 
-  max-height: 150px; /* Maximum height of the image */
-  object-fit: cover; /* This will cover the area without distorting the aspect ratio */
-  margin-bottom: 10px; /* Adjust as needed for spacing */
+  max-height: 150px;
+  object-fit: cover; 
+  margin-bottom: 10px;
 }
 
-/* Price styles (if you also want to ensure consistent display for price) */
+
 .product-card .product-card--body .price-block .price {
-  font-size: 1em; /* Adjust the font size as needed */
-  font-weight: bold; /* Optional: if you want the price to stand out */
-  color: #333; /* Adjust the font color as needed */
-  margin-bottom: 10px; /* Adjust as needed for spacing */
+  font-size: 1em; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 10px; 
 }
 
 .single-slide {

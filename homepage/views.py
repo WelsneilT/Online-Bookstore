@@ -6,7 +6,7 @@ from books.models import Book
 @login_required
 def home(request):
     # Lấy danh sách sách từ model Book
-    slider_books = Book.objects.filter(book_available=True)[:6]
+    slider_books = Book.objects.filter(book_available=True)[:4]
 
     featured_products = Book.objects.filter(book_available=True)[100:120]
     new_arrivals = Book.objects.filter(book_available=True)[79:99]
