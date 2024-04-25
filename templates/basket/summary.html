@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% block title %}Basket Summary{% endblock %}
 {% block content %}
@@ -23,6 +23,7 @@
             <div class="row p-3">
               <div class="col-6">{{product.bookFormat}}</div>
               <div class="col-6 text-end"><span class="h6 fw-bold">${{ product.price }}</span></div>
+              <div class="col-7"> Quantity: {{item.qty}}</div>
             </div>
           </div>
           <div class="col">
@@ -43,7 +44,7 @@
     </div>
     {% endwith %}
     <div class="col-12 text-end">
-      <div class="h6 fw-bold">Sub Total: £<div id="subtotal" class="d-inline-flex">{{item.total_price}}</div></div>
+      <div class="h6 fw-bold">Sub Total: $<div id="subtotal" class="d-inline-flex">{{item.total_price}}</div></div>
     </div>
     {% endif %}
     {% endfor %}
