@@ -21,7 +21,8 @@
   </div>
 
 <!-- <p>Follow Author: </p> -->
-<p><a href="{{ object.follow_author }}">Follow Author</a> </p>
+<p>Rating Star: {{ object.rating|floatformat:2 }}</p>
+<p>Publisher: {{ object.publisher}}</p>
 <p>Price: $ {{ object.price|floatformat:2 }}</p>
 
 

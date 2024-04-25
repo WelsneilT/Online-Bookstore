@@ -35,6 +35,7 @@ class BooksListView(ListView):
 class BooksDetailView(DetailView):
     model = Book
     template_name = 'detail.html'
+    context_object_name = 'product'
 
 
 class SearchResultsListView(ListView):
@@ -51,6 +52,7 @@ class BookCheckoutView(DetailView):
     model = Book
     template_name = 'checkout.html'
     login_url     = 'login'
+    context_object_name = 'product'
 
 
 def paymentComplete(request):
