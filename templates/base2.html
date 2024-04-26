@@ -125,53 +125,23 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'list' %}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in adventure_bookss %}
+                                                                    <td>
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <a>{{ book.rating }}</a>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>

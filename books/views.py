@@ -24,6 +24,7 @@ class BooksListView(ListView):
         context['most_view_products'] = Book.objects.filter(book_available=True)[29:39]
         context['adventure_books'] = Book.objects.filter(book_available=True)[29:39]
         context['special_offers'] = Book.objects.filter(book_available=True)[49:58]
+        context['adventure_bookss'] = Book.objects.filter(book_available=True, genres__exact='Adventure')[29:39]
 
         # Thêm queryset từ BooksListView
         context['list_books'] = Book.objects.all()[:100]

@@ -28597,3 +28597,29 @@ body{
   height: 2.6em; /* Gấp đôi chiều cao của một dòng */
   margin-bottom: -40px; /* Đảm bảo khoảng cách với giá tiền */
 }
+
+table {
+  width: 100%; /* Chiều rộng bảng */
+  border-collapse: separate; /* Ngăn các đường viền gộp lại */
+  border-spacing: 1px; /* Khoảng cách giữa các ô */
+
+}
+td {
+  text-align: center; /* Căn giữa nội dung trong mỗi ô */
+  vertical-align: top; /* Căn trên cho nội dung trong ô */
+  padding: 5px; /* Thêm padding cho mỗi ô */
+}
+.book-item {
+  border: 1px solid #ccc; /* Đường viền xung quanh mỗi mục sách */
+  background-color: #f9f9f9; /* Màu nền cho mục sách */
+}
+.book-item img {
+  width: 100px; /* Đặt chiều rộng cho ảnh */
+  height: 150px; /* Chiều cao tự động theo tỉ lệ ảnh */
+  margin-bottom: 5px; /* Khoảng cách giữa ảnh và tiêu đề sách */
+}
+
+.rating-stars {
+  color: #ffd700; /* Màu của sao (vàng) */
+  font-size: 1em; /* Kích thước của sao */
+}
