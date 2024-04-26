@@ -129,11 +129,13 @@
                                                             <tr>
                                                                 {% for book in adventure_bookss %}
                                                                     <td>
+                                                                        {% load rating_stars %}
+
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
                                                                                 <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
                                                                             </a> 
-                                                                            <a>{{ book.rating }}</a>
+                                                                            <span>{% render_stars book.rating %}</span>
                                                                         </div>
                                                                     </td>
                                                                     {% if forloop.counter|divisibleby:5 and not forloop.last %}
