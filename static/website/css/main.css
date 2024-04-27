@@ -28618,3 +28618,18 @@ td {
 .star-rating img {
   filter: hue-rotate(50deg) brightness(120%); /* Adjust as needed for the correct shade */
 }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); } /* Adjust the scale value for a bigger or smaller pulse */
+}
+
+.pulsing-text {
+  animation: pulse 2s infinite;
+  display: inline-block; /* Allows transform to be applied */
+}
+
+.book-item {
+  height: 250px;
+}
+

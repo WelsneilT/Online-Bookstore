@@ -33,6 +33,10 @@ def home(request):
     Q(genres__icontains='Nonfiction') & Q(book_available=True))[510:520]
     romance_bookss = Book.objects.filter(
     Q(genres__icontains='Romance') & Q(book_available=True))[510:520]
+    magic_harry_potter_books = Book.objects.filter(
+    Q(genres__icontains='Magic') & Q(title__icontains='Harry Potter') & Q(book_available=True))[0:20]
+    special_edition_books = Book.objects.filter(
+    Q(edition__icontains='Special Edition') & Q(book_available=True))[0:10]
 
     context = {
         'slider_books': slider_books, 
@@ -50,6 +54,8 @@ def home(request):
         'horror_bookss' : horror_bookss ,
         'magic_bookss' :    magic_bookss,
         'non_fiction_bookss' : non_fiction_bookss,
-        'romance_bookss' :   romance_bookss ,}
+        'romance_bookss' :   romance_bookss ,
+        'magic_harry_potter_books': magic_harry_potter_books,
+        'special_edition_books': special_edition_books}
 
     return render(request, 'index-2.html', context)
