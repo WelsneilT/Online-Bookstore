@@ -4,16 +4,19 @@
 {% block title %}Search{% endblock title %}
 
 {% block content %}
-
+<div class="container">
     <h3 class = "text-secondary">Search Results</h3><hr>
 
     {% for every in object_list %}
         <div>
-            <h3><a href="{% url 'detail' every.pk %}">{{ every.title }}</a></h3>
-            <p>Author: {{ every.author }}</p>
+            <h3>
+                <img src="{{ every.image_url }}" alt="{{ book.title }}" style="width:75px; height: 75px; padding-left: 20px">
+                <a href="{% url 'detail' every.pk %}" style="color: #36696b">{{ every.title }} </a>
+            </h3>
+            <p style = "padding-left: 80px">Author: {{ every.author }}</p>
         </div>
     {% empty %}
     <h5 class="text-danger">Nothing found :(</h5>
     {% endfor %}
-
+</div>
 {% endblock content %}
