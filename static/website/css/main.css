@@ -28610,27 +28610,11 @@ td {
   padding: 5px; /* Thêm padding cho mỗi ô */
 }
 
-.rating {
-  font-size: 16px;
-  unicode-bidi: bidi-override;
-  direction: rtl; /* Đảo ngược hướng để sao đầy đủ luôn ở bên trái */
-  text-align: left;
+.star-rating {
+  color: #e6ac00; /* This changes the color if the stars are font icons */
 }
-.rating > span {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
-}
-.rating > span::before {
-  content: "☆";
-  position: absolute;
-}
-.rating > span::after {
-  content: "★";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  overflow: hidden;
-  color: gold;
+
+
+.star-rating img {
+  filter: hue-rotate(50deg) brightness(120%); /* Adjust as needed for the correct shade */
 }

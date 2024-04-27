@@ -135,7 +135,7 @@
                                                                             <a href="{% url 'detail' book.id %}">
                                                                                 <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
                                                                             </a> 
-                                                                            <span>{% render_stars book.rating %}</span>
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
                                                                         </div>
                                                                     </td>
                                                                     {% if forloop.counter|divisibleby:5 and not forloop.last %}
@@ -148,57 +148,29 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="cat-item has-children mega-menu"><a href="#">Biographies</a>
+                                        <li class="cat-item has-children mega-menu"><a href="#">Biography</a>
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in biography_books %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -207,53 +179,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in drama_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -262,53 +206,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in fantasy_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -317,53 +233,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in fiction_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -372,53 +260,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in history_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -428,53 +288,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in horror_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -483,53 +315,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in magic_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -538,53 +342,25 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in non_fiction_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -593,56 +369,28 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
+                                                        <table>
+                                                            <tr>
+                                                                {% for book in romance_bookss %}
+                                                                    <td>
+                                                                        {% load rating_stars %}
+
+                                                                        <div class="book-item">
+                                                                            <a href="{% url 'detail' book.id %}">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                            </a> 
+                                                                            <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    {% if forloop.counter|divisibleby:5 and not forloop.last %}
+                                                                        </tr><tr>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </table>
                                                     </ul>
                                                 </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                                <li class="single-block">
-                                                    <ul style="display: inline-block">
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                        <li><a href="{% url 'product-details'%}">
-                                                            <img src="{% static 'website/image/products/product-1.jpg' %} " alt="" style="width: 100px"></a></li>
-                                                        <a>Sách 1</a>
-                                                    </ul>
-                                                </li>
-                                            </ul>   
+                                            </ul> 
                                         </li>
                                         <!--
                                         <li class="cat-item "><a href="#">Accessories</a></li>
