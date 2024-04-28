@@ -536,12 +536,16 @@ CHILDREN’S BOOKS SECTION
                         <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100px; height: 155px">
                     </div>
                     <div class="product-card--body">
+                        {% load rating_stars %}
                         <div class="product-header">
                             <a href="#" class="author" style="font-size: 14px;">
                                 {{ book.author }}
                             </a>
                             <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a>
                             </h3>
+                        </div> 
+                        <div class="star-rating">
+                            {% render_stars book.rating %}                            
                         </div> 
                         <div class="price-block">
                             <span class="price" style="font-size: 22px; margin-top: 20px;">£{{ book.price }}</span>
