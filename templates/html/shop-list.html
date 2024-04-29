@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-xl-5 col-md-4 col-sm-6  mt--10 mt-sm--0">
                         <span class="toolbar-status">
-                            <!--Showing 1 to 9 of 14 (2 Pages) -->
+                            Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} ({{ page_obj.paginator.num_pages }} Pages)
                         </span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-6  mt--10 mt-md--0">
@@ -72,8 +72,8 @@
                     <div class="product-card card-style-list">
                         <div class="product-grid-content">
                             {% load rating_stars %}
-                            <div class="single-slide">
-                                <div class="product-card" style="height: 250px">
+                            <div class="single-slide" style="height: 300px">
+                                <div class="product-card" >
                                 
                                     <div class="product-card--body">
                                         <div class="card-image">
@@ -85,10 +85,10 @@
                                         <a href="#" class="author">
                                             {{ book.author }}
                                         </a>
-                                        <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
-                                        <span class="star-rating" style=" font-size: 20px">{% render_stars book.rating %}</span>
-                                        <div class="price-block">
-                                            <span class="price">£{{ book.price }}</span>
+                                        <h3 class="book-title"><a href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
+                                        <span class="star-rating" style=" font-size: 20px; padding-top: 30px">{% render_stars book.rating %}</span>
+                                        <div class="price-block" style="margin-top: -10px">
+                                            <span class="price" >£{{ book.price }}</span>
                                         </div>
                                     </div>
                                 </div>

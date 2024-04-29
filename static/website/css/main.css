@@ -28548,7 +28548,7 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
   height: 2.6em; /* Gấp đôi chiều cao của một dòng */
-  margin-bottom: -40px; /* Đảm bảo khoảng cách với giá tiền */
+  margin-bottom: -40px; 
 }
 
 table {
@@ -28565,6 +28565,7 @@ td {
 
 .star-rating {
   color: #e6ac00; /* This changes the color if the stars are font icons */
+  
 }
 
 
@@ -28586,3 +28587,13 @@ td {
   height: 250px;
 }
 
+.book-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines you want to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2em; /* This should be approximately equal to the line-height * number of lines you want to show */
+  line-height: 1em; /* Adjust line-height as needed */
+  margin-bottom: 10px; /* To ensure spacing below the title, adjust as needed */
+}
