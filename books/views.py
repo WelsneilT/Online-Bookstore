@@ -12,11 +12,16 @@ from django.template import loader
 
 class ShopBooksListView(ListView):
     model = Book
+    template_name = 'html/shop-list.html'
+    paginate_by = 24  # Số lượng items trên mỗi trang
 
+    def get_queryset(self):
+        return Book.objects.filter(book_available=True)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Thêm queryset từ BooksSliderView
-        context['books_list'] = Book.objects.filter(book_available=True)[:40]
+        context['books_list'] = Book.objects.filter(book_available=True)[:48]
         context['featured_products'] = Book.objects.filter(book_available=True)[100:120]
         context['new_arrivals'] = Book.objects.filter(book_available=True)[142:162]
         context['most_view_products'] = Book.objects.filter(book_available=True)[29:39]
@@ -28,7 +33,7 @@ class ShopBooksListView(ListView):
         context['list_books'] = Book.objects.all()[:100]
         return context
     
-    template_name = 'html/shop-list.html'
+    
     
 class BooksListView(ListView):
     model = Book
