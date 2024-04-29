@@ -16,7 +16,7 @@ class ShopBooksListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Thêm queryset từ BooksSliderView
-        context['books_list'] = Book.objects.filter(book_available=True)[:20]
+        context['books_list'] = Book.objects.filter(book_available=True)[:40]
         context['featured_products'] = Book.objects.filter(book_available=True)[100:120]
         context['new_arrivals'] = Book.objects.filter(book_available=True)[142:162]
         context['most_view_products'] = Book.objects.filter(book_available=True)[29:39]
