@@ -6,26 +6,26 @@
 
 <hr>
 
-
-<div class="row">
-    {% for each in list_books %}
-    <div class="col">
-        <div class="card" style="width: 13rem;" id="list_">
-            <img src="{{ each.image_url }}" class="card-img-top" alt="..." style="height: 350px; width: auto; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title" style="font-size: 18px;">{{ each.title|slice:":100"}} ...</h5>
-                <p class="card-text">${{ each.price|floatformat:2 }}</p>                
-                {% if each.book_available is True %}
-                <li class="text-primary">Available</li>
-                {% else %}
-                <li class="text-danger">Out of Stock !</li>
-                {% endif %}<br>
-                <a href="{% url 'detail' each.id %}" class="btn btn-primary">View</a>
+<div class="container">
+    <div class="row">
+        {% for each in list_books %}
+        <div class="col">
+            <div class="card" style="width: 13rem;" id="list_">
+                <img src="{{ each.image_url }}" class="card-img-top" alt="..." style="height: 350px; width: auto; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 18px;">{{ each.title|slice:":100"}} ...</h5>
+                    <p class="card-text">${{ each.price|floatformat:2 }}</p>                
+                    {% if each.book_available is True %}
+                    <li class="text-primary">Available</li>
+                    {% else %}
+                    <li class="text-danger">Out of Stock !</li>
+                    {% endif %}<br>
+                    <a href="{% url 'detail' each.id %}" class="btn btn-primary">View</a>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
-
 {% endblock content %}
 

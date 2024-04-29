@@ -59,3 +59,10 @@ def home(request):
         'special_edition_books': special_edition_books}
 
     return render(request, 'index-2.html', context)
+
+def shop_list(request):
+    # Định nghĩa một truy vấn mới cho danh sách cửa hàng
+    list_books = Book.objects.filter(book_available=True)[:20]  # Ví dụ: lấy 20 cuốn sách đầu tiên
+
+    context = {'list_books': list_books}
+    return render(request, 'html/shop-list.html', context)
