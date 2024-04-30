@@ -29,39 +29,14 @@
 
   {% if object.book_available is True %}
   <a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button">Buy Now</a>
+  <form id="add-to-basket-form" method="post" action="{% url 'basket:basket_add' %}">
+    {% csrf_token %}
+    <input type="hidden" name="productid" value="{{ object.id }}">
+    <input type="hidden" name="productqty" value = "1">
+    <button type="submit" id="add-to-basket-btn" class="btn btn-secondary btn-sm">Add to basket</button>
+</form>
   {% else %}
   <h4 class="text-danger">Out of Stock !</h4>
   {% endif %}
-  <div class="col">
-    <div class="row p-3">
-        <div class="col-6 text-end">
-            <div class="col">
-                <div class="row p-3">
-                    <div class="col-6">
-                      <form id="add-to-basket-form" method="post" action="{% url 'basket:basket_add' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="productid" value="{{ object.id }}">
-                        <select name="productqty">
-                            <!-- Options for product quantity -->
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                        <button type="submit" id="add-to-basket-btn" class="btn btn-secondary btn-sm">Add to basket</button>
-                        <div id="message-container">
-                          {% if messages %}
-                          {% for message in messages %}
-                              <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                          {% endfor %}
-                      {% endif %}
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-  </div>
-</div>
-</div>
 {% endblock content %}
 

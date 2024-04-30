@@ -1,37 +1,47 @@
 {% extends 'base2.html' %}
 
 {% block content %}
-	<div class="container">
-		{% if book.product.book_available is True %}
-		<div class="row">
-			<div class="col-lg">
-				<br><div class="text-center" style="width: 22rem;">
-					<img src="{{ book.product.image_url }}" class="card-img">
+    <h1>Book List</h1>
+    
+    {% if book %}
+        <ul>
+			{% for id,book in book.items %}
+			<div data-index="{{id}}" class="row mb-4 border product-item">
+				<div class="col-md-3 col-lg-2 order-md-first bg-light">
+				  <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ book.image_url }}">
 				</div>
-			</div>
-			<div class="col-lg">
-				<br>
-				<div class="card card-body">
-					<h3>{{book.product.title}}</h3>
-					<hr>
-					<!-- Display total price based on quantity -->
-					<h4>Total: $<span id="totalPrice">{{book.total_price|floatformat:2}}</span></h4>
-					<hr>
-					<!-- Quantity selection -->
-					<label for="quantity">Quantity:</label>
-					<input type="number" id="quantity" name="quantity" min="1" value="{{ book.qty }}" onchange="updateTotal()">
-					<br><br>
-
+				<div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+				  <a href="{{ book.get_absolute_url }}" class="text-decoration-none text-reset">
+					<h1 class="h5 pt-2">{{ book.title }}</h1>
+				  </a>
+				  <div class="border">
+					<div class="col border-bottom">
+					  <div class="row p-3">
+						<div class="col-6">{{book.bookFormat}}</div>
+						<div class="col-6 text-end"><span class="h6 fw-bold">${{ book.price }}</span></div>
+						<div class="col-7"> Quantity: {{book.qty}}</div>
+					  </div>
+					</div>
+					<div class="col">
+					  <div class="row p-3">
+						<div class="col-12">
+                <li>
+                    <!-- Add more book details as needed -->
+                </li>
+        </ul>
+    
 					<div id="paypal-button-container"></div>
 
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!--Paypal payments-->
 	<div id="paypal-button-container"></div>
-
+	<div class="text-center" style="width: 22rem;">
+		<img src = "https://img.vietqr.io/image/ICB-104876789245-compact.png" class="card-img">
+	</div>
+	
 	<script
 		src="https://www.paypal.com/sdk/js?client-id=AaDbFCTAdi8NU4o-x6oOaBiLLoybkvO8w3xVZ2LgPAiTRwT4dDJu5u_ZecP9OtLTDvr7GZtZk_HuM3kq&currency=USD"></script>
 
@@ -103,9 +113,11 @@
 			}
 		}).render('#paypal-button-container');
 	</script>
+	{% endfor %}
 	{% else %}
 	</div>
 	<div class="mx-auto" style="width: 340px;">
 	<h4 class="text-danger">Sorry, this book is out of Stock !</h4>
 	{% endif %}
+	
 {% endblock content %}
