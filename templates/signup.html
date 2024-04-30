@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
                 <!-- Login Form s-->
-                <form action="{% url 'login' %}" method="post">
+                <form  method="post" action="">
                     {% csrf_token %}
                     <div class="login-form">
                         <h4 class="login-title">New Customer</h4>
@@ -48,7 +48,7 @@
                                 <label for="{{ form.confirm_password.id_for_label }}">Repeat Password</label>
                                 <input class="mb-0 form-control" type="password" id="{{ form.confirm_password.id_for_label }}" name="{{ form.confirm_password.name }}"
                                        placeholder="Repeat your password" value="{{ form.confirm_password.value|default_if_none:'' }}" required>
-                                {% if form.repeat_password.errors %}
+                                {% if form.confirm_password.errors %}
                                     <div class="error">{{ form.confirm_password.errors }}</div>
                                 {% endif %}
                             </div>
@@ -68,12 +68,6 @@
     
 </main>
 
-<form method="post">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class = "btn btn-success" >Sign up</button>
-</form>
 
 
 {% endblock content %}

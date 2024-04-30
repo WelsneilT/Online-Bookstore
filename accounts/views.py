@@ -8,11 +8,41 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.utils.decorators import method_decorator
 #from accounts.views import LogOutView
+from django.views.generic import FormView
+from .forms import RegistrationForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.shortcuts import redirect
 
-class SignUpView(generic.CreateView):
-    form_class    = UserCreationForm #hàm cố định
-    success_url   = reverse_lazy('login') #đảm bảo rằng việc chuyển hướng chỉ xảy ra sau khi form đã được xử lý xong
+
+
+class SignUpView(FormView):
+    form_class = RegistrationForm
+    success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
+    def form_valid(self, form):
+        # Lấy dữ liệu từ form
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        
+        # Kiểm tra xem người dùng có tồn tại không
+        if not User.objects.filter(username=username).exists():
+            # Tạo tài khoản mới
+            user = User.objects.create_user(username=username, password=password)
+            
+            # Đăng nhập người dùng tự động sau khi đăng ký
+            user = authenticate(username=username, password=password)
+            login(self.request, user)
+            
+            # Chuyển hướng đến trang thành công
+            return redirect(self.success_url)
+        
+        # Nếu tên người dùng đã tồn tại, hiển thị lỗi
+        form.add_error('username', 'Username already exists.')
+        return self.form_invalid(form)
+
 
 
 class CustomLogoutView(RedirectView):
@@ -30,4 +60,4 @@ class CustomLogoutView(RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         # Optionally, you can customize the URL to redirect to after logout
-        return reverse('list')  # Redirect to the home page by default
+        return reverse('home')  # Redirect to the home page by default

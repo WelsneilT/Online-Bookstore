@@ -6,7 +6,7 @@
 
 <div class="container mt-5">
     <h2>Log Out</h2>
-    <form method="post" action="{% url 'logout' %}">
+    <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <p>Are you sure you want to log out?</p>
         <button type="submit" class="btn btn-danger">Log Out</button>
