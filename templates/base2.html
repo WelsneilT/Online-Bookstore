@@ -121,19 +121,20 @@
                                             class="fa fa-bars"></i>Browse
                                         categories</a>
                                     <ul class="category-menu">
-                                        <li class="cat-item has-children mega-menu"><a href="#">Adventure</a>
+                                        <li class="cat-item has-children mega-menu"><a href="">Adventure</a>
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'adventure-books' %}" style="margin-left: 360px; color: #36696b;">See more Adventure Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in adventure_bookss %}
                                                                     <td>
                                                                         {% load rating_stars %}
-
+                                                                        
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -155,6 +156,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'biography-books' %}" style="margin-left: 360px; color: #36696b;">See more Biography Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in biography_books %}
@@ -163,7 +165,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -185,6 +187,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'drama-books' %}" style="margin-left: 360px; color: #36696b;">See more Drama Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in drama_bookss %}
@@ -193,7 +196,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -215,6 +218,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'fantasy-books' %}" style="margin-left: 360px; color: #36696b;">See more Fantasy Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in fantasy_bookss %}
@@ -223,7 +227,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -245,6 +249,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'fiction-books' %}" style="margin-left: 360px; color: #36696b;">See more Fiction Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in fiction_bookss %}
@@ -253,7 +258,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -275,6 +280,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'history-books' %}" style="margin-left: 360px; color: #36696b;">See more History Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in history_bookss %}
@@ -283,7 +289,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -306,6 +312,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'horror-books' %}" style="margin-left: 360px; color: #36696b;">See more Horror Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in horror_bookss %}
@@ -314,7 +321,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -336,6 +343,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'magic-books' %}" style="margin-left: 360px; color: #36696b;">See more Magic Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in magic_bookss %}
@@ -344,9 +352,12 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
+                                                                            <div class="price-block">
+                                                                                <span class="price">£{{ book.price }}</span>
+                                                                            </div>
                                                                         </div>
                                                                     </td>
                                                                     {% if forloop.counter|divisibleby:5 and not forloop.last %}
@@ -363,6 +374,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'non-fiction-books' %}" style="margin-left: 360px; color: #36696b;">See more Non-fiction Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in non_fiction_bookss %}
@@ -371,7 +383,7 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
@@ -393,6 +405,7 @@
                                             <ul class="sub-menu">
                                                 <li class="single-block">
                                                     <ul style="display: inline-block">
+                                                        <a href="{% url 'romance-books' %}" style="margin-left: 360px; color: #36696b;">See more Romance Books...</a>
                                                         <table>
                                                             <tr>
                                                                 {% for book in romance_bookss %}
@@ -401,14 +414,11 @@
 
                                                                         <div class="book-item">
                                                                             <a href="{% url 'detail' book.id %}">
-                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 100px; height: 150px">
+                                                                                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width: 80px; height: 120px">
                                                                             </a> 
                                                                             <span class="star-rating">{% render_stars book.rating %}</span>
                                                                             <div class="price-block">
                                                                                 <span class="price">£{{ book.price }}</span>
-                                                                                <div class="price-block">
-                                                                                    <span class="price">£{{ book.price }}</span>
-                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         

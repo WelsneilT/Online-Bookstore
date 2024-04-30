@@ -10,6 +10,9 @@ import json
 from django.http import HttpResponse
 from django.template import loader
 
+
+
+
 class ShopBooksListView(ListView):
     model = Book
     template_name = 'html/shop-list.html'
@@ -25,14 +28,13 @@ class ShopBooksListView(ListView):
         context['featured_products'] = Book.objects.filter(book_available=True)[100:120]
         context['new_arrivals'] = Book.objects.filter(book_available=True)[142:162]
         context['most_view_products'] = Book.objects.filter(book_available=True)[29:39]
-        context['adventure_books'] = Book.objects.filter(book_available=True)[29:39]
+        context['adventure_books'] = Book.objects.filter(Q(genres__icontains='Adventure') & Q(book_available=True))[:100]
         context['special_offers'] = Book.objects.filter(book_available=True)[49:58]
         context['adventure_bookss'] = Book.objects.filter(book_available=True, genres__exact='Adventure')[29:39]
-
+        
         # Thêm queryset từ BooksListView
         context['list_books'] = Book.objects.all()[:100]
         return context
-    
     
     
 class BooksListView(ListView):
@@ -88,3 +90,102 @@ def paymentComplete(request):
 	)
 	return JsonResponse('Payment completed!', safe=False)
 
+class BiographyBooksListView(ListView):
+    model = Book
+    template_name = 'categories/biography.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Biography')
+    
+class DramaBooksListView(ListView):
+    model = Book
+    template_name = 'categories/drama.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Drama')
+    
+class FantasyBooksListView(ListView):
+    model = Book
+    template_name = 'categories/fantasy.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Fantasy')
+
+class FictionBooksListView(ListView):
+    model = Book
+    template_name = 'categories/fiction.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Fiction')
+
+class HistoryBooksListView(ListView):
+    model = Book
+    template_name = 'categories/history.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='History')
+
+class HorrorBooksListView(ListView):
+    model = Book
+    template_name = 'categories/horror.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Horror')
+
+class MagicBooksListView(ListView):
+    model = Book
+    template_name = 'categories/magic.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Magic')
+
+class NonFictionBooksListView(ListView):
+    model = Book
+    template_name = 'categories/non-fiction.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Nonfiction')
+
+class RomanceBooksListView(ListView):
+    model = Book
+    template_name = 'categories/romance.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Romance')
+
+class AdventureBooksListView(ListView):
+    model = Book
+    template_name = 'categories/adventure.html'
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        # Lọc sách dựa trên thể loại 'Adventure'
+        return Book.objects.filter(genres__icontains='Adventure')
