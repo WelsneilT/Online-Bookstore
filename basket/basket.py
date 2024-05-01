@@ -55,5 +55,9 @@ class Basket():
     def save(self):
         self.session['skey'] = self.basket
         self.session.modified = True
+
+    def get_total_price(self):
+        """Calculate the total price of all items in the basket."""
+        return sum(Decimal(item['price']) * item['qty'] for item in self.__iter__())
         
     

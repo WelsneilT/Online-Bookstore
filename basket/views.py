@@ -8,9 +8,11 @@ from basket.forms import  AddToBasketForm
 from django.contrib.messages.api import add_message
 from django.views.generic import ListView, DetailView
 
-def basket_summary(request):
+
+def basket_checkout2(request):
     basket = Basket(request)
     basket_json = []
+    total_price = 0
 
     for item in basket.__iter__():
     # Convert Decimal objects to strings
@@ -31,7 +33,38 @@ def basket_summary(request):
         item['product'] = book_info
 
         basket_json.append(item)
-    return render(request, 'basket/summary.html', {'basket': basket})
+    total_price = basket.get_total_price()  # Calculate total price
+
+    return render(request, 'checkout2.html', {'basket': basket, 'total_price': total_price})
+
+def basket_summary(request):
+    basket = Basket(request)
+    basket_json = []
+    total_price = 0
+
+    for item in basket.__iter__():
+    # Convert Decimal objects to strings
+        item['price'] = str(item['price'])
+        item['total_price'] = str(item['total_price'])
+    # Extract relevant information from Book objects
+        book_info = {
+            'id': item['product'].id,
+            'title': item['product'].title,
+            'author': item['product'].author,
+            'description': item['product'].description,
+            'price': float(item['product'].price),  # Convert to string if needed
+            'image_url': item['product'].image_url,
+            'book_available': item['product'].book_available,
+            'pk':item['product'].pk,
+            # Add other relevant fields as needed
+        }
+        item['product'] = book_info
+
+        basket_json.append(item)
+    total_price = basket.get_total_price()  # Calculate total price
+
+    return render(request, 'basket/summary.html', {'basket': basket, 'total_price': total_price})
+    
 
 
 def basket_add(request):

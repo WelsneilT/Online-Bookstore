@@ -2,10 +2,21 @@
 {% load static %}
 {% block title %}Basket Summary{% endblock %}
 {% block content %}
-
-<main class="pt-5" style="margin-top:-50px">
+<section class="breadcrumb-section" style="margin-top: -30px">
+  <h2 class="sr-only">Site Breadcrumb</h2>
   <div class="container">
-    <h1 class="h5">Shopping basket</h1>
+      <div class="breadcrumb-contents">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                  <li class="breadcrumb-item active">Basket Summary</li>
+              </ol>
+          </nav>
+      </div>
+  </div>
+</section>
+<main class="pt-5" style="margin-top:-80px">
+  <div class="container">
     {% for item in basket %}
     {% if item.qty != 0 %}
     {% with product=item.product %}    
@@ -24,6 +35,7 @@
               <div class="col-6">{{product.bookFormat}}</div>
               <div class="col-6 text-end"><span class="h6 fw-bold">${{ product.price }}</span></div>
               <div class="col-7"> Quantity: {{item.qty}}</div>
+              <div class="col-5 h6 fw-bold text-end">Sub Total: $<div id="subtotal" class="d-inline-flex">{{item.total_price}}</div></div>
             </div>
           </div>
           <div class="col">
@@ -36,19 +48,22 @@
                     <button type="submit" id="delete-basket-btn" class="btn btn-secondary btn-sm">Delete</button>
                 </form>
               </div>
-              <a href="{% url 'basket:basket_checkout' product.id %}" class="btn btn-outline-success" role="button" style="width: 175px;  margin-left: 700px;" >Buy Now</a>
+              <a href="{% url 'basket:basket_checkout' product.id %}" class="btn btn-outline-success" role="button" style="width: 175px;  margin-left: 700px; margin-top:-20px" >Buy Now</a>
             </div>
           </div>
         </div>
       </div>
     </div>
     {% endwith %}
-    <div class="col-12 text-end">
-      <div class="h6 fw-bold">Sub Total: $<div id="subtotal" class="d-inline-flex">{{item.total_price}}</div></div>
-    </div>
+
     {% endif %}
     {% endfor %}
-  </div>
-</main>
+    <div class="col-12 text-end">
+      <h3 class="h6 fw-bold">Total: ${{ total_price }}</h3>
+      <a href="{% url 'basket:basket_checkout2' %}" class="btn btn-outline-success" role="button" style="width: 200px;  margin-left: 750px; margin-bottom: 50px;  " >Buy ALL Now</a>
+
+    </div>
+  </div >
+
 
 {% endblock %}

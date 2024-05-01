@@ -95,30 +95,34 @@
                                                 Shopping Basket
                                             </span>
                                             <span class="price">
-                                                2
                                                 <i class="fas fa-chevron-down"></i>
                                             </span>
                                         </div>
                                         <div class="cart-dropdown-block">
-                                            <div class=" single-cart-block ">
-                                                <div class="cart-product">
-                                                    <a href="{% url 'product-details' %}" class="image">
-                                                        <img src=" {% static 'website/image/products/cart-product-1.jpg' %}" alt="">
-                                                    </a>
-                                                    <div class="content">
-                                                        <h3 class="title"><a href="{% url 'product-details' %}">Kodak PIXPRO
-                                                                Astro Zoom AZ421 16 MP</a>
-                                                        </h3>
-                                                        <p class="price"><span class="qty">1 ×</span> £87.34</p>
-                                                        <button class="cross-btn"><i class="fas fa-times"></i></button>
+                                            <div class="single-cart-block">
+                                                {% for item in basket %}
+                                                {% if item.qty != 0 %}
+                                                {% with product=item.product %}  
+                                                    <div class="cart-product">
+                                                        <a href="" class="image" style="width: 75px; margin-left: 20px">
+                                                            <img src="{{ product.image_url }}">
+                                                        </a>
+                                                        <div class="content">
+                                                            <h3 class="title">
+                                                                <a href="{% url 'detail' product.pk %}">{{ product.title }}</a>
+                                                            </h3>
+                                                            <p class="price"><span class="qty">{{item.qty}} ×</span> £{{ product.price }}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    {% endwith %}
+                                                    {% endif %}
+                                                {% endfor %}
                                             </div>
                                             <div class=" single-cart-block ">
                                                 <div class="btn-block">
                                                     <a href="{% url 'basket:basket_summary' %}" class="btn">View Basket <i
                                                             class="fas fa-chevron-right"></i></a>
-                                                    <a href="checkout.html" class="btn btn--primary">Check Out <i
+                                                    <a href="{% url 'basket:basket_checkout2' %}" class="btn btn--primary">Check Out <i
                                                             class="fas fa-chevron-right"></i></a>
                                                 </div>
                                             </div>

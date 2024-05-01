@@ -1,0 +1,166 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+{% block content %}
+		<section class="breadcrumb-section" style="margin-top:-30px">
+			<h2 class="sr-only">Site Breadcrumb</h2>
+			<div class="container">
+				<div class="breadcrumb-contents">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+							<li class="breadcrumb-item active">Checkout</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</section>
+		<main id="content" class="page-section inner-page-sec-padding-bottom space-db--20" style="margin-top:-50px">
+			<div class="container">
+				<div class="row">
+					<div class="col-12" style="margin-top: 20px">
+						<!-- Checkout Form s-->
+						<div class="checkout-form">
+							<div class="row row-40">
+								<div class="col-lg-7 mb--20">
+									<!-- Billing Address -->
+									<div id="billing-form" class="mb-40">
+										<h4 class="checkout-title">Billing Address</h4>
+										<div class="row">
+											<div class="col-md-6 col-12 mb--20">
+												<label>First Name*</label>
+												<input type="text" placeholder="First Name">
+											</div>
+											<div class="col-md-6 col-12 mb--20">
+												<label>Last Name*</label>
+												<input type="text" placeholder="Last Name">
+											</div>
+											<div class="col-12 col-12 mb--20">
+												<label>Country*</label>
+												<select class="nice-select">
+													<option>Vietnam</option>
+													<option>China</option>
+                                                    <option>USA</option>
+                                                    <option>Canada</option>
+													<option>India</option>
+													<option>Japan</option>
+													<option>UK</option>
+                                                    <option>Real Madrid</option>
+													<option>Manchester City</option>
+												</select>
+											</div>
+											<div class="col-md-6 col-12 mb--20">
+												<label>Email Address*</label>
+												<input type="email" placeholder="Email Address">
+											</div>
+											<div class="col-md-6 col-12 mb--20">
+												<label>Phone no*</label>
+												<input type="text" placeholder="Phone number">
+											</div>
+											<div class="col-12 mb--20">
+												<label>Address*</label>
+												<input type="text" placeholder="Address">
+                                                <input type="text" placeholder="Shipping address">
+											</div>
+											<div class="col-md-6 col-12 mb--20">
+												<label>Town/City*</label>
+												<input type="text" placeholder="Town/City">
+											</div>
+											<div class="col-md-6 col-12 mb--20">
+												<label>Zip Code*</label>
+												<input type="text" placeholder="Zip Code">
+											</div>
+                                            <div class="col-12 col-12 mb--20" >
+                                                <div class="order-note-block mt--30" ">
+                                                    <label for="order-note" >Order notes</label>
+                                                    <textarea id="order-note" cols="30" rows="10" class="order-note"
+                                                        placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                </div>
+                                            </div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-5">
+									<div class="row">
+										<!-- Cart Total -->
+										<div class="col-12">
+											<div class="checkout-cart-total">
+												<h2 class="checkout-title">YOUR ORDER</h2>
+                                                <ul>
+                                                    {% for item in basket %}
+                                                        {% if item.qty > 0 %}
+                                                            <li>
+                                                                <span class="left">{{ item.product.title }} X {{ item.qty }}</span>
+                                                                <span class="right">${{ item.total_price }}</span>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% empty %}
+                                                        <p>No items in the basket.</p>
+                                                    {% endfor %}
+                                                </ul>
+                                                <p>Sub Total <span>${{ total_price }}</span></p>
+                                                <p>Shipping Fee (Free ship) <span>$00.00</span></p>
+                                                <h4>Grand Total <span>${{ total_price }}</span></h4>
+                                                <div class="method-notice mt--25">
+                                                    <!-- Payment methods information -->
+                                                    <button class="place-order w-100">Place order</button>
+                                                </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!--=================================
+  Brands Slider
+===================================== -->
+	<section class="section-margin">
+		<h2 class="sr-only">Brand Slider</h2>
+		<div class="container">
+			<div class="brand-slider sb-slick-slider border-top border-bottom" data-slick-setting='{
+                                            "autoplay": true,
+                                            "autoplaySpeed": 8000,
+                                            "slidesToShow": 6
+                                            }' data-slick-responsive='[
+                {"breakpoint":992, "settings": {"slidesToShow": 4} },
+                {"breakpoint":768, "settings": {"slidesToShow": 3} },
+                {"breakpoint":575, "settings": {"slidesToShow": 3} },
+                {"breakpoint":480, "settings": {"slidesToShow": 2} },
+                {"breakpoint":320, "settings": {"slidesToShow": 1} }
+            ]'>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-1.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-2.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-3.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-4.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-5.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-6.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-1.jpg' %}" alt="">
+				</div>
+				<div class="single-slide">
+					<img src="{% static 'website/image/others/brand-2.jpg' %}" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--=================================
+    Footer Area
+===================================== -->
+{% endblock content %}

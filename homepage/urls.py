@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('', home, name='home'),
     path('books/', include('books.urls')),
+    path('basket/', include('basket.urls')),
     path('index-2.html', TemplateView.as_view(template_name='index-2.html'), name='index'),
     path('shop-list/', shop_list, name='shop_list'),
 ]
