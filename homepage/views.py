@@ -30,7 +30,7 @@ def home(request):
     magic_bookss = Book.objects.filter(
     Q(genres__icontains='Magic') & Q(book_available=True))[10:20]
     non_fiction_bookss = Book.objects.filter(
-    Q(genres__icontains='Nonfiction') & Q(book_available=True))[510:520]
+    Q(genres__icontains='Nonfiction') & Q(book_available=True))[10:16]
     romance_bookss = Book.objects.filter(
     Q(genres__icontains='Romance') & Q(book_available=True))[510:520]
     magic_harry_potter_books = Book.objects.filter(

@@ -187,8 +187,8 @@ Promotion Section One
     <div class="container">
         <div class="row space-db--30">
             <div class="col-lg-6 mb--30">
-                <a href="#myTab" class="promo-image promo-overlay">
-                    <img src="{% static 'website/images/readerpick.jpg' %}" alt="" style="height:303px">
+                <a href="#nonfiction" class="promo-image promo-overlay">
+                    <img src="{% static 'website/images/nonfiction.jpg' %}" alt="" style="height:303px">
                 </a>
             </div>
             <div class="col-lg-6 mb--30">
@@ -361,9 +361,57 @@ Home Slider Tab
         </div>
     </div>
 </section>
+
+
+<section class="section-margin">
+    <div class="container">
+        <div class="section-title section-title--bordered" id="nonfiction">
+            <h2>NON-FICTION BOOKS</h2>
+        </div>
+        <div class="product-slider product-list-slider slider-border-single-row sb-slick-slider"
+            data-slick-setting='{
+                                    "autoplay": true,
+                                    "autoplaySpeed": 8000,
+                                    "slidesToShow":3,
+                                    "dots":true
+                                }' data-slick-responsive='[
+                                    {"breakpoint":1200, "settings": {"slidesToShow": 2} },
+                                    {"breakpoint":992, "settings": {"slidesToShow": 2} },
+                                    {"breakpoint":575, "settings": {"slidesToShow": 1} },
+                                    {"breakpoint":490, "settings": {"slidesToShow": 1} }
+                                ]'>
+            {% for book in non_fiction_bookss %}
+            <div class="single-slide">
+                <div class="product-card card-style-list">
+                    <div class="card-image">
+                        <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100px; height: 155px">
+                    </div>
+                    <div class="product-card--body">
+                        {% load rating_stars %}
+                        <div class="product-header">
+                            <a href="#" class="author" style="font-size: 14px;">
+                                {{ book.author }}
+                            </a>
+                            <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a>
+                            </h3>
+                        </div> 
+                        <div class="star-rating">
+                            {% render_stars book.rating %}                            
+                        </div> 
+                        <div class="price-block">
+                            <span class="price" style="font-size: 22px; margin-top: 20px;">£{{ book.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 <!--=================================
 Home Two Column Section
 ===================================== -->
+
 <section class="bg-gray section-padding-top section-padding-bottom section-margin">
     <div class="container">
         <div class="row">
