@@ -2,75 +2,103 @@
 
 <!doctype html>
 <html lang="en">
-
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="{% static 'css/base.css' %}"> <!-- Moved up for better organization -->
+  <!-- Slick Carousel CSS -->
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Sau đó thêm Bootstrap JS và các script khác -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'website/js/ajax-mail.js' %}"></script>
+    <script src="{% static 'website/js/custom.js' %}"></script>
+    <script src="{% static 'website/js/plugins.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- animate css link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 
   <title>Online Bookstore</title>
 </head>
-
 <body>
-  <!--Nav Bar-->
-  <nav class="navbar navbar-dark bg-dark">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'list' %}">Online Bookstore</a>
-    <div class="btn-group dropright">
-      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{user}}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{ user.username|default:"Account" }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% if user.is_authenticated %}
+            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+            <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+            <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+          </div>
+        </li>
+      </ul>
+
+      <!-- Search Form -->
+      <form class="form-inline my-2 my-lg-0" action="{% url 'search_results' %}" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      <!-- Cart Button -->
+      <a href="{% url 'basket:basket_summary' %}" class="btn btn-outline-secondary ml-2">
+        {% with total_qty=basket|length %}
+        <span id="basket-qty">{{ total_qty|default:"0" }}</span>
+        <i class="fas fa-shopping-cart"></i> Basket
+        {% endwith %}
       </a>
-
-    <!--login conditions -->
-
-      <div class="dropdown-menu">
-        {% if user.is_authenticated %}
-        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-        {% else %}
-        <a class="dropdown-item text-secondary" href="{% url 'login' %}">Log In</a>
-        <a class="dropdown-item text-secondary" href="{% url 'signup' %}">Sign Up</a>
-        {% endif %}
-        </div>
     </div>
-    <div class="mx-auto" style="width: 10px;">
-    </div>
-
-    <!-- search css -->
-    <form class="search" action="{% url 'search_results' %}" method="get">
-      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-      <link rel="stylesheet" href="{% static 'css/base.css' %}">
-      <i class="fas fa-search"></i>
-      <input name="q" class="fas fa-search" type="text" autocomplete="off" placeholder="click to search">
-    </form>
-
-  </nav><br>
-
-
+  </nav>
 
   <div class='container'>
-
-
     {% block content %}
-
-
+    <!-- Page specific content will go here -->
     {% endblock content %}
-
-
   </div>
+
+  <div class='container'>
+    {% block slider %}
+    <!-- Page specific content will go here -->
+    {% endblock slider %}
+  </div>
+
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
+
+  
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+    
 </body>
-
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.sb-slick-slider').slick();
+  });
+</script>
 </html>

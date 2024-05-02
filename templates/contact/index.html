@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <title>Contact</title>
+</head>
+<body>
+    <h1>Contact</h1>
+
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        <p><label for="id_name" class ="form-control">Name:</label>{{ form.name }}</p>
+        <p><label for="id_email">E-mail:</label>{{ form.email }}</p>
+        <p><label for="id_content">Message:</label><br>{{ form.content }}</p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if name %}
+        <h2>Contact form submission</h2>
+        <p><b>Name: </b>{{ name }}</p>
+        <p><b>E-mail: </b>{{ email }}</p>
+        <p><b>Message: </b><br>{{ content }}</p>
+    {% endif %}
+</body>
+{% endblock content %}

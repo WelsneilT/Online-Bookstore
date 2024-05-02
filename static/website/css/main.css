@@ -21176,6 +21176,7 @@ input[type=number] {
 /*++ Product Cards ++*/
 .product-card {
   text-align: center;
+  height: 200px;
 }
 .product-card .product-header {
   padding: 0 15px;
@@ -21207,7 +21208,7 @@ input[type=number] {
 .product-card .price-block {
   text-align: center;
   position: relative;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 .product-card .card-image {
   position: relative;
@@ -21285,6 +21286,7 @@ input[type=number] {
 }
 .product-card.card-style-list .card-image {
   width: 170px;
+
 }
 @media (min-width: 576px) {
   .product-card.card-style-list .card-image {
@@ -21307,23 +21309,15 @@ input[type=number] {
     width: 70%;
   }
 }
-.product-card .product-list-content .card-image {
-  width: 100%;
-  height: auto;
-  margin-bottom: 30px;
-}
+
 @media (min-width: 480px) {
   .product-card .product-list-content .card-image {
     max-width: 270px;
     margin-bottom: 0px;
   }
 }
-.product-card .product-list-content .card-image img {
-  width: 100%;
-}
-.product-card .product-list-content .rating-block {
-  margin-top: 18px;
-}
+
+
 .product-card .product-list-content .btn-block {
   margin-top: 20px;
   display: -webkit-box;
@@ -21335,46 +21329,6 @@ input[type=number] {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-bottom: -10px;
-}
-.product-card .product-list-content .btn-block .btn {
-  background: #fff;
-  color: #333;
-  font-weight: 700;
-  padding: 0 25px;
-  width: auto;
-  border: 2px solid #eee;
-  border-radius: 3px;
-  margin-top: 0;
-  text-transform: capitalize;
-  margin-bottom: 15px;
-  font-size: 14px;
-  line-height: 40px;
-}
-@media (min-width: 992px) {
-  .product-card .product-list-content .btn-block .btn {
-    padding: 0 50px;
-    font-size: 15px;
-    line-height: 48px;
-  }
-}
-.product-card .product-list-content .btn-block .btn:hover {
-  color: #555;
-  border-color: #36696b;
-}
-.product-card .product-list-content .btn-block a {
-  margin-left: 0;
-  margin-right: 28px;
-  color: #333;
-  margin-bottom: 10px;
-}
-.product-card .product-list-content .btn-block a:last-child {
-  margin-right: 0;
-}
-.product-card .product-list-content .btn-block a i {
-  margin-right: 4px;
-}
-.product-card .product-list-content .btn-block a.card-link:hover {
-  color: #36696b;
 }
 
 .product-body-border {
@@ -22743,7 +22697,7 @@ input[type=number] {
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 600;
-    color: #333;
+    color: #333;  
   }
   ul.main-menu .menu-title:hover a {
     color: #36696b !important;
@@ -28532,4 +28486,114 @@ body{
 }
 .carousel-inner .carousel-caption h1{
   font-size: 52px;
+}
+
+
+.product-card .product-header .author {
+  display: block; 
+  width: 100%; 
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-height: 20px; 
+  line-height: 20px; 
+  margin-bottom: 5px; 
+  font-size: 0.9em; 
+  height:50px
+}
+
+/* Image styles */
+.product-card .product-card--body .card-image img {
+  width: 100%; 
+
+  max-height: 1000px;
+  object-fit: cover; 
+  margin-bottom: 10px;
+}
+
+
+.product-card .product-card--body .price-block .price {
+  font-size: 1em; 
+  font-weight: bold; 
+  color: #333; 
+  margin-bottom: 10px; 
+}
+
+.single-slide {
+  height: 200px;
+}
+
+.product-card .product-card--body .card-image img {
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.product-card .product-header .title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Giới hạn ở 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.6em; /* Gấp đôi chiều cao của một dòng */
+  line-height: 1.3em; /* Chiều cao của một dòng */
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.product-card .product-header h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Giới hạn ở 2 dòng */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.6em; /* Gấp đôi chiều cao của một dòng */
+  margin-bottom: -40px; 
+}
+
+table {
+  width: 100%; /* Chiều rộng bảng */
+  border-collapse: separate; /* Ngăn các đường viền gộp lại */
+  border-spacing: 1px; /* Khoảng cách giữa các ô */
+
+}
+td {
+  text-align: center; /* Căn giữa nội dung trong mỗi ô */
+  vertical-align: top; /* Căn trên cho nội dung trong ô */
+  padding: 5px; /* Thêm padding cho mỗi ô */
+}
+
+.star-rating {
+  color: #e6ac00; /* This changes the color if the stars are font icons */
+  
+}
+
+
+.star-rating img {
+  filter: hue-rotate(50deg) brightness(120%); /* Adjust as needed for the correct shade */
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); } /* Adjust the scale value for a bigger or smaller pulse */
+}
+
+.pulsing-text {
+  animation: pulse 2s infinite;
+  display: inline-block; /* Allows transform to be applied */
+}
+
+.book-item {
+  height: 200px;
+}
+
+.book-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines you want to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2em; /* This should be approximately equal to the line-height * number of lines you want to show */
+  line-height: 1em; /* Adjust line-height as needed */
+  margin-bottom: 10px; /* To ensure spacing below the title, adjust as needed */
 }

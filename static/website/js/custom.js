@@ -378,6 +378,7 @@ jQuery(document).ready(function($) {
             } else {
                 $('.product-card').addClass('card-style-list')
             }
+            
         })
         /*-------------------------------------
         	--> Payment method select
@@ -486,5 +487,7 @@ jQuery(document).ready(function($) {
 		}
 		initMap();
 	}
+
+    
 
 });

@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-5$0%08a5joyw7m=-nmw$ta&)%9pf*g!)1!l@s=o-k97c1nvkz6
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '1f32ed9ee81b2e'
+EMAIL_HOST_PASSWORD = 'aa9975929dcf8e'
+EMAIL_PORT = '2525'
 
 # Application definition
 
@@ -43,6 +46,8 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',  # changes
     'carousel1.apps.Carousel1Config',
+    'contact.apps.ContactConfig',
+    'basket.apps.BasketConfig',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'basket.context_processors.basket',
             ],
         },
     },
@@ -148,7 +154,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # login settings
 
-LOGIN_REDIRECT_URL = 'list'   # requires an html file (login.html).
-LOGOUT_REDIRECT_URL = 'list'  # doesn't require any html file.
+LOGIN_REDIRECT_URL = 'home'   # requires an html file (login.html).
+LOGOUT_REDIRECT_URL = 'login'  # doesn't require any html file.
 
-# website url: https://https://ym-djecom.herokuapp.com/
+# Time zone
+TIME_ZONE = 'Asia/Ho_Chi_Minh'  # This timezone also applies to Hanoi
+USE_TZ = True

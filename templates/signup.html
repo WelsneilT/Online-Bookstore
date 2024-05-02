@@ -1,17 +1,73 @@
 
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block title %}Sign Up{% endblock title%}
 
 {% block content %}
+<section class="breadcrumb-section" style="margin-top: -30px">
+    <h2 class="sr-only">Site Breadcrumb</h2>
+    <div class="container">
+        <div class="breadcrumb-contents">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Sign Up</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<main class="page-section inner-page-sec-padding-bottom" style="margin-top: -30px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
+                <!-- Login Form s-->
+                <form  method="post" action="">
+                    {% csrf_token %}
+                    <div class="login-form">
+                        <h4 class="login-title">New Customer</h4>
+                        <p><span class="font-weight-bold">I am a new customer</span></p>
+                        <div class="row">
+                            <div class="col-md-12 col-12 mb--15">
+                                <label for="{{ form.username.id_for_label }}">Username</label>
+                                <input class="mb-0 form-control" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}"
+                                       placeholder="Enter your username here..." value="{{ form.username.value|default_if_none:'' }}" required>
+                                {% if form.username.errors %}
+                                    <div class="error">{{ form.username.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-6 mb--20">
+                                <label for="{{ form.password.id_for_label }}">Password</label>
+                                <input class="mb-0 form-control" type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}"
+                                       placeholder="Enter your password" value="{{ form.password.value|default_if_none:'' }}" required>
+                                {% if form.password.errors %}
+                                    <div class="error">{{ form.password.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-6 mb--20">
+                                <label for="{{ form.confirm_password.id_for_label }}">Repeat Password</label>
+                                <input class="mb-0 form-control" type="password" id="{{ form.confirm_password.id_for_label }}" name="{{ form.confirm_password.name }}"
+                                       placeholder="Repeat your password" value="{{ form.confirm_password.value|default_if_none:'' }}" required>
+                                {% if form.confirm_password.errors %}
+                                    <div class="error">{{ form.confirm_password.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-outlined">Sign up</button>
+                            </div>
+                            <div class="col-md-12">
+                                <a class="btn btn-outline-info" href="{% url 'login' %}" role="button">Already have an account? Login</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</main>
 
-<h2>Sign up</h2>
 
-<form method="post">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class = "btn btn-success" >Sign up</button>
-</form>
 
 {% endblock content %}
