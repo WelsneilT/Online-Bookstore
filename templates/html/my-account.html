@@ -36,7 +36,7 @@
 										address</a>
 									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
 										Details</a>
-									<a href="login-register.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+									<a href="#log-out-account"  data-bs-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a>
 								</div>
 							</div>
 							<!-- My Account Tab Menu End -->
@@ -165,44 +165,52 @@
 									<!-- Single Tab Content Start -->
 									<div class="tab-pane fade" id="account-info" role="tabpanel">
 										<div class="myaccount-content">
-											<h3>Account Details</h3>
+											<h3>Password change</h3>
 											<div class="account-details-form">
-												<form action="#">
+												<form method="post" action="{% url 'change_password' %}">
+													{% csrf_token %}
 													<div class="row">
-														<div class="col-lg-6 col-12  mb--30">
-															<input id="first-name" placeholder="First Name" type="text">
+														<div class="col-md-12 col-12 mb-15">
+															<label for="{{ form.old_password.id_for_label }}">{{ form.old_password.label }}</label>
+															{{ form.old_password }}
+															{% if form.old_password.errors %}
+																<div class="error">{{ form.old_password.errors.as_text }}</div>
+															{% endif %}
 														</div>
-														<div class="col-lg-6 col-12  mb--30">
-															<input id="last-name" placeholder="Last Name" type="text">
+														<div class="col-lg-6 col-12 mb-20">
+															<label for="{{ form.new_password1.id_for_label }}">{{ form.new_password1.label }}</label>
+															{{ form.new_password1 }}
+															{% if form.new_password1.errors %}
+																<div class="error">{{ form.new_password1.errors.as_text }}</div>
+															{% endif %}
 														</div>
-														<div class="col-12  mb--30">
-															<input id="display-name" placeholder="Display Name"
-																type="text">
-														</div>
-														<div class="col-12  mb--30">
-															<input id="email" placeholder="Email Address" type="email">
-														</div>
-														<div class="col-12  mb--30">
-															<h4>Password change</h4>
-														</div>
-														<div class="col-12  mb--30">
-															<input id="current-pwd" placeholder="Current Password"
-																type="password">
-														</div>
-														<div class="col-lg-6 col-12  mb--30">
-															<input id="new-pwd" placeholder="New Password"
-																type="password">
-														</div>
-														<div class="col-lg-6 col-12  mb--30">
-															<input id="confirm-pwd" placeholder="Confirm Password"
-																type="password">
+														<div class="col-lg-6 col-12 mb-20">
+															<label for="{{ form.new_password2.id_for_label }}">{{ form.new_password2.label }}</label>
+															{{ form.new_password2 }}
+															{% if form.new_password2.errors %}
+																<div class="error">{{ form.new_password2.errors.as_text }}</div>
+															{% endif %}
 														</div>
 														<div class="col-12">
-															<button class="btn btn--primary">Save Changes</button>
+															<button type="submit" class="btn" style="background-color: #36696b; color: white" href="{% url 'login' %}">CHANGE PASSWORD</button>
 														</div>
 													</div>
+
 												</form>
+												
 											</div>
+										</div>
+									</div>
+									<!-- Log out -->
+									<div class="tab-pane fade" id="log-out-account" role="tabpanel">
+										<div class="myaccount-content">
+											<h2>Log Out</h2>
+											<form method="post" action="{% url 'logout' %}">
+												{% csrf_token %}
+												<p>Are you sure you want to log out?</p>
+												<button type="submit" class="btn btn-danger">Log Out</button>
+												<a class="btn btn-outline-secondary" href="{% url 'list' %}" role="button">Cancel</a>
+											</form>
 										</div>
 									</div>
 									<!-- Single Tab Content End -->
@@ -262,4 +270,6 @@
 	<!--=================================
     Footer Area
 ===================================== -->
+<!-- my-account.html -->
+	
 {% endblock content %}	
