@@ -157,4 +157,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'   # requires an html file (login.html).
 LOGOUT_REDIRECT_URL = 'login'  # doesn't require any html file.
 
-# website url: https://https://ym-djecom.herokuapp.com/
+# Time zone
+TIME_ZONE = 'Asia/Ho_Chi_Minh'  # This timezone also applies to Hanoi
+USE_TZ = True

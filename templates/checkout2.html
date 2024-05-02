@@ -103,7 +103,11 @@
                                                 <h4>Grand Total <span>${{ total_price }}</span></h4>
                                                 <div class="method-notice mt--25">
                                                     <!-- Payment methods information -->
-                                                    <button class="place-order w-100">Place order</button>
+                                                    <button class="place-order w-100" >
+														<a href="{% url 'basket:basket_ordercomplete2' %}">
+															Place Order
+														</a>
+													</button>
                                                 </div>
 											</div>
 										</div>

@@ -1,5 +1,6 @@
 from django import template
-
+import random
+from django.utils import timezone
 register = template.Library()
 
 @register.filter
@@ -13,3 +14,11 @@ def surrounding_pages(current_page, num_pages):
     start = max(current_page - 3, 1)
     end = min(current_page + 3, num_pages)
     return range(start, end + 1)
+
+@register.filter(name='random_order_number')
+def random_order_number(value):
+    return f"{random.randint(1000, 9999)}"
+
+@register.filter(name='current_time')
+def current_time(value):
+    return timezone.now()
