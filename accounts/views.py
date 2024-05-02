@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.views import PasswordChangeView
 from django import forms
 from django.contrib.auth import update_session_auth_hash
-<<<<<<< HEAD
+
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
@@ -26,10 +26,7 @@ from django import forms
 class AccountView(LoginRequiredMixin, TemplateView):
     template_name = 'html/my-account.html'
     
-=======
 
-
->>>>>>> defa7e2d7027707b307f9018719078d4924c9bcb
 class SignUpView(FormView):
     form_class = RegistrationForm
     success_url = reverse_lazy('login')
@@ -75,7 +72,7 @@ class CustomLogoutView(RedirectView):
         # Optionally, you can customize the URL to redirect to after logout
         return reverse('home')  # Redirect to the home page by default
 
-<<<<<<< HEAD
+
 
 class PasswordChangingForm(PasswordChangeForm):
     old_password = forms.CharField(
@@ -108,7 +105,7 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
 
 class PasswordChangeDoneView(TemplateView):
     template_name = 'password_change_done.html'
-=======
+
 #CHANGE PASSWORD
 class PasswordChangeView(FormView):
     form_class = PasswordChangingForm
@@ -117,4 +114,4 @@ class PasswordChangeView(FormView):
     
     def password_change(request):
         return render(request, "password_change.html")
->>>>>>> defa7e2d7027707b307f9018719078d4924c9bcb
+
