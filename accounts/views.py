@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.forms import UserCreationForm
@@ -14,9 +15,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.shortcuts import redirect
+from django.contrib.auth.views import PasswordChangeView
+from django import forms
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
-
 
 
 class SignUpView(FormView):
@@ -64,17 +65,11 @@ class CustomLogoutView(RedirectView):
         # Optionally, you can customize the URL to redirect to after logout
         return reverse('home')  # Redirect to the home page by default
 
-
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # To keep the user logged in
-            return redirect('password_change_done')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'change_password.html', {'form': form})
-
-def password_change_done(request):
-    return render(request, 'password_change_done.html')
+#CHANGE PASSWORD
+class PasswordChangeView(FormView):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('login')
+    template_name = 'password_change.html'
+    
+    def password_change(request):
+        return render(request, "password_change.html")
