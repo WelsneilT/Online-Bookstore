@@ -3,20 +3,20 @@
 {% load static %}
 {% block content %}
 
-		<section class="breadcrumb-section">
+		<section class="breadcrumb-section" style="margin-top: -30px">
 			<h2 class="sr-only">Site Breadcrumb</h2>
 			<div class="container">
 				<div class="breadcrumb-contents">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+							<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
 							<li class="breadcrumb-item active">My Account</li>
 						</ol>
 					</nav>
 				</div>
 			</div>
 		</section>
-		<div class="page-section inner-page-sec-padding">
+		<div class="page-section inner-page-sec-padding" style="margin-top: -20px">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -34,8 +34,7 @@
 										Method</a>
 									<a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
 										address</a>
-									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
-										Details</a>
+									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Change Password</a>
 									<a href="#log-out-account"  data-bs-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a>
 								</div>
 							</div>
@@ -48,14 +47,11 @@
 										<div class="myaccount-content">
 											<h3>Dashboard</h3>
 											<div class="welcome mb-20">
-												<p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni
-														!</strong><a href="login-register.html" class="logout">
-														Logout</a>)</p>
+												<p>Hello, <strong>{{ username }}</strong>
 											</div>
-											<p class="mb-0">From your account dashboard. you can easily check &amp; view
-												your
-												recent orders, manage your shipping and billing addresses and edit your
-												password and account details.</p>
+											<p class="mb-0">Chào mừng đến với Online Bookstore - website mua sắm dễ dàng. 
+												Ở đây bạn có thể kiểm tra và xem các đơn hàng gần đây, quản lý địa chỉ giao hàng, thanh toán của bạn &amp; chỉnh sửa mật khẩu thông tin tài khoản.
+												</p>
 										</div>
 									</div>
 									<!-- Single Tab Content End -->
@@ -271,5 +267,7 @@
     Footer Area
 ===================================== -->
 <!-- my-account.html -->
+
+
 	
 {% endblock content %}	

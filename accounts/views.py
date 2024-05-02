@@ -102,6 +102,11 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
         user = form.save()
         update_session_auth_hash(self.request, user) 
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['username'] = self.request.user.username
+        return context
 
 class PasswordChangeDoneView(TemplateView):
     template_name = 'password_change_done.html'

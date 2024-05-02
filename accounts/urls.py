@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('change_password/',ChangePasswordView.as_view(), name='change_password'),
     path('password_change_done/', PasswordChangeDoneView.as_view(), name='password_change_done'),
-    path('', AccountView.as_view(), name='my-account'),
+    path('accounts_detail/', AccountView.as_view(), name='my-account'),
 
     path('password_change/', PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
 
