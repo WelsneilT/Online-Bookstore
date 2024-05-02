@@ -8,17 +8,20 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.utils.decorators import method_decorator
 #from accounts.views import LogOutView
-from django.views.generic import FormView
-from .forms import RegistrationForm, PasswordChangingForm
+from django.views.generic import FormView, TemplateView
+from .forms import RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
 
-
-
+class AccountView(LoginRequiredMixin, TemplateView):
+    template_name = 'html/my-account.html'
+    
 class SignUpView(FormView):
     form_class = RegistrationForm
     success_url = reverse_lazy('login')
@@ -65,16 +68,34 @@ class CustomLogoutView(RedirectView):
         return reverse('home')  # Redirect to the home page by default
 
 
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # To keep the user logged in
-            return redirect('password_change_done')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'change_password.html', {'form': form})
+class PasswordChangingForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Old Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter old password'})
+    )
+    new_password1 = forms.CharField(
+        label="New Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter new password'})
+    )
+    new_password2 = forms.CharField(
+        label="Confirm New Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm new password'})
+    )
 
-def password_change_done(request):
-    return render(request, 'password_change_done.html')
+class ChangePasswordView(LoginRequiredMixin, FormView):
+    template_name = 'html/my-account.html'
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('home') 
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        user = form.save()
+        update_session_auth_hash(self.request, user) 
+        return super().form_valid(form)
+
+class PasswordChangeDoneView(TemplateView):
+    template_name = 'password_change_done.html'

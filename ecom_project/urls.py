@@ -40,7 +40,6 @@ urlpatterns = [
     path('compare.html', TemplateView.as_view(template_name='html/compare.html'), name='compare'),
     path('wishlist.html', TemplateView.as_view(template_name='html/wishlist.html'), name='wishlist'),
     path('login-register.html', TemplateView.as_view(template_name='html/login-register.html'), name='login-register'),
-    path('my-account.html', TemplateView.as_view(template_name='html/my-account.html'), name='my-account'),
     path('order-complete.html', TemplateView.as_view(template_name='html/order-complete.html'), name='order-complete'),
     path('faq.html', TemplateView.as_view(template_name='html/faq.html'), name='faq'),
     path('contact-2.html', TemplateView.as_view(template_name='html/contact-2.html'), name='contact-2'),
