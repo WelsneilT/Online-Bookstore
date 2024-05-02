@@ -4,105 +4,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vertical Forms in Columns</title>
+  <title>Manage Your Basket</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+    #checkout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
-    #only {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Chia trang thành 3 cột có chiều rộng bằng nhau */
-    gap: 20px; /* Khoảng cách giữa các cột */
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  form {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-  }
-   
-
-    input,
-    button {
-      width: 100%;
+    .form-column {
+      flex: 1 1 300px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .form-title {
+      margin-top: 0;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      display: flex; /* Add this to make the children inline */
+      align-items: center; /* Align items vertically */
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+    }
+    .form-group input[type="number"],
+    .form-group button {
+      margin-right: 10px; /* Add some space between the input and button */
       padding: 10px;
-      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
       box-sizing: border-box;
     }
-
-    button {
+    .form-group button {
       background-color: #007bff;
       color: #fff;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
     }
-
-    button:hover {
+    .form-group button:hover {
       background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+      }
+      .form-column {
+        margin: 10px 0;
+      }
     }
   </style>
 </head>
 <body>
-<div class="container" id="only">
+<div id="checkout" class="container">
   <!-- Checkout Form -->
-  <form method="post" action="{% url 'basket:basket_checkout' %}">
-    {% csrf_token %}
-    {% for item in basket %}
-      {% if item.qty != 0 %}
-        {% with product=item.product %}    
-          <label>
-            <input type="checkbox" name="book" value="{{ product.id }}">
-            {{ product.title }} - ${{ product.price }}
-          </label>
-        {% endwith %}
-      {% endif %}
-    {% endfor %}
-    <button type="submit">Proceed to Checkout</button>
-  </form>
+  <div class="form-column">
+    <h2 class="form-title">Checkout</h2>
+    <form method="post" action="{% url 'basket:basket_checkout' %}">
+      {% csrf_token %}
+      {% for item in basket %}
+        {% if item.qty != 0 %}
+          {% with product=item.product %}    
+            <div class="form-group">
+              <label>
+                <input type="checkbox" name="book" value="{{ product.id }}">
+                {{ product.title }} - ${{ product.price }}
+              </label>
+            </div>
+          {% endwith %}
+        {% endif %}
+      {% endfor %}
+      <div class="form-group">
+        <button type="submit">Proceed to Checkout</button>
+      </div>
+    </form>
+  </div>
 
   <!-- Update Basket Form -->
-  <form id="update-basket-form" method="post" action="{% url 'basket:basket_add' %}">
-    {% csrf_token %}
+  <div class="form-column">
     {% for item in basket %}
-      {% if item.qty != 0 %}
-        {% with product=item.product %}  
-          <label>{{ product.title }}</label>
-          <input type="hidden" name="productid" value="{{ product.id }}">
-          <input type="number" name="productqty" min="1" value="{{ item.qty }}" onchange="updateTotal()">
-          <button type="submit" class="btn btn-secondary btn-sm">Update</button>
-        {% endwith %}
-      {% endif %}
+        {% if item.qty != 0 %}
+          {% with product=item.product %}  
+    <form id="update-basket-form" method="post" action="{% url 'basket:basket_add' %}">
+      {% csrf_token %}
+            <div class="form-group">
+              <input type="hidden" name="productid" value="{{ product.id }}">
+              <input type="number" name="productqty" min="1" value="{{ item.qty }}">
+              <button type="submit" class="form-group button">Update</button>
+            </div>
+    </form>
+    {% endwith %}
+    {% endif %}
     {% endfor %}
-  </form>
+  </div>
 
   <!-- Delete Basket Form -->
-  <form id="delete-basket-form" method="post" action="{% url 'basket:basket_add' %}">
-    {% csrf_token %}
-    {% for item in basket %}
-      {% if item.qty != 0 %}
-        {% with product=item.product %}  
-          <label>{{ product.title }} - ${{ product.price }}</label>
-          <input type="hidden" name="productid" value="{{ product.id }}">
-          <input type="hidden" name="productqty" value="0">
-          <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
-        {% endwith %}
-      {% endif %}
-    {% endfor %}
-  </form>
+  <div class="form-column">
+    <form id="delete-basket-form" method="post" action="{% url 'basket:basket_add' %}">
+      {% csrf_token %}
+      {% for item in basket %}
+        {% if item.qty != 0 %}
+          {% with product=item.product %}  
+            <div class="form-group">
+              <input type="hidden" name="productid" value="{{ product.id }}">
+              <input type="hidden" name="productqty" value="0">
+              <button type="submit" class="form-group button">Delete</button>
+            </div>
+          {% endwith %}
+        {% endif %}
+      {% endfor %}
+    </form>
+  </div>
 </div>
 
-</body>
 <script>
   // JavaScript for updating total price (not fully integrated in this template)
   // Note: Ensure proper integration and handling of JavaScript logic
-  /*
   var totalPrice = parseFloat('{{ product.price }}');
   var quantityInput = document.querySelector('input[name="productqty"]');
   var totalSpan = document.getElementById('totalPrice');
@@ -112,6 +136,5 @@
     var total = totalPrice * quantity;
     totalSpan.innerText = total.toFixed(2);
   }
-  */
 </script>
 {% endblock content %}
