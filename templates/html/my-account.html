@@ -36,7 +36,7 @@
 										address</a>
 									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
 										Details</a>
-										<a href="#log-out-account"  data-bs-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a>
+									<a href="#log-out-account"  data-bs-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a>
 								</div>
 							</div>
 							<!-- My Account Tab Menu End -->
@@ -165,6 +165,7 @@
 									<!-- Single Tab Content Start -->
 									<div class="tab-pane fade" id="account-info" role="tabpanel">
 										<div class="myaccount-content">
+<<<<<<< HEAD
 											<h3>Password change</h3>
 											<div class="account-details-form">
 												<form method="post" action="{% url 'change_password' %}">
@@ -195,7 +196,17 @@
 															<button type="submit" class="btn" style="background-color: #36696b; color: white" href="{% url 'login' %}">CHANGE PASSWORD</button>
 														</div>
 													</div>
+=======
+											<h3>Change password</h3>
+											<div class="account-details-form">
+												<form method="POST">
+													{% csrf_token %}
+													{{ form.as_p }}
+>>>>>>> defa7e2d7027707b307f9018719078d4924c9bcb
 												</form>
+												<div class="col-md-12">
+													<button type="submit" class="btn btn--primary">Change Password</button>
+												</div>
 											</div>
 										</div>
 									</div>
