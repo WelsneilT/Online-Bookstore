@@ -62,7 +62,7 @@
             <div class="col-md-6">
               <div style="padding-top:24px; width: 180px; padding-left: 30px">
                 {% if object.book_available %}
-                <a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 36px">
+                <a href="{% url 'basket:basket_checkout2' %}"  class="btn btn-outline-success" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 36px">
                   Buy Now 
                   <img src="{% static 'website/images/checklist.png' %}" alt="Cart" style="width: 20px; height: 20px; margin-left: 10px;">
                 </a>
