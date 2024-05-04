@@ -16,7 +16,7 @@ from .models import Order
 
 def admin_order_detail_view(request, order_id):
     order = Order.objects.get(id=order_id)
-    return render(request, 'admin/order_detail.html', {'order': order})
+    return render(request, 'order-complete2.html', {'order': order})
 
 class ShopBooksListView(ListView):
     model = Book

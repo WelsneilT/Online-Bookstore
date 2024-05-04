@@ -14,9 +14,8 @@
 
   .product-card--body {
     flex: 1; /* Allows this div to expand and fill the available space pushing the button down */
-    display: flex;
-    flex-direction: column; /* Aligns content vertically */
-    justify-content: space-between; /* Spaces out the content */
+
+
   }
 
   .btn-primary {
@@ -67,8 +66,8 @@
                   <h3><a style="font-size: 18px;" href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
                   <span class="star-rating" style="padding-top: 10px">{% render_stars book.rating %}</span>
               </div>
-              <div class="price-block">
-                  <span class="price" style="font-size: 22px;">£{{ book.price }}</span>
+              <div class="price-block" >
+                  <span class="price" style="font-size: 22px">£{{ book.price }}</span>
               </div>
           </div>
           
