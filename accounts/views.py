@@ -1,5 +1,6 @@
 from pyexpat.errors import messages
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render,get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
@@ -18,11 +19,11 @@ from django.shortcuts import redirect
 from django.contrib.auth.views import PasswordChangeView
 from django import forms
 from django.contrib.auth import update_session_auth_hash
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
-from django.contrib.auth.decorators import login_required
+from books.models import Book
 from .forms import ProfileUpdateForm
 from .models import Profile
 
@@ -144,3 +145,19 @@ class PasswordChangeView(FormView):
     def password_change(request):
         return render(request, "password_change.html")
 
+@login_required
+def wishlist(request):
+    products = Book.objects.filter(users_wishlist=request.user)
+    return render(request, "registration/user_wish_list.html", {"wishlist": products})
+
+
+@login_required
+def add_to_wishlist(request, id):
+    product = get_object_or_404(Book, id=id)
+    if product.users_wishlist.filter(id=request.user.id).exists():
+        product.users_wishlist.remove(request.user)
+        messages.success(request, product.title + " has been removed from your WishList")
+    else:
+        product.users_wishlist.add(request.user)
+        messages.success(request, "Added " + product.title + " to your WishList")
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])

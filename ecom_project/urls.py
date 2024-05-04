@@ -37,7 +37,6 @@ urlpatterns = [
     path('cart.html', TemplateView.as_view(template_name='html/cart.html'), name='cart'),
     path('checkout.html', TemplateView.as_view(template_name='html/checkout.html'), name='checkout'),
     path('compare.html', TemplateView.as_view(template_name='html/compare.html'), name='compare'),
-    path('wishlist.html', TemplateView.as_view(template_name='html/wishlist.html'), name='wishlist'),
     path('login-register.html', TemplateView.as_view(template_name='html/login-register.html'), name='login-register'),
     path('my-account.html', TemplateView.as_view(template_name='html/my-account.html'), name='my-account'),
     path('order-complete.html', TemplateView.as_view(template_name='html/order-complete.html'), name='order-complete'),

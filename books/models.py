@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Book(models.Model):
     title = models.CharField(max_length=500)
@@ -18,7 +19,7 @@ class Book(models.Model):
     image_url = models.CharField(max_length=2083, default=False)
     price = models.FloatField(null=True, blank=True)
     book_available = models.BooleanField(default=False)
-
+    users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
     def __str__(self):
 	    return self.title
 
