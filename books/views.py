@@ -9,10 +9,42 @@ from django.http import JsonResponse
 import json
 from django.http import HttpResponse
 from django.template import loader
-
-
 from django.shortcuts import render
 from .models import Order
+from .forms import OrderForm
+from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import OrderForm
+from django.shortcuts import redirect
+def calculate_total_price(cart_items):
+    total_price = 0
+    for item in cart_items.values():
+        total_price += item['price'] * item['qty']
+    return total_price
+
+# Ví dụ gọi trong view:
+@login_required
+def checkout3(request):
+    cart_items = request.session.get('cart', {})
+    total_price = calculate_total_price(cart_items)
+    request.session['total_price'] = total_price  # Cập nhật session
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            new_order = form.save(commit=False)
+            new_order.user = request.user
+            new_order.total_price = total_price  # Đảm bảo lưu giá trị mới tính
+            print("Total Price of the Order:", new_order.total_price)
+            new_order.save()
+            return redirect('order_complete')
+        else:
+            print("Form errors:", form.errors)
+    else:
+        form = OrderForm()
+    return render(request, 'checkout2.html', {'form': form, 'total_price': total_price})
 
 def admin_order_detail_view(request, order_id):
     order = Order.objects.get(id=order_id)

@@ -25,6 +25,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm
 from .models import Profile
+from books.models import Book
 
 def some_view(request):
     user = request.user
@@ -144,3 +145,19 @@ class PasswordChangeView(FormView):
     def password_change(request):
         return render(request, "password_change.html")
 
+@login_required
+def wishlist(request):
+    products = Book.objects.filter(users_wishlist=request.user)
+    return render(request, "registration/user_wish_list.html", {"wishlist": products})
+
+
+@login_required
+def add_to_wishlist(request, id):
+    product = get_object_or_404(Book, id=id)
+    if product.users_wishlist.filter(id=request.user.id).exists():
+        product.users_wishlist.remove(request.user)
+        messages.success(request, product.title + " has been removed from your WishList")
+    else:
+        product.users_wishlist.add(request.user)
+        messages.success(request, "Added " + product.title + " to your WishList")
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
