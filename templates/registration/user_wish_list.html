@@ -2,40 +2,83 @@
 {% block title %}Users Wish List{% endblock %}
 
 {% block content %}
+
+<style>
+  .product-card {
+    display: flex; /* Changed from inline-block to flex */
+    flex-direction: column; /* Ensures vertical layout */
+    justify-content: space-between; /* Aligns children at the space between */
+    height: 230px; /* Fixed height for consistency */
+    width: 100%; /* Ensures it takes the full width */
+  }
+
+  .product-card--body {
+    flex: 1; /* Allows this div to expand and fill the available space pushing the button down */
+    display: flex;
+    flex-direction: column; /* Aligns content vertically */
+    justify-content: space-between; /* Spaces out the content */
+  }
+
+  .btn-primary {
+    width: 100px; /* Fixed width for consistency */
+    align-self: center; /* Centers the button in the available space */
+  }
+</style>
+
+<div class="container">
+  <section class="breadcrumb-section" style="margin-top: -30px">
+    <h2 class="sr-only">Site Breadcrumb</h2>
+    <div class="container">
+        <div class="breadcrumb-contents">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Wishlist</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
 {% if messages %}
-<div class="alert alert-warning" alert-{{ message.tags }}" role="alert">
+<div class="alert alert-warning" alert-{{ message.tags }}" role="alert" style="margin-top: -30px; margin-bottom: 30px">
 {% for message in messages  %}
   {{message|safe}} - <a href="{% url 'wishlist' %}" class="alert-link">Your Wishlist</a>.
 {% endfor %}
 </div>
 {% endif %}
-<div class="col-12 mx-auto">
-  <h1 class="h3">My Wishlist</h1>
-  <div>Manage your Wishlist</div>
-  <hr />
+  <div class="col-12 mx-auto">
+    <h3 style="margin-top: -30px;">Manage your Wishlist</h3>
+    
+  
+    {% if wishlist %}
+    {% for book in wishlist  %}
+    {% load rating_stars %}
 
-  {% if wishlist %}
-  {% for product in wishlist  %}
-
-  <div class="card mb-3 rounded-0">
-    <div class="row g-0">
-      <div class="col-md-10">
-        <div class="card-body">
-          <h5 class="card-title">{{product.title}}</h5>
-          <p class="card-text">{{product.description}}</p>
-          <p class="card-text"><small class="text-muted">{{product.regular_price}}</small></p>
-          <a type="button" class="btn btn-primary fw500 btn-sm" href="{% url 'user_wishlist' product.id %}">Remove from Wishlist</a>
-        </div>
+    <div class="single-slide">
+      <div class="product-card card-style-list">
+          <div class="card-image">
+              <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100px; height: 150px;">
+          </div>
+          <div class="product-card--body">
+              <a href="#" class="author" style="font-size: 14px;">
+                  {{ book.author }}
+              </a>
+              <div class="product-header">
+                  <h3><a style="font-size: 18px;" href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
+                  <span class="star-rating" style="padding-top: 10px">{% render_stars book.rating %}</span>
+              </div>
+              <div class="price-block">
+                  <span class="price" style="font-size: 22px;">£{{ book.price }}</span>
+              </div>
+          </div>
+          
       </div>
-    </div>
+      <a type="button" class="btn" href="{% url 'user_wishlist' book.id %}" style="height: 50px; margin-left: 800px; margin-top: -300px; background-color: #36696b; color: white">Remove</a>
   </div>
-
-  {% endfor %}
-  {% else %}
-  <p class="card-text">No products have been added to your wishlist yet</p>
-  {% endif %}
-
-
-
+    {% endfor %}
+    {% else %}
+    <p class="card-text">No products have been added to your wishlist yet.</p>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}
