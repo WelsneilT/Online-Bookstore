@@ -33,7 +33,7 @@
 										Payment
 										Method</a>
 									<a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
-										address</a>
+										profile</a>
 									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Change Password</a>
 									<a href="#log-out-account"  data-bs-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a>
 								</div>
@@ -146,15 +146,37 @@
 									<!-- Single Tab Content Start -->
 									<div class="tab-pane fade" id="address-edit" role="tabpanel">
 										<div class="myaccount-content">
-											<h3>Billing Address</h3>
-											<address>
-												<p><strong>Alex Tuntuni</strong></p>
-												<p>1355 Market St, Suite 900 <br>
-													San Francisco, CA 94103</p>
-												<p>Mobile: (123) 456-7890</p>
-											</address>
-											<a href="#" class="btn btn--primary"><i class="fa fa-edit"></i>Edit
-												Address</a>
+											<h3>Profile</h3>
+											<form method="post" action="{% url 'update_profile' %}">  <!-- Ensure this URL is defined in your urls.py -->
+												{% csrf_token %}
+												<div class="row">
+													<div class="col-md-6 col-12 mb-20">
+														<div class="form-group">
+															<label for="first_name">First Name</label>
+															<input type="text" class="form-control" id="first_name" name="first_name" value="{{ form.first_name.value|default_if_none:user.first_name }}" required>
+														</div>
+													</div>
+													<div class="col-md-6 col-12 mb-20">
+														<div class="form-group">
+															<label for="last_name">Last Name</label>
+															<input type="text" class="form-control" id="last_name" name="last_name" value="{{ form.last_name.value|default_if_none:user.last_name }}" required>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="address">Billing Address</label>
+													<input type="text" class="form-control" id="address" name="address" value="{{ form.address.value|default_if_none:user.profile.address }}" required>
+												</div>
+												<div class="form-group">
+													<label for="shipping_address">Shipping Address</label>
+													<input type="text" class="form-control" id="shipping_address" name="shipping_address" value="{{ form.shipping_address.value|default_if_none:user.profile.shipping_address }}" required>
+												</div>
+												<div class="form-group">
+													<label for="phone">Phone</label>
+													<input type="text" class="form-control" id="phone" name="phone" value="{{ form.phone.value|default_if_none:user.profile.phone }}" required>
+												</div>
+												<button type="submit" class="btn btn--primary">Update Profile</button>
+											</form>
 										</div>
 									</div>
 									<!-- Single Tab Content End -->

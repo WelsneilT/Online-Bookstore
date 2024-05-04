@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SignUpView, CustomLogoutView, PasswordChangeDoneView, ChangePasswordView, AccountView
+from .views import SignUpView, CustomLogoutView, PasswordChangeDoneView, ChangePasswordView, AccountView, update_profile
 
 from .views import SignUpView, CustomLogoutView, PasswordChangeView
 
@@ -16,5 +16,5 @@ urlpatterns = [
     path('accounts_detail/', AccountView.as_view(), name='my-account'),
 
     path('password_change/', PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
-
+     path('profile/update/', update_profile, name='update_profile'),
 ]

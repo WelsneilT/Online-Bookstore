@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, ShopBooksListView, AdventureBooksListView , BiographyBooksListView, DramaBooksListView, FantasyBooksListView, FictionBooksListView, HistoryBooksListView , HorrorBooksListView, MagicBooksListView, NonFictionBooksListView, RomanceBooksListView
+from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, ShopBooksListView, AdventureBooksListView , BiographyBooksListView, DramaBooksListView, FantasyBooksListView, FictionBooksListView, HistoryBooksListView , HorrorBooksListView, MagicBooksListView, NonFictionBooksListView, RomanceBooksListView, admin_order_detail_view
 
 urlpatterns = [
     path('list/', BooksListView.as_view(), name = 'list'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('magic/', MagicBooksListView.as_view(), name = 'magic-books'),
     path('non-fiction/', NonFictionBooksListView.as_view(), name = 'non-fiction-books'),
     path('romance/', RomanceBooksListView.as_view(), name = 'romance-books'),
+    path('admin/order/<int:order_id>/', admin_order_detail_view, name='admin_order_detail'),
 ]

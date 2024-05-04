@@ -22,6 +22,30 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
+from django.contrib.auth.decorators import login_required
+from .forms import ProfileUpdateForm
+from .models import Profile
+
+def some_view(request):
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+@login_required
+def update_profile(request):
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=request.user)
+    
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=profile, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Adjust the redirection as needed
+    else:
+        form = ProfileUpdateForm(instance=profile, user=request.user)
+
+    return render(request, 'html/my-account.html', {'form': form})
 
 class AccountView(LoginRequiredMixin, TemplateView):
     template_name = 'html/my-account.html'
