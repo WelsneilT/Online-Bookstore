@@ -13,6 +13,12 @@
 </style>
 
 <div class="container">
+  {% if messages %}
+<div class="alert alert-warning" alert-{{ message.tags }}" role="alert">
+{% for message in messages  %}
+  {{message|safe}} - <a href="{% url 'wishlist'  %}" class="alert-link">Your Wishlist</a>.
+{% endfor %}
+{%endif%}
   <section class="breadcrumb-section" style="margin-top:-35px">
     <h2 class="sr-only">Site Breadcrumb</h2>
     <div class="container">
@@ -58,6 +64,7 @@
                   <img src="{% static 'website/images/shopping-cart.png' %}" alt="Cart" style="width: 20px; height: 20px; margin-left: 10px;">
                 </button>
               </form>
+              <a href="{% url 'user_wishlist' object.id  %}" class="btn btn-light fw500" role="button" aria-disabled="true">Add to Wish List</a>
             </div>
             <div class="col-md-6">
               <div style="padding-top:24px; width: 180px; padding-left: 30px">
