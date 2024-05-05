@@ -30,7 +30,7 @@ def checkout3(request):
             print("Total Price of the Order:", new_order.total_price)  # Print the total price
             
             new_order.save()
-            return redirect('home')  # Redirect to a confirmation page, etc.
+            return redirect('basket:basket_ordercomplete2')  # Redirect to a confirmation page, etc. 
         else:
             print("Form errors:", form.errors)
     else:
