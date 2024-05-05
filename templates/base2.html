@@ -496,9 +496,8 @@
                                                 class="fas fa-chevron-down dropdown-arrow"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{% url 'basket:basket_summary' %}">Cart</a></li>
-                                            <li><a href=>Checkout</a></li>
+                                            <li><a href="{% url 'basket:basket_checkout2' %}">Checkout</a></li>
                                             <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
-                                            <li><a href="login-register.html">Login Register</a></li>
                                             <li><a href="{% url 'change_password' %}">My Account</a></li>
                                             <li><a href="{% url 'basket:basket_ordercomplete2' %}">Order Complete</a></li>
                                             <li><a href="faq.html">Faq</a></li>
@@ -965,11 +964,10 @@
                                     <a href="#">Pages</a>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'basket:basket_summary' %}">Cart</a></li>
-                                        <li><a href=>Checkout</a></li>
+                                        <li><a href="{% url 'basket:basket_checkout2' %}">Checkout</a></li>
                                         <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
-                                        <li><a href="login-register.html">Login Register</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="order-complete.html">Order Complete</a></li>
+                                        <li><a href="{% url 'change_password' %}">My Account</a></li>
+                                        <li><a href="{% url 'basket:basket_ordercomplete2' %}">Order Complete</a></li>
                                         <li><a href="faq.html">Faq</a></li>
                                     </ul>
                                 </li>
@@ -1051,7 +1049,7 @@
                                         <li><a href="{% url 'basket:basket_summary' %}">Cart</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
-                                        <li><a href="login-register.html">Login Register</a></li>
+                                        
                                         <li><a href="my-account.html">My Account</a></li>
                                         <li><a href="order-complete.html">Order Complete</a></li>
                                         <li><a href="faq.html">Faq</a></li>
