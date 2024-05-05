@@ -7,14 +7,28 @@
 <div class="container">
     <h3 class = "text-secondary">Search Results</h3><hr>
 
-    {% for every in object_list %}
-        <div>
-            <h3>
-                <img src="{{ every.image_url }}" alt="{{ book.title }}" style="width:75px; height: 75px; padding-left: 20px">
-                <a href="{% url 'detail' every.pk %}" style="color: #36696b">{{ every.title }} </a>
-            </h3>
-            <p style = "padding-left: 80px">Author: {{ every.author }}</p>
+    {% for book in object_list %}
+    {% load rating_stars %}
+    <div class="single-slide">
+        <div class="product-card card-style-list" style="height: 230px">
+            <div class="card-image" >
+                <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100px; height: 150px">
+            </div>
+            <div class="product-card--body">
+                <a href="#" class="author" style="font-size: 14px;">
+                    {{ book.author }}
+                </a>
+                <div class="product-header" >
+                    <h3><a style="font-size: 18px;" href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
+                    <span class="star-rating" style="padding-top: 10px">{% render_stars book.rating %}</span>
+                </div>
+                
+                <div class="price-block">                         
+                    <span class="price" style="font-size: 22px; ">£{{ book.price }}</span>
+                </div>
+            </div>
         </div>
+    </div>
     {% empty %}
     <h5 class="text-danger">Nothing found :(</h5>
     {% endfor %}
