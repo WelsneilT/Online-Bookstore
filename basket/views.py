@@ -9,6 +9,7 @@ from django.contrib.messages.api import add_message
 from django.views.generic import ListView, DetailView
 
 
+
 def basket_ordercomplete2(request):
     basket = Basket(request)
     basket_json = []

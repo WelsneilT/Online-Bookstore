@@ -42,5 +42,16 @@ class Book(models.Model):
 
     def __str__(self):
 	    return self.title
+    
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    
+    def __str__(self):
+        return f'{self.quantity} of {self.product.title} at ${self.price} each'
+
 
 

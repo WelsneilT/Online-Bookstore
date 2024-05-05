@@ -34,20 +34,45 @@ def some_view(request):
 
 @login_required
 def update_profile(request):
-    try:
-        profile = request.user.profile
-    except Profile.DoesNotExist:
-        profile = Profile.objects.create(user=request.user)
-    
     if request.method == 'POST':
+        # Xử lý logic cho việc cập nhật hồ sơ người dùng
+        try:
+            profile = request.user.profile
+        except Profile.DoesNotExist:
+            profile = Profile.objects.create(user=request.user)
+        
         form = ProfileUpdateForm(request.POST, instance=profile, user=request.user)
         if form.is_valid():
             form.save()
             return redirect('home')  # Adjust the redirection as needed
+        return render(request, 'html/my-account.html', {'form': form})
     else:
-        form = ProfileUpdateForm(instance=profile, user=request.user)
+        # Xử lý logic cho việc hiển thị giỏ hàng người dùng
+        basket = Basket(request)
+        basket_json = []
+        total_price = 0
 
-    return render(request, 'html/my-account.html', {'form': form})
+        for item in basket.__iter__():
+            item['price'] = str(item['price'])
+            item['total_price'] = str(item['total_price'])
+            book_info = {
+                'id': item['product'].id,
+                'title': item['product'].title,
+                'author': item['product'].author,
+                'description': item['product'].description,
+                'price': float(item['product'].price),
+                'image_url': item['product'].image_url,
+                'book_available': item['product'].book_available,
+                'pk': item['product'].pk,
+            }
+            item['product'] = book_info
+            basket_json.append(item)
+
+        total_price = basket.get_total_price()  # Calculate total price
+        return render(request, 'html/my-account.html', {'basket': basket_json, 'total_price': total_price})
+
+
+    
 
 class AccountView(LoginRequiredMixin, TemplateView):
     template_name = 'html/my-account.html'

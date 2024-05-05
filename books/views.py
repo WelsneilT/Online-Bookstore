@@ -14,11 +14,11 @@ from .models import Order
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, render
 @login_required
 def checkout3(request):
     if request.method == 'POST':
