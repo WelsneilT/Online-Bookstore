@@ -21,7 +21,7 @@ def index(request):
                 'form': form
             })
 
-            send_mail('The contact form subject', 'This is the message', 'td.tan2711@gmail.com', ['td.tan2711@gmail.com'], html_message=html)
+            send_mail('The contact form subject', 'This is the message', 'bestbookever633@gmail.com', ['bestbookever633@gmail.com'], html_message=html)
 
     else:
         form = ContactForm()
