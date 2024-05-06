@@ -26,3 +26,4 @@ Chào mừng đến với Online Book Store! Đây là một sản phẩm cung c
 - **Nguyễn Tiến Khôi**: 25%
 - **Bùi Văn Khải**: 25%
 - **Nguyễn Quốc Tuấn**: 25% 
+## Personas:
