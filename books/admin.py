@@ -5,16 +5,21 @@ from .models import Book, Order, OrderItem
 from .forms import OrderForm
 
 # Register Book model with default admin interface
-admin.site.register(Book)
-
-@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'email', 'country', 'phone_number', 'address', 'town_city', 'zip_code', 'created_at']
-    search_fields = ['first_name', 'last_name', 'email', 'address']
-    list_filter = ['country', 'created_at']
-    
+    list_display = ['id', 'user', 'first_name', 'last_name', 'email', 'total_price', 'created_at']
+    list_filter = ['created_at', 'updated_at', 'country']
+    search_fields = ['first_name', 'last_name', 'email', 'user__username']
+
+class BookAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'price', 'book_available']
+    list_filter = ['author', 'book_available']
+    search_fields = ['title', 'author', 'description']
+
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('order', 'product', 'quantity', 'price')
-    list_filter = ('order', 'product')  # Add filters by 'order' and 'product'
-    search_fields = ('order__id', 'product__name')
+    list_display = ['order', 'product', 'quantity', 'price']
+    list_filter = ['order', 'product']
+    search_fields = ['product__title', 'order__id']
+
+admin.site.register(Order, OrderAdmin)
+admin.site.register(Book, BookAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
