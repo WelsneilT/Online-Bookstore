@@ -7,8 +7,8 @@ from .basket import Basket
 from basket.forms import  AddToBasketForm
 from django.contrib.messages.api import add_message
 from django.views.generic import ListView, DetailView
-
-
+from django.conf import settings
+from decimal import Decimal
 
 def basket_ordercomplete2(request):
     basket = Basket(request)
@@ -34,9 +34,9 @@ def basket_ordercomplete2(request):
         item['product'] = book_info
 
         basket_json.append(item)
-    total_price = basket.get_total_price()  # Calculate total price
-
-    return render(request, 'order-complete2.html', {'basket': basket, 'total_price': total_price})
+    total_price = sum(Decimal(item['price']) * item['qty'] for item in basket_json)  # Calculate total price
+    basket.clear()
+    return render(request, 'order-complete2.html', {'basket': basket_json, 'total_price': total_price})
 
 def basket_checkout2(request):
     basket = Basket(request)
@@ -62,8 +62,9 @@ def basket_checkout2(request):
         item['product'] = book_info
 
         basket_json.append(item)
-    total_price = basket.get_total_price()  # Calculate total price
-
+        
+    total_price =  basket.get_total_price()
+    #  # Calculate total price
     return render(request, 'checkout2.html', {'basket': basket, 'total_price': total_price})
 
 def basket_summary(request):

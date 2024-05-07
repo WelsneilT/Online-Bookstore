@@ -1,7 +1,6 @@
-from django.http import JsonResponse
 from decimal import Decimal
 from books.models import Book
-import json
+from django.conf import settings
 class Basket():
     """
     A base Basket class, providing some default behaviors that
@@ -23,7 +22,12 @@ class Basket():
         product_id = str(object.id)
 
         if product_id in self.basket:
-            self.basket[product_id]['qty'] = qty
+            if qty != 0:
+                self.basket[product_id]['qty'] = qty
+            else:
+                del self.basket[product_id]
+                print(product_id)
+                self.save()
         else:
             self.basket[product_id] = {'price': str(object.price), 'qty': qty}
 
@@ -52,6 +56,10 @@ class Basket():
         """
         return sum(item['qty'] for item in self.basket.values())
     
+    def clear(self):
+        # Remove basket from session
+        del self.basket
+
     def save(self):
         self.session['skey'] = self.basket
         self.session.modified = True

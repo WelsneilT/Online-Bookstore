@@ -53,15 +53,7 @@ class ShopBooksListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Thêm queryset từ BooksSliderView
-        context['books_list'] = Book.objects.filter(book_available=True)[:48]
-        context['featured_products'] = Book.objects.filter(book_available=True)[100:120]
-        context['new_arrivals'] = Book.objects.filter(book_available=True)[142:162]
-        context['most_view_products'] = Book.objects.filter(book_available=True)[29:39]
-        context['adventure_books'] = Book.objects.filter(Q(genres__icontains='Adventure') & Q(book_available=True))[:100]
-        context['special_offers'] = Book.objects.filter(book_available=True)[49:58]
-        context['adventure_bookss'] = Book.objects.filter(book_available=True, genres__exact='Adventure')[29:39]
-        
+
         # Thêm queryset từ BooksListView
         context['list_books'] = Book.objects.all()[:100]
         return context
@@ -72,14 +64,6 @@ class BooksListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Thêm queryset từ BooksSliderView
-        context['slider_books'] = Book.objects.filter(book_available=True)[:4]
-        context['featured_products'] = Book.objects.filter(book_available=True)[100:120]
-        context['new_arrivals'] = Book.objects.filter(book_available=True)[142:162]
-        context['most_view_products'] = Book.objects.filter(book_available=True)[29:39]
-        context['adventure_books'] = Book.objects.filter(book_available=True)[29:39]
-        context['special_offers'] = Book.objects.filter(book_available=True)[49:58]
-        context['adventure_bookss'] = Book.objects.filter(book_available=True, genres__exact='Adventure')[29:39]
 
         # Thêm queryset từ BooksListView
         context['list_books'] = Book.objects.all()[:100]
