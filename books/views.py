@@ -9,9 +9,39 @@ from django.http import JsonResponse
 import json
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
+from .models import Order
+from .forms import OrderForm
+from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import OrderForm
+from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, render
+@login_required
+def checkout3(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            new_order = form.save(commit=False)
+            new_order.user = request.user  # Set the user
+            
+            print("Total Price of the Order:", new_order.total_price)  # Print the total price
+            
+            new_order.save()
+            return redirect('basket:basket_ordercomplete2')  # Redirect to a confirmation page, etc. 
+        else:
+            print("Form errors:", form.errors)
+    else:
+        form = OrderForm()
+    return render(request, 'checkout2.html', {'form': form})
 
 
 
+def admin_order_detail_view(request, order_id):
+    order = Order.objects.get(id=order_id)
+    return render(request, 'admin/order_detail.html', {'order': order})
 
 class ShopBooksListView(ListView):
     model = Book

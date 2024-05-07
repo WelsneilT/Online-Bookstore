@@ -3,20 +3,20 @@
 {% load static %}
 {% block content %}
 
-		<section class="breadcrumb-section">
+		<section class="breadcrumb-section" style="margin-top: -30px">
 			<h2 class="sr-only">Site Breadcrumb</h2>
 			<div class="container">
 				<div class="breadcrumb-contents">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+							<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
 							<li class="breadcrumb-item active">My Account</li>
 						</ol>
 					</nav>
 				</div>
 			</div>
 		</section>
-		<div class="page-section inner-page-sec-padding">
+		<div class="page-section inner-page-sec-padding" style="margin-top: -20px">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
@@ -28,14 +28,13 @@
 											class="fas fa-tachometer-alt"></i>
 										Dashboard</a>
 									<a href="#orders" data-bs-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
-									<a href="#download" data-bs-toggle="tab"><i class="fas fa-download"></i> Download</a>
+									
 									<a href="#payment-method" data-bs-toggle="tab"><i class="fa fa-credit-card"></i>
 										Payment
 										Method</a>
 									<a href="#address-edit" data-bs-toggle="tab"><i class="fa fa-map-marker"></i>
-										address</a>
-									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Account
-										Details</a>
+										profile</a>
+									<a href="#account-info" data-bs-toggle="tab"><i class="fa fa-user"></i> Change Password</a>
 									<a href="#log-out-account"  data-bs-toggle="tab"><i class="fas fa-sign-out-alt"></i> Logout</a>
 								</div>
 							</div>
@@ -48,14 +47,11 @@
 										<div class="myaccount-content">
 											<h3>Dashboard</h3>
 											<div class="welcome mb-20">
-												<p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni
-														!</strong><a href="login-register.html" class="logout">
-														Logout</a>)</p>
+												<p>Hello, <strong>{{ username }}</strong>
 											</div>
-											<p class="mb-0">From your account dashboard. you can easily check &amp; view
-												your
-												recent orders, manage your shipping and billing addresses and edit your
-												password and account details.</p>
+											<p class="mb-0">Chào mừng đến với Online Bookstore - website mua sắm dễ dàng. 
+												Ở đây bạn có thể kiểm tra và xem các đơn hàng gần đây, quản lý địa chỉ giao hàng, thanh toán của bạn &amp; chỉnh sửa mật khẩu thông tin tài khoản.
+												</p>
 										</div>
 									</div>
 									<!-- Single Tab Content End -->
@@ -63,46 +59,20 @@
 									<div class="tab-pane fade" id="orders" role="tabpanel">
 										<div class="myaccount-content">
 											<h3>Orders</h3>
-											<div class="myaccount-table table-responsive text-center">
-												<table class="table table-bordered">
-													<thead class="thead-light">
-														<tr>
-															<th>No</th>
-															<th>Name</th>
-															<th>Date</th>
-															<th>Status</th>
-															<th>Total</th>
-															<th>Action</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>1</td>
-															<td>Mostarizing Oil</td>
-															<td>Aug 22, 2018</td>
-															<td>Pending</td>
-															<td>$45</td>
-															<td><a href="cart.html" class="btn">View</a></td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>Katopeno Altuni</td>
-															<td>July 22, 2018</td>
-															<td>Approved</td>
-															<td>$100</td>
-															<td><a href="cart.html" class="btn">View</a></td>
-														</tr>
-														<tr>
-															<td>3</td>
-															<td>Murikhete Paris</td>
-															<td>June 12, 2017</td>
-															<td>On Hold</td>
-															<td>$99</td>
-															<td><a href="cart.html" class="btn">View</a></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
+											<ul>
+												{% for item in basket %}
+													{% if item.qty > 0 %}
+														<li>
+															<span class="left">{{ item.product.title }} X {{ item.qty }}</span>
+															<span class="right">${{ item.total_price }}</span>
+														</li>
+													{% endif %}
+												{% empty %}
+													<p>No items in the basket.</p>
+												{% endfor %}
+												
+											</ul>
+											
 										</div>
 									</div>
 									<!-- Single Tab Content End -->
@@ -150,15 +120,37 @@
 									<!-- Single Tab Content Start -->
 									<div class="tab-pane fade" id="address-edit" role="tabpanel">
 										<div class="myaccount-content">
-											<h3>Billing Address</h3>
-											<address>
-												<p><strong>Alex Tuntuni</strong></p>
-												<p>1355 Market St, Suite 900 <br>
-													San Francisco, CA 94103</p>
-												<p>Mobile: (123) 456-7890</p>
-											</address>
-											<a href="#" class="btn btn--primary"><i class="fa fa-edit"></i>Edit
-												Address</a>
+											<h3>Profile</h3>
+											<form method="post" action="{% url 'update_profile' %}">  <!-- Ensure this URL is defined in your urls.py -->
+												{% csrf_token %}
+												<div class="row">
+													<div class="col-md-6 col-12 mb-20">
+														<div class="form-group">
+															<label for="first_name">First Name</label>
+															<input type="text" class="form-control" id="first_name" name="first_name" value="{{ form.first_name.value|default_if_none:user.first_name }}" required>
+														</div>
+													</div>
+													<div class="col-md-6 col-12 mb-20">
+														<div class="form-group">
+															<label for="last_name">Last Name</label>
+															<input type="text" class="form-control" id="last_name" name="last_name" value="{{ form.last_name.value|default_if_none:user.last_name }}" required>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="address">Billing Address</label>
+													<input type="text" class="form-control" id="address" name="address" value="{{ form.address.value|default_if_none:user.profile.address }}" required>
+												</div>
+												<div class="form-group">
+													<label for="shipping_address">Shipping Address</label>
+													<input type="text" class="form-control" id="shipping_address" name="shipping_address" value="{{ form.shipping_address.value|default_if_none:user.profile.shipping_address }}" required>
+												</div>
+												<div class="form-group">
+													<label for="phone">Phone</label>
+													<input type="text" class="form-control" id="phone" name="phone" value="{{ form.phone.value|default_if_none:user.profile.phone }}" required>
+												</div>
+												<button type="submit" class="btn btn--primary">Update Profile</button>
+											</form>
 										</div>
 									</div>
 									<!-- Single Tab Content End -->
@@ -271,5 +263,17 @@
     Footer Area
 ===================================== -->
 <!-- my-account.html -->
+
+<script type="text/javascript">
+    (function(d, m){
+        var kommunicateSettings = 
+            {"appId":"10a83d12c0fbcc0a0dc0680318db5d505","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+</script>
 	
 {% endblock content %}	

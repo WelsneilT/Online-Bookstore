@@ -34,7 +34,17 @@
             <div class="row p-3">
               <div class="col-6">{{product.bookFormat}}</div>
               <div class="col-6 text-end"><span class="h6 fw-bold">${{ product.price }}</span></div>
-              <div class="col-7"> Quantity: {{item.qty}}</div>
+              <div class="col-7"> 
+                Quantity: 
+                  <form id="update-basket-form" method="post" action="{% url 'basket:basket_add' %}">
+                    {% csrf_token %}
+                          <div class="form-btn"  id="contact-form">
+                            <input type="hidden" name="productid" value="{{ product.id }}">
+                            <input type="number" class="form-control mx-2 small-btn" style="width: 55px; height: 40px; font-size: 16px" name="productqty" min="1" value="{{ item.qty }}">
+                            <button type="submit" class="form-group button btn-outline-success">Update</button>
+                          </div>
+                  </form>
+              </div>
               <div class="col-5 h6 fw-bold text-end">Sub Total: $<div id="subtotal" class="d-inline-flex">{{item.total_price}}</div></div>
             </div>
           </div>
@@ -65,5 +75,17 @@
     </div>
   </div >
 
-
+  <script>
+    // JavaScript for updating total price (not fully integrated in this template)
+    // Note: Ensure proper integration and handling of JavaScript logic
+    var totalPrice = parseFloat('{{ product.price }}');
+    var quantityInput = document.querySelector('input[name="productqty"]');
+    var totalSpan = document.getElementById('totalPrice');
+    
+    function updateTotal() {
+      var quantity = quantityInput.value;
+      var total = totalPrice * quantity;
+      totalSpan.innerText = total.toFixed(2);
+    }
+  </script>
 {% endblock %}

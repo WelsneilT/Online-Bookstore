@@ -31,9 +31,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-    <!--
-        color: #36696b;
-    -->
+    
+
 
 </head>
     
@@ -125,6 +124,8 @@
                                                             class="fas fa-chevron-right"></i></a>
                                                     <a href="{% url 'basket:basket_checkout2' %}" class="btn btn--primary">Check Out <i
                                                             class="fas fa-chevron-right"></i></a>
+                                                    <a href="{% url 'wishlist' %}" class="btn btn--primary">Wish list <i
+                                                        class="fas fa-chevron-right"></i></a>    
                                                 </div>
                                             </div>
                                         </div>
@@ -495,10 +496,9 @@
                                                 class="fas fa-chevron-down dropdown-arrow"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="{% url 'basket:basket_summary' %}">Cart</a></li>
-                                            <li><a href=>Checkout</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="login-register.html">Login Register</a></li>
-                                            <li><a href="{% url 'my-account' %}">My Account</a></li>
+                                            <li><a href="{% url 'basket:basket_checkout2' %}">Checkout</a></li>
+                                            <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                                            <li><a href="{% url 'change_password' %}">My Account</a></li>
                                             <li><a href="{% url 'basket:basket_ordercomplete2' %}">Order Complete</a></li>
                                             <li><a href="faq.html">Faq</a></li>
                                         </ul>
@@ -964,11 +964,10 @@
                                     <a href="#">Pages</a>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'basket:basket_summary' %}">Cart</a></li>
-                                        <li><a href=>Checkout</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="login-register.html">Login Register</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="order-complete.html">Order Complete</a></li>
+                                        <li><a href="{% url 'basket:basket_checkout2' %}">Checkout</a></li>
+                                        <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                                        <li><a href="{% url 'change_password' %}">My Account</a></li>
+                                        <li><a href="{% url 'basket:basket_ordercomplete2' %}">Order Complete</a></li>
                                         <li><a href="faq.html">Faq</a></li>
                                     </ul>
                                 </li>
@@ -1049,8 +1048,8 @@
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'basket:basket_summary' %}">Cart</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="login-register.html">Login Register</a></li>
+                                        <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                                        
                                         <li><a href="my-account.html">My Account</a></li>
                                         <li><a href="order-complete.html">Order Complete</a></li>
                                         <li><a href="faq.html">Faq</a></li>
@@ -1104,7 +1103,7 @@
                             <li><a href="#">Prices drop</a></li>
                             <li><a href="#">New products</a></li>
                             <li><a href="#">Best sales</a></li>
-                            <li><a href="https://forms.gle/TQTMvHv9UZfgNjwa9">Contact us</a></li>
+                            <li><a href="{url 'contact:index'}">Contact us</a></li>
                             <li><a href="#">Sitemap</a></li>
                         </ul>
                     </div>

@@ -1,0 +1,7 @@
+{% extends "admin/" %}
+{% block content %}
+<h1>Order Details</h1>
+<p>User: {{ order.user.username }}</p>
+<p>Total Price: ${{ order.total_price }}</p>
+<!-- Add more details as needed -->
+{% endblock %}

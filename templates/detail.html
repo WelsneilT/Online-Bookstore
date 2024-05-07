@@ -8,11 +8,13 @@
     height: 10px; /* Chiều cao nút */
     width: 40px; /* Chiều rộng nút */
 }
-
-
+  .wishlist-link:hover img {
+    color: red;
+  }
 </style>
 
 <div class="container">
+  
   <section class="breadcrumb-section" style="margin-top:-35px">
     <h2 class="sr-only">Site Breadcrumb</h2>
     <div class="container">
@@ -21,12 +23,22 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item" style="margin-left:-13px"><a href="{% url 'home' %}">Home</a></li>
             <li class="breadcrumb-item active">Product Details</li>
+            
           </ol>
+          
         </nav>
+        
       </div>
     </div>
+    {% if messages %}
+    <div class="alert alert-warning" alert-{{ message.tags }}" role="alert" style="margin-top: -30px; height: 70px; margin-bottom: 10px;">
+    {% for message in messages  %}
+      {{message|safe}} - <a href="{% url 'wishlist'  %}" class="alert-link">Your Wishlist</a>.
+    {% endfor %}
+    {%endif%}
   </section>
-  <div class="card mb-3" style="max-width: 820px; margin-top:-35px">
+  
+  <div class="card mb-3" style="max-width: 820px; margin-top:-20px">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="{{ object.image_url }}" class="card-img">
@@ -36,10 +48,15 @@
           <h4 class="card-title" style="margin-top:-20px">{{ object.title }}</h4>
           <p class="card-text" style="margin-top:-5px">Author: {{ object.author }}</p><hr>
           {% load rating_stars %}
-          <p class="card-text" style="margin-top:-10px">Rating: {{ object.rating|floatformat:2 }} <span class="star-rating">{% render_stars object.rating %}</span></p>
-          <p class="card-text" style="margin-top:-10px">Publisher: {{ object.publisher }}</p>
-          <p class="card-text" style="margin-top:-10px">Price: $ {{ object.price|floatformat:2 }}</p>
-          <p class="card-text" style="margin-top:-10px">{{ object.description }}</p>
+          <p class="card-text" style="margin-top:-10px">Rating: {{ object.rating|floatformat:2 }} <span class="star-rating">{% render_stars object.rating %} 
+            <a href="{% url 'user_wishlist' object.id  %}" class="wishlist-link" style="margin-left: 320px; ">
+              <img src="{% static 'website/images/bookmark.png' %}"  alt="Cart" style="width: 40px; height: 40px;">
+            </a>
+          </span></p>
+          
+          <p class="card-text" style="margin-top:-25px">Publisher: {{ object.publisher }}</p>
+          <p class="card-text" style="margin-top:-20px">Price: $ {{ object.price|floatformat:2 }}</p>
+          <p class="card-text" style="margin-top:-20px">{{ object.description }}</p>
         </div>
         <div class="card-footer">
           <div class="row">
@@ -52,17 +69,19 @@
                   <input type="text" id="quantity-input" class="form-control mx-2 small-btn" style="width: 60px; height: 40px; font-size: 16px" name="productqty" value="1">
                   <button type="button" id="plus-btn" class="btn btn-sm btn-outline-secondary small-btn">
                   <a style="font-size: 25px">+</a></button>
+                  
                 </div>
                 <button type="submit" id="add-to-basket-btn" class="btn btn-secondary btn-sm" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 10px">
                   Add to basket
                   <img src="{% static 'website/images/shopping-cart.png' %}" alt="Cart" style="width: 20px; height: 20px; margin-left: 10px;">
                 </button>
               </form>
+              
             </div>
             <div class="col-md-6">
               <div style="padding-top:24px; width: 180px; padding-left: 30px">
                 {% if object.book_available %}
-                <a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 36px">
+                <a href="{% url 'basket:basket_checkout2' %}"  class="btn btn-outline-success" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 36px">
                   Buy Now 
                   <img src="{% static 'website/images/checklist.png' %}" alt="Cart" style="width: 20px; height: 20px; margin-left: 10px;">
                 </a>

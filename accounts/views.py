@@ -1,5 +1,6 @@
 from pyexpat.errors import messages
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render,get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
@@ -22,6 +23,56 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
+from django.contrib.auth.decorators import login_required
+from .forms import ProfileUpdateForm
+from .models import Profile
+from books.models import Book
+
+def some_view(request):
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        # Xử lý logic cho việc cập nhật hồ sơ người dùng
+        try:
+            profile = request.user.profile
+        except Profile.DoesNotExist:
+            profile = Profile.objects.create(user=request.user)
+        
+        form = ProfileUpdateForm(request.POST, instance=profile, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Adjust the redirection as needed
+        return render(request, 'html/my-account.html', {'form': form})
+    else:
+        # Xử lý logic cho việc hiển thị giỏ hàng người dùng
+        basket = Basket(request)
+        basket_json = []
+        total_price = 0
+
+        for item in basket.__iter__():
+            item['price'] = str(item['price'])
+            item['total_price'] = str(item['total_price'])
+            book_info = {
+                'id': item['product'].id,
+                'title': item['product'].title,
+                'author': item['product'].author,
+                'description': item['product'].description,
+                'price': float(item['product'].price),
+                'image_url': item['product'].image_url,
+                'book_available': item['product'].book_available,
+                'pk': item['product'].pk,
+            }
+            item['product'] = book_info
+            basket_json.append(item)
+
+        total_price = basket.get_total_price()  # Calculate total price
+        return render(request, 'html/my-account.html', {'basket': basket_json, 'total_price': total_price})
+
+
+    
 
 class AccountView(LoginRequiredMixin, TemplateView):
     template_name = 'html/my-account.html'
@@ -102,6 +153,11 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
         user = form.save()
         update_session_auth_hash(self.request, user) 
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['username'] = self.request.user.username
+        return context
 
 class PasswordChangeDoneView(TemplateView):
     template_name = 'password_change_done.html'
@@ -115,3 +171,19 @@ class PasswordChangeView(FormView):
     def password_change(request):
         return render(request, "password_change.html")
 
+@login_required
+def wishlist(request):
+    products = Book.objects.filter(users_wishlist=request.user)
+    return render(request, "registration/user_wish_list.html", {"wishlist": products})
+
+
+@login_required
+def add_to_wishlist(request, id):
+    product = get_object_or_404(Book, id=id)
+    if product.users_wishlist.filter(id=request.user.id).exists():
+        product.users_wishlist.remove(request.user)
+        messages.success(request, product.title + " has been removed from your WishList")
+    else:
+        product.users_wishlist.add(request.user)
+        messages.success(request, "Added " + product.title + " to your WishList")
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])

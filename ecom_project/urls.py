@@ -20,7 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from django.views.generic import TemplateView
-from accounts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,8 +37,8 @@ urlpatterns = [
     path('cart.html', TemplateView.as_view(template_name='html/cart.html'), name='cart'),
     path('checkout.html', TemplateView.as_view(template_name='html/checkout.html'), name='checkout'),
     path('compare.html', TemplateView.as_view(template_name='html/compare.html'), name='compare'),
-    path('wishlist.html', TemplateView.as_view(template_name='html/wishlist.html'), name='wishlist'),
     path('login-register.html', TemplateView.as_view(template_name='html/login-register.html'), name='login-register'),
+    path('my-account.html', TemplateView.as_view(template_name='html/my-account.html'), name='my-account'),
     path('order-complete.html', TemplateView.as_view(template_name='html/order-complete.html'), name='order-complete'),
     path('faq.html', TemplateView.as_view(template_name='html/faq.html'), name='faq'),
     path('contact-2.html', TemplateView.as_view(template_name='html/contact-2.html'), name='contact-2'),
