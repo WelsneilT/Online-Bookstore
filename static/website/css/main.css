@@ -22224,7 +22224,7 @@ input[type=number] {
           box-shadow: none;
 }
 .header-search-block button {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   background: #36696b;
@@ -28589,11 +28589,42 @@ td {
 
 .book-title {
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Number of lines you want to display */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 2em; /* This should be approximately equal to the line-height * number of lines you want to show */
-  line-height: 1em; /* Adjust line-height as needed */
-  margin-bottom: 10px; /* To ensure spacing below the title, adjust as needed */
+  max-height: 2em; 
+  line-height: 1em; 
+  margin-bottom: 10px; 
 }
+
+.search {
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+}
+
+.search-input {
+  flex-grow: 1; 
+  margin-right: 10px; 
+}
+
+.search-button, .voice-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 8px 10px; 
+  color: #333; 
+  font-size: 16px; 
+}
+
+.voice-button {
+  margin-left: -40px; 
+  position: absolute; 
+  right: 50px; 
+}
+
+.search-button {
+  position: absolute;
+  right: 10px; 
+}   
