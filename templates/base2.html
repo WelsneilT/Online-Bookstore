@@ -8,7 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- Slick Carousel CSS -->
+  <!-- Slick Carousel CSS  color: #36696b; --> 
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/plugins.css'%}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{%static 'website/css/main.css' %}" />
@@ -35,7 +35,13 @@
 
 
 </head>
-
+<style>
+    .recent-search-item:hover {
+  background-color: #36696b; /* Màu xám khi lướt qua */
+  cursor: pointer;
+  color: white;
+  }
+</style>
 <body>
     <div class="site-wrapper" id="top">
         <div class="site-header header-2 mb--20 d-none d-lg-block">
@@ -48,16 +54,17 @@
                             </a>
                         </div>
                         
-                            <div class="col-lg-5">
-                                <div class ="header-search-block" style="margin-left: -100px">
-                                    <form class="search" action="{% url 'search_results' %}" method="get">
-                                        <button type="button" onclick="startDictation()" class="voice-button" aria-label="Voice search"><i class="fas fa-microphone" ></i></button>
-                                        <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search entire store here" style="margin-left: 10px">
-                                        <button type="submit" class="search-button"><i class="fas fa-search" style=""></i></button>
-                                        
-                                    </form>
-                                </div>
+                        <div class="col-lg-5">
+                            <div class="header-search-block" style="margin-left: -100px">
+                                <form class="search" action="{% url 'search_results' %}" method="get">
+                                    <button type="button" onclick="startDictation()" class="voice-button" aria-label="Voice search"><i class="fas fa-microphone"></i></button>
+                                    <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search entire store here" style="margin-left: 10px">
+                                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                                    <div id="recent-searches" style="display:none; position:absolute; background:white; border: 2px solid #eee; width: 360px; margin-top:230px; z-index: 1000; margin-left: 90px"></div>
+                                </form>
                             </div>
+                        </div>
+                            
                         
                         <div class="col-lg-4">
                             <div class="main-navigation flex-lg-right">
@@ -1207,4 +1214,123 @@
             })(document, window.kommunicate || {});
         /* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.querySelector('.search-input');
+                const searchButton = document.querySelector('.search-button');
+                const recentSearchesDiv = document.getElementById('recent-searches');
+                let isDropdownActive = false; // Biến cờ để kiểm soát dropdown
+            
+                searchButton.addEventListener('click', function() {
+                    const currentSearch = searchInput.value.trim();
+                    if (currentSearch) {
+                        let searches = localStorage.getItem('recentSearches');
+                        searches = searches ? JSON.parse(searches) : [];
+                        if (!searches.includes(currentSearch)) {
+                            searches.unshift(currentSearch);
+                            searches = searches.slice(0, 5); // Giới hạn 5 từ khóa gần đây nhất
+                            localStorage.setItem('recentSearches', JSON.stringify(searches));
+                        }
+                    }
+                });
+            
+                searchInput.addEventListener('focus', function() {
+                    let searches = localStorage.getItem('recentSearches');
+                    if (searches) {
+                        searches = JSON.parse(searches);
+                        recentSearchesDiv.innerHTML = searches.map(search => `<div onclick="selectSearch('${search}')" style="padding: 10px; cursor: pointer;">${search}</div>`).join('');
+                        recentSearchesDiv.style.display = 'block';
+                        isDropdownActive = true; // Kích hoạt dropdown
+                    }
+                });
+            
+                searchInput.addEventListener('blur', function() {
+                    if (!isDropdownActive) { // Kiểm tra nếu dropdown không kích hoạt
+                        setTimeout(() => {
+                            recentSearchesDiv.style.display = 'none';
+                        }, 300);
+                    }
+                });
+        
+                recentSearchesDiv.addEventListener('mouseenter', function() {
+                    isDropdownActive = true; // Dropdown đang hoạt động
+                });
+        
+                recentSearchesDiv.addEventListener('mouseleave', function() {
+                    isDropdownActive = false; // Dropdown không hoạt động
+                    recentSearchesDiv.style.display = 'none'; // Ẩn dropdown
+                });
+        
+                function selectSearch(search) {
+                    searchInput.value = search;
+                    recentSearchesDiv.style.display = 'none';
+                    isDropdownActive = false; // Đặt lại cờ khi chọn xong
+                    searchButton.click();  // Gửi biểu mẫu tìm kiếm ngay lập tức
+                }
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.querySelector('.search-input');
+                const searchButton = document.querySelector('.search-button');
+                const recentSearchesDiv = document.getElementById('recent-searches');
+                let isDropdownActive = false; // Biến cờ để kiểm soát dropdown
+            
+                searchButton.addEventListener('click', function() {
+                    const currentSearch = searchInput.value.trim();
+                    if (currentSearch) {
+                        let searches = localStorage.getItem('recentSearches');
+                        searches = searches ? JSON.parse(searches) : [];
+                        if (!searches.includes(currentSearch)) {
+                            searches.unshift(currentSearch);
+                            searches = searches.slice(0, 6); // 6
+                            localStorage.setItem('recentSearches', JSON.stringify(searches));
+                        }
+                    }
+                });
+            
+                searchInput.addEventListener('focus', function() {
+                    let searches = localStorage.getItem('recentSearches');
+                    if (searches) {
+                        searches = JSON.parse(searches);
+                        recentSearchesDiv.innerHTML = searches.map(search => 
+                            `<div class="recent-search-item" onclick="selectSearch('${search}')" style="padding: 10px;">
+                                <img src="{% static 'website/images/time-left.png' %}" alt="Clock Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                                ${search}
+                            </div>`).join('');
+                        recentSearchesDiv.style.display = 'block';
+                        isDropdownActive = true;
+                    }
+                });
+            
+                searchInput.addEventListener('blur', function() {
+                    if (!isDropdownActive) {
+                        setTimeout(() => {
+                            recentSearchesDiv.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            
+                recentSearchesDiv.addEventListener('mouseenter', function() {
+                    isDropdownActive = true;
+                });
+            
+                recentSearchesDiv.addEventListener('mouseleave', function() {
+                    isDropdownActive = false;
+                    recentSearchesDiv.style.display = 'none';
+                });
+            
+                window.selectSearch = function(search) {
+                    searchInput.value = search;
+                    recentSearchesDiv.style.display = 'none';
+                    isDropdownActive = false;
+                    searchButton.click();
+                }
+            });
+        </script>
+        
+        
+             
+        
+            
 </html>
