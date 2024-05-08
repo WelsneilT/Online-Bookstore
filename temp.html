@@ -37,20 +37,29 @@
 </head>
 <style>
     .recent-search-item:hover {
-  background-color: #36696b; /* Màu xám khi lướt qua */
-  cursor: pointer;
-  color: white;
-  border: 2px solid #36696b;
-  border-radius: 5px;
+    background-color: #36696b; /* Màu xám khi lướt qua */
+    cursor: pointer;
+    color: white;
+    border: 2px solid #36696b;
   }
   #recent-searches {
-    display: none;
+    display: flex;
     position: absolute;
     width: 443px;
     top: 100%; 
     left: 0; 
     z-index: 1000;
   }
+
+.recent-search-item {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 20px; 
+    background-color: #f2f2f2; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    height: 50px
+}
 </style>
 <body>
     <div class="site-wrapper" id="top">
@@ -70,7 +79,7 @@
                                     <button type="button" onclick="startDictation()" class="voice-button" aria-label="Voice search" style="width: 60px; padding: 0px; border-radius: 10px;"><i class="fas fa-microphone"></i></button>
                                     <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search entire store here" style="margin-left: 10px; margin-right: -40px; border-radius: 10px;">
                                     <button type="submit" class="search-button" style="width: 50px; padding: 0px; position: absolute; margin-right: -40px; border-radius: 10px;"><i class="fas fa-search"></i></button>
-                                    <div id="recent-searches" style="display:none; background:white; border: 2px solid #36696b; border-radius: 10px; width: 567.5px; margin-left: 67px"></div>
+                                    <div id="recent-searches" style="display:none; background:white; border: 2px solid #36696b; border-radius: 10px; width: 567.5px; margin-left: 67px; height: 400px"></div>
                                 </form>
                             </div>
                         </div>
@@ -1224,93 +1233,38 @@
         /* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
         </script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const searchInput = document.querySelector('.search-input');
-                const searchButton = document.querySelector('.search-button');
-                const recentSearchesDiv = document.getElementById('recent-searches');
-                let isDropdownActive = false;
-
-                searchButton.addEventListener('click', function() {
-                    const currentSearch = searchInput.value.trim();
-                    if (currentSearch) {
-                        let searches = localStorage.getItem('recentSearches');
-                        searches = searches ? JSON.parse(searches) : [];
-                        if (!searches.includes(currentSearch)) {
-                            searches.unshift(currentSearch);
-                            searches = searches.slice(0, 6); // Limit to 6 items
-                            localStorage.setItem('recentSearches', JSON.stringify(searches));
-                        }
-                    }
-                });
-
-                searchInput.addEventListener('focus', function() {
-                    let searches = localStorage.getItem('recentSearches');
-                    if (searches) {
-                        searches = JSON.parse(searches);
-                        recentSearchesDiv.innerHTML = searches.map(search => 
-                            `<div class="recent-search-item" onclick="selectSearch('${search}')" style="padding: 10px;">
-                                <img src="{% static 'website/images/time-left.png' %}" alt="Clock Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
-                                ${search}
-                                <i class="fas fa-times" style="margin-top: 5px; float:right; cursor: pointer;" onclick="deleteSearch(event, '${search}')"></i>
-                            </div>`).join('');
-                        recentSearchesDiv.style.display = 'block';
-                        isDropdownActive = true;
-                    }
-                });
-
-                searchInput.addEventListener('blur', function() {
-                    if (!isDropdownActive) {
-                        setTimeout(() => {
-                            recentSearchesDiv.style.display = 'none';
-                        }, 300);
-                    }
-                });
-
-                recentSearchesDiv.addEventListener('mouseenter', function() {
-                    isDropdownActive = true;
-                });
-
-                recentSearchesDiv.addEventListener('mouseleave', function() {
-                    isDropdownActive = false;
-                    recentSearchesDiv.style.display = 'none';
-                });
-
-                window.selectSearch = function(search) {
-                    searchInput.value = search;
-                    recentSearchesDiv.style.display = 'none';
-                    isDropdownActive = false;
-                    searchButton.click();
-                }
-
-                window.deleteSearch = function(event, search) {
-                    event.stopPropagation(); // Prevents triggering the selectSearch function
-
-                    let searches = localStorage.getItem('recentSearches');
-                    searches = searches ? JSON.parse(searches) : [];
-                    const index = searches.indexOf(search);
-                    if (index > -1) {
-                        searches.splice(index, 1);
-                    }
-                    localStorage.setItem('recentSearches', JSON.stringify(searches));
-                    displayRecentSearches();
-                }
-
-                function displayRecentSearches() {
-                    let searches = localStorage.getItem('recentSearches');
-                    if (searches && searches.length > 0) {
-                        searches = JSON.parse(searches);
-                        recentSearchesDiv.innerHTML = searches.map(search => 
-                            `<div class="recent-search-item" onclick="selectSearch('${search}')" style="padding: 10px;">
-                                <img src="{% static 'website/images/time-left.png' %}" alt="Clock Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
-                                ${search}
-                                <i class="fas fa-times" style=" float:right; cursor: pointer;" onclick="deleteSearch(event, '${search}')"></i>
-                            </div>`).join('');
-                        recentSearchesDiv.style.display = 'block';
-                    } else {
-                        recentSearchesDiv.style.display = 'none';
-                    }
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-input');
+            const recentSearchesDiv = document.getElementById('recent-searches');
+        
+            searchInput.addEventListener('focus', function() {
+                let searches = localStorage.getItem('recentSearches');
+                if (searches) {
+                    searches = JSON.parse(searches);
+                    recentSearchesDiv.innerHTML = searches.map(search => 
+                        `<span class="recent-search-item" onclick="selectSearch('${search}')">
+                            ${search}
+                        </span>`).join('');
+                    recentSearchesDiv.style.display = 'flex'; // Use flex display
                 }
             });
-
-        </script>        
+        
+            searchInput.addEventListener('blur', function() {
+                // Use a timeout to allow for click to register
+                setTimeout(() => {
+                    recentSearchesDiv.style.display = 'none';
+                }, 300);
+            });
+        
+            window.selectSearch = function(search) {
+                searchInput.value = search;
+                recentSearchesDiv.style.display = 'none';
+            };
+        });
+        </script>
+        
+        
+             
+        
+            
 </html>
