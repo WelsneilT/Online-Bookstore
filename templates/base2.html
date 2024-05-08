@@ -40,6 +40,15 @@
   background-color: #36696b; /* Màu xám khi lướt qua */
   cursor: pointer;
   color: white;
+  border: 2px solid #36696b;
+  }
+  #recent-searches {
+    display: none;
+    position: absolute;
+    width: 443px;
+    top: 100%; 
+    left: 0; 
+    z-index: 1000;
   }
 </style>
 <body>
@@ -55,12 +64,12 @@
                         </div>
                         
                         <div class="col-lg-5">
-                            <div class="header-search-block" style="margin-left: -100px">
+                            <div class="header-search-block" style="margin-left: -150px">
                                 <form class="search" action="{% url 'search_results' %}" method="get">
-                                    <button type="button" onclick="startDictation()" class="voice-button" aria-label="Voice search"><i class="fas fa-microphone"></i></button>
+                                    <button type="button" onclick="startDictation()" class="voice-button" aria-label="Voice search" style="width: 60px; padding: 0px"><i class="fas fa-microphone"></i></button>
                                     <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Search entire store here" style="margin-left: 10px">
-                                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
-                                    <div id="recent-searches" style="display:none; position:absolute; background:white; border: 2px solid #eee; width: 360px; margin-top:230px; z-index: 1000; margin-left: 90px"></div>
+                                    <button type="submit" class="search-button" style="width: 50px; padding: 0px; position: absolute "><i class="fas fa-search"></i></button>
+                                    <div id="recent-searches" style="display:none; background:white; border: 2px solid #36696b; width: 534px; margin-left: 60.75px"></div>
                                 </form>
                             </div>
                         </div>
