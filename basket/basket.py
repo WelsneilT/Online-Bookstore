@@ -58,7 +58,7 @@ class Basket():
     
     def clear(self):
         # Remove basket from session
-        del self.basket
+        del self.session['skey']
 
     def save(self):
         self.session['skey'] = self.basket
