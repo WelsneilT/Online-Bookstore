@@ -1228,61 +1228,6 @@
                         searches = searches ? JSON.parse(searches) : [];
                         if (!searches.includes(currentSearch)) {
                             searches.unshift(currentSearch);
-                            searches = searches.slice(0, 5); // Giới hạn 5 từ khóa gần đây nhất
-                            localStorage.setItem('recentSearches', JSON.stringify(searches));
-                        }
-                    }
-                });
-            
-                searchInput.addEventListener('focus', function() {
-                    let searches = localStorage.getItem('recentSearches');
-                    if (searches) {
-                        searches = JSON.parse(searches);
-                        recentSearchesDiv.innerHTML = searches.map(search => `<div onclick="selectSearch('${search}')" style="padding: 10px; cursor: pointer;">${search}</div>`).join('');
-                        recentSearchesDiv.style.display = 'block';
-                        isDropdownActive = true; // Kích hoạt dropdown
-                    }
-                });
-            
-                searchInput.addEventListener('blur', function() {
-                    if (!isDropdownActive) { // Kiểm tra nếu dropdown không kích hoạt
-                        setTimeout(() => {
-                            recentSearchesDiv.style.display = 'none';
-                        }, 300);
-                    }
-                });
-        
-                recentSearchesDiv.addEventListener('mouseenter', function() {
-                    isDropdownActive = true; // Dropdown đang hoạt động
-                });
-        
-                recentSearchesDiv.addEventListener('mouseleave', function() {
-                    isDropdownActive = false; // Dropdown không hoạt động
-                    recentSearchesDiv.style.display = 'none'; // Ẩn dropdown
-                });
-        
-                function selectSearch(search) {
-                    searchInput.value = search;
-                    recentSearchesDiv.style.display = 'none';
-                    isDropdownActive = false; // Đặt lại cờ khi chọn xong
-                    searchButton.click();  // Gửi biểu mẫu tìm kiếm ngay lập tức
-                }
-            });
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const searchInput = document.querySelector('.search-input');
-                const searchButton = document.querySelector('.search-button');
-                const recentSearchesDiv = document.getElementById('recent-searches');
-                let isDropdownActive = false; // Biến cờ để kiểm soát dropdown
-            
-                searchButton.addEventListener('click', function() {
-                    const currentSearch = searchInput.value.trim();
-                    if (currentSearch) {
-                        let searches = localStorage.getItem('recentSearches');
-                        searches = searches ? JSON.parse(searches) : [];
-                        if (!searches.includes(currentSearch)) {
-                            searches.unshift(currentSearch);
                             searches = searches.slice(0, 6); // 6
                             localStorage.setItem('recentSearches', JSON.stringify(searches));
                         }
