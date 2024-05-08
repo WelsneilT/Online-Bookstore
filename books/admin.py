@@ -6,7 +6,7 @@ from .forms import OrderForm
 
 # Register Book model with default admin interface
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'first_name', 'last_name', 'email', 'total_price', 'created_at']
+    list_display = ['id', 'user', 'first_name', 'last_name', 'email', 'total_price', 'created_at','success','canceled_reason']
     list_filter = ['created_at', 'updated_at', 'country']
     search_fields = ['first_name', 'last_name', 'email', 'user__username']
 

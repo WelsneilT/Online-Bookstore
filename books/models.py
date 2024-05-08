@@ -18,6 +18,9 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    success = models.BooleanField(default=False)
+    canceled_reason = models.CharField(max_length=1000)
+    
 
     def __str__(self):
         return f'Order {self.id} by {self.user.username}'
@@ -44,14 +47,16 @@ class Book(models.Model):
 	    return self.title
     
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Book, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    order = models.ForeignKey(Order,
+                              related_name='items',
+                              on_delete=models.CASCADE)
+    product = models.ForeignKey(Book,
+                                related_name='order_items',
+                                on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=1)
 
-    
     def __str__(self):
-        return f'{self.quantity} of {self.product.title} at ${self.price} each'
-
+        return str(self.id)
 
 

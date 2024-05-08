@@ -10,7 +10,7 @@ import json
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
-from .models import Order
+from .models import Order,OrderItem
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -19,18 +19,24 @@ from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
+from basket.basket import Basket
 @login_required
 def checkout3(request):
+    basket = Basket(request)
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             new_order = form.save(commit=False)
             new_order.user = request.user  # Set the user
-            
+            new_order.success = False
             print("Total Price of the Order:", new_order.total_price)  # Print the total price
             
             new_order.save()
-            return redirect('basket:basket_ordercomplete2')  # Redirect to a confirmation page, etc. 
+            order_id = new_order.pk
+            for item in basket:
+                OrderItem.objects.create(order_id=order_id, product=item['product'], price=item['price'], quantity=item['qty']) 
+            return redirect('basket:basket_ordercomplete2')  # Redirect to a confirmation page, etc.
+        
         else:
             print("Form errors:", form.errors)
     else:
