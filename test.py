@@ -54,7 +54,7 @@ from nltk.stem.porter import PorterStemmer
 import pickle
 
 # Load the dataset
-books = pd.read_csv('C:/Users/HP/.vscode/Software-Engineering-83/Online Bookstore Test/Book dataset/Book_data.csv')
+books = pd.read_csv('Online Bookstore Test/Book dataset/Book_data.csv')
 books = books[['isbn', 'title', 'series', 'genres', 'author', 'publisher', 'description', 'awards']]
 books.dropna(inplace=True)
 

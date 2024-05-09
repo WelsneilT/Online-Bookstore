@@ -9,6 +9,7 @@ from django.contrib.messages.api import add_message
 from django.views.generic import ListView, DetailView
 from django.conf import settings
 from decimal import Decimal
+from django.contrib.auth.decorators import login_required
 
 def basket_ordercomplete2(request):
     basket = Basket(request)
@@ -38,6 +39,7 @@ def basket_ordercomplete2(request):
     basket.clear()
     return render(request, 'order-complete2.html', {'basket': basket_json, 'total_price': total_price})
 
+@login_required
 def basket_checkout2(request):
     basket = Basket(request)
     basket_json = []

@@ -55,10 +55,10 @@
                     {% csrf_token %}
                     <input type="hidden" name="productid" value="{{ product.id }}">
                     <input type="hidden" name="productqty" value="0">
-                    <button type="submit" id="delete-basket-btn" class="btn btn-secondary btn-sm">Delete</button>
+                    <button type="submit" id="delete-basket-btn" class="btn btn-danger btn-sm" style="margin-left: 717px; margin-top:10px">Delete</button>
                 </form>
               </div>
-              <a href="{% url 'basket:basket_checkout' product.id %}" class="btn btn-outline-success" role="button" style="width: 175px;  margin-left: 700px; margin-top:-20px" >Buy Now</a>
+              
             </div>
           </div>
         </div>
