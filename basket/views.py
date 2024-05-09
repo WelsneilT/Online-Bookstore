@@ -2,7 +2,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib import messages
-from books.models import Book
+from books.models import Book,Order,OrderItem
 from .basket import Basket
 from basket.forms import  AddToBasketForm
 from django.contrib.messages.api import add_message
@@ -66,6 +66,17 @@ def basket_checkout2(request):
     total_price =  basket.get_total_price()
     #  # Calculate total price
     return render(request, 'checkout2.html', {'basket': basket, 'total_price': total_price})
+
+def basket_orders(request):
+    user_id = request.user.id
+    orders = Order.objects.filter(user_id = user_id)
+    #orderitems = []
+    #for order in orders:
+     #   id = order.id
+      #  orderitem = get_object_or_404(OrderItem, id=id)
+       # orderitems.append(orderitem)
+    
+    return render(request, 'order-complete2.html', {'basket': orders})
 
 def basket_summary(request):
     basket = Basket(request)

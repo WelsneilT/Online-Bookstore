@@ -19,14 +19,14 @@ from django.shortcuts import redirect
 from django.contrib.auth.views import PasswordChangeView
 from django import forms
 from django.contrib.auth import update_session_auth_hash
-
+from basket.basket import Basket
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm
 from .models import Profile
-from books.models import Book
+from books.models import Book,Order,OrderItem
 
 def some_view(request):
     user = request.user
@@ -47,30 +47,14 @@ def update_profile(request):
             return redirect('home')  # Adjust the redirection as needed
         return render(request, 'html/my-account.html', {'form': form})
     else:
-        # Xử lý logic cho việc hiển thị giỏ hàng người dùng
-        basket = Basket(request)
-        basket_json = []
-        total_price = 0
-
-        for item in basket.__iter__():
-            item['price'] = str(item['price'])
-            item['total_price'] = str(item['total_price'])
-            book_info = {
-                'id': item['product'].id,
-                'title': item['product'].title,
-                'author': item['product'].author,
-                'description': item['product'].description,
-                'price': float(item['product'].price),
-                'image_url': item['product'].image_url,
-                'book_available': item['product'].book_available,
-                'pk': item['product'].pk,
-            }
-            item['product'] = book_info
-            basket_json.append(item)
-
-        total_price = basket.get_total_price()  # Calculate total price
-        return render(request, 'html/my-account.html', {'basket': basket_json, 'total_price': total_price})
-
+        user_id = request.user.id
+        orders = Order.objects.filter(user_id=user_id)
+        return render(request, 'html/my-account.html', {'orders':orders})
+    
+def user_orders(request):
+    user_id = request.user.id
+    orders = Order.objects.filter(user_id=user_id)
+    return render(request, 'html/my-account.html', {'orders':orders})
 
     
 

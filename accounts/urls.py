@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import SignUpView, CustomLogoutView, PasswordChangeDoneView, ChangePasswordView, AccountView, update_profile
+from .views import SignUpView, CustomLogoutView, PasswordChangeDoneView, ChangePasswordView, AccountView, update_profile, user_orders
 
 from .views import SignUpView, CustomLogoutView, PasswordChangeView
 
@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('password_change/', PasswordChangeView.as_view(template_name='password_change.html'), name='password_change'),
     path('profile/update/', update_profile, name='update_profile'),
-
+    path('orders/',user_orders,name = 'user_orders'),
     path("wishlist", views.wishlist, name="wishlist"),
     path("wishlist/add_to_wishlist/<int:id>", views.add_to_wishlist, name="user_wishlist"),
      

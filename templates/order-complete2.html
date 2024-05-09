@@ -48,10 +48,10 @@
                                     {% with product=item.product %}
                                     <tr>
                                         <td>
-                                            <a href="{% url 'detail' product.pk %}">{{ product.title }}</a> <strong>× {{ item.qty }}</strong>
+                                           
                                         </td>
                                         
-                                        <td><span>${{ item.total_price }}</span></td>
+                                        <td><span>${{ item.product }}</span></td>
                                     </tr>
                                     {% endwith %}
                                     {% endif %}

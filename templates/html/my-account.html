@@ -60,15 +60,15 @@
 										<div class="myaccount-content">
 											<h3>Orders</h3>
 											<ul>
-												{% for item in basket %}
-													{% if item.qty > 0 %}
+												{% for item in orders %}
+													
 														<li>
-															<span class="left">{{ item.product.title }} X {{ item.qty }}</span>
-															<span class="right">${{ item.total_price }}</span>
+															<span class="left">{{ item.total_price }}</span>
+															<span class="right">${{ item.created_at }}</span>
 														</li>
-													{% endif %}
+													
 												{% empty %}
-													<p>No items in the basket.</p>
+													<p>No items in orders.</p>
 												{% endfor %}
 												
 											</ul>
