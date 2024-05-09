@@ -70,15 +70,18 @@ def stem_text(text):
 books['tags'] = books['tags'].apply(stem_text)
 
 # Initialize FrequencyVectorizer
-cv = TfidfVectorizer(max_features=1500,stop_words='english')
+tfidf_vectorizer = TfidfVectorizer(max_features=1500,stop_words='english')
 
 # Fit and transform 'tags' to vectorized form
-vector = cv.fit_transform(books['tags']).toarray()
+vector = tfidf_vectorizer.fit_transform(books['tags']).toarray()
+
+
+
 
 # Calculate cosine similarity matrix
-similarity = cosine_similarity(vector)
-print(similarity)
 def recommend(book_title):
+    similarity = cosine_similarity(vector)
+    print(similarity)
     book_index = books[books['title'] == book_title].index[0]
     distances = similarity[book_index]
     # Get top 5 similar books (excluding the book itself)
@@ -86,8 +89,22 @@ def recommend(book_title):
     recommended_books = books.iloc[similar_books_indices][['title', 'author', 'description']]
     return recommended_books
 
+
+def semantic_search(query, books, tfidf_matrix, tfidf_vectorizer):
+    query = stem_text(query)
+    query_vector = tfidf_vectorizer.transform([query])
+    
+    # Calculate cosine similarity between query vector and document vectors
+    similarities = cosine_similarity(query_vector, tfidf_matrix)
+    ranked_indices = similarities.argsort()[0][::-1]  # Sort by descending order of similarity
+    print(similarities)
+    # Return ranked documents based on similarity
+    ranked_documents = books.iloc[ranked_indices]['title']
+    print(ranked_documents)
+    return ranked_documents
+
 # Test the recommendation function with a book title
-recommendations = recommend('Harry Potter and the Order of the Phoenix')
-print(recommendations)
+semantic_search('playing with fire',books,vector,tfidf_vectorizer)
+print(semantic_search)
 with open('C:/Users/HP/.vscode/Software-Engineering-83/recommend_model.pkl', 'wb') as file:
-    pickle.dump(similarity, file)
+    pickle.dump(vector, file)
