@@ -51,7 +51,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 mt--10 mt-md--0 ">
                         <div class="sorting-selection">
                             <span>Sort By:</span>
-                            <select class="form-control nice-select sort-select mr-0">
+                            {% comment %} <select class="form-control nice-select sort-select mr-0">
                                 <option value="" selected="selected">Default Sorting</option>
                                 <option value="">Sort By:Name (A - Z)</option>
                                 <option value="">Sort By:Name (Z - A)</option>
@@ -61,6 +61,13 @@
                                 <option value="">Sort By:Rating (Lowest)</option>
                                 <option value="">Sort By:Model (A - Z)</option>
                                 <option value="">Sort By:Model (Z - A)</option>
+                            </select> {% endcomment %}
+                            <select id="sort-select" class="form-control nice-select sort-select mr-0" onchange="sortBooks()">
+                                <option value="" selected="selected">Default Sorting</option>
+                                <option value="name_asc">Sort By: Name (A - Z)</option>
+                                <option value="name_desc">Sort By: Name (Z - A)</option>
+                                <option value="price_asc">Sort By: Price (Low &gt; High)</option>
+                                <option value="price_desc">Sort By: Price (High &gt; Low)</option>
                             </select>
                         </div>
                     </div>
@@ -161,5 +168,12 @@
     <!--=================================
     Footer Area
     ===================================== -->
+    <script>
+        function sortBooks() {
+            var sortValue = document.getElementById("sort-select").value;
+            console.log(sortValue);
+            window.location.href = "{% url 'shop-list' %}?sort_by=" + sortValue;
+        }
+    </script>
 {% endblock content %}
 

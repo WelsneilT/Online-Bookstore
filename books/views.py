@@ -49,21 +49,45 @@ def admin_order_detail_view(request, order_id):
     order = Order.objects.get(id=order_id)
     return render(request, 'admin/order_detail.html', {'order': order})
 
+# class ShopBooksListView(ListView):
+#     model = Book
+#     template_name = 'html/shop-list.html'
+#     paginate_by = 24  # Số lượng items trên mỗi trang
+
+#     def get_queryset(self):
+#         return Book.objects.filter(book_available=True)
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+
+#         # Thêm queryset từ BooksListView
+#         context['list_books'] = Book.objects.all()[:100]
+#         return context
 class ShopBooksListView(ListView):
     model = Book
     template_name = 'html/shop-list.html'
     paginate_by = 24  # Số lượng items trên mỗi trang
 
     def get_queryset(self):
-        return Book.objects.filter(book_available=True)
-    
+        queryset = Book.objects.filter(book_available=True)
+        sort_by = self.request.GET.get('sort_by')
+
+        if sort_by == 'name_asc':
+            queryset = queryset.order_by('title')
+        elif sort_by == 'name_desc':
+            queryset = queryset.order_by('-title')
+        elif sort_by == 'price_asc':
+            queryset = queryset.order_by('price')
+        elif sort_by == 'price_desc':
+            queryset = queryset.order_by('-price')
+        # Thêm các tùy chọn sắp xếp khác nếu cần
+
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Thêm queryset từ BooksListView
-        context['list_books'] = Book.objects.all()[:100]
-        return context
-    
+        context['sort_by'] = self.request.GET.get('sort_by', '')  # Giữ giá trị đã chọn của sắp xếp trong context
+        return context   
     
 class BooksListView(ListView):
     model = Book
