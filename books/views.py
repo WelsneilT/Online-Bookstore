@@ -11,15 +11,25 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 from .models import Order,OrderItem
-from .forms import OrderForm
+from .forms import OrderForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import OrderForm
+from .forms import OrderForm, CommentForm
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
 from basket.basket import Basket
+from django.urls import reverse
+
+
+
+from django.shortcuts import render, redirect
+from .models import Comment
+from .forms import CommentForm
+
+
+
 @login_required
 def checkout3(request):
     basket = Basket(request)
@@ -82,6 +92,25 @@ class BooksDetailView(DetailView):
     model = Book
     template_name = 'detail.html'
     context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        book_id = self.kwargs['pk']
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            user = request.user  # Assuming user is authenticated
+            book = Book.objects.get(pk=book_id)
+            comment = Comment.objects.create(book=book, user=user, content=content)
+            return redirect('book_detail', pk=book_id)
+        else:
+            context = self.get_context_data(**kwargs)
+            context['comment_form'] = form
+            return self.render_to_response(context)
 
 
 class SearchResultsListView(ListView):

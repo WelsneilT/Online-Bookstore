@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
-from .models import Book, Order, OrderItem
+from .models import Book, Order, OrderItem, Comment
 from .forms import OrderForm
 
 # Register Book model with default admin interface
@@ -20,6 +20,12 @@ class OrderItemAdmin(admin.ModelAdmin):
     list_filter = ['order', 'product']
     search_fields = ['product__title', 'order__id']
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('book', 'user', 'content', 'created_at') 
+    list_filter = ('created_at', 'user')
+    search_fields = ('content', 'user__username', 'book__title')
+
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
+admin.site.register(Comment, CommentAdmin)

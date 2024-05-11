@@ -20,4 +20,6 @@ urlpatterns = [
     path('romance/', RomanceBooksListView.as_view(), name = 'romance-books'),
     path('admin/order/<int:order_id>/', admin_order_detail_view, name='admin_order_detail'),
     path('order/checkout', checkout3, name = 'checkout3'),
+  
+   
 ]

@@ -59,4 +59,11 @@ class OrderItem(models.Model):
     def __str__(self):
         return str(self.id)
 
+class Comment(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return '%s - %s' %(self.book.title, self.user)

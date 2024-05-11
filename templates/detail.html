@@ -23,11 +23,8 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item" style="margin-left:-13px"><a href="{% url 'home' %}">Home</a></li>
             <li class="breadcrumb-item active">Product Details</li>
-            
           </ol>
-          
         </nav>
-        
       </div>
     </div>
     {% if messages %}
@@ -35,52 +32,50 @@
     {% for message in messages  %}
       {{message|safe}} - <a href="{% url 'wishlist'  %}" class="alert-link">Your Wishlist</a>.
     {% endfor %}
-    {%endif%}
+    {% endif %}
   </section>
   
   <div class="card mb-3" style="max-width: 820px; margin-top:-20px">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="{{ object.image_url }}" class="card-img">
+        <img src="{{ product.image_url }}" class="card-img">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h4 class="card-title" style="margin-top:-20px">{{ object.title }}</h4>
-          <p class="card-text" style="margin-top:-5px">Author: {{ object.author }}</p><hr>
+          <h4 class="card-title" style="margin-top:-20px">{{ product.title }}</h4>
+          <p class="card-text" style="margin-top:-5px">Author: {{ product.author }}</p><hr>
           {% load rating_stars %}
-          <p class="card-text" style="margin-top:-10px">Rating: {{ object.rating|floatformat:2 }} <span class="star-rating">{% render_stars object.rating %} 
-            <a href="{% url 'user_wishlist' object.id  %}" class="wishlist-link" style="margin-left: 320px; ">
+          <p class="card-text" style="margin-top:-10px">Rating: {{ product.rating|floatformat:2 }} <span class="star-rating">{% render_stars product.rating %} 
+            <a href="{% url 'user_wishlist' product.id  %}" class="wishlist-link" style="margin-left: 320px; ">
               <img src="{% static 'website/images/bookmark.png' %}"  alt="Cart" style="width: 40px; height: 40px;">
             </a>
           </span></p>
           
-          <p class="card-text" style="margin-top:-25px">Publisher: {{ object.publisher }}</p>
-          <p class="card-text" style="margin-top:-20px">Price: $ {{ object.price|floatformat:2 }}</p>
-          <p class="card-text" style="margin-top:-20px">{{ object.description }}</p>
+          <p class="card-text" style="margin-top:-25px">Publisher: {{ product.publisher }}</p>
+          <p class="card-text" style="margin-top:-20px">Price: $ {{ product.price|floatformat:2 }}</p>
+          <p class="card-text" style="margin-top:-20px">{{ product.description }}</p>
         </div>
         <div class="card-footer">
           <div class="row">
             <div class="col-md-6">
               <form id="add-to-basket-form" method="post" action="{% url 'basket:basket_add' %}" style="display: inline-block">
                 {% csrf_token %}
-                <input type="hidden" name="productid" value="{{ object.id }}">
+                <input type="hidden" name="productid" value="{{ product.id }}">
                 <div class="quantity d-flex align-items-center">
                   <button type="button" id="minus-btn" class="btn btn-sm btn-outline-secondary small-btn" ><a style="font-size: 25px">-</a></button>
                   <input type="text" id="quantity-input" class="form-control mx-2 small-btn" style="width: 60px; height: 40px; font-size: 16px" name="productqty" value="1">
                   <button type="button" id="plus-btn" class="btn btn-sm btn-outline-secondary small-btn">
                   <a style="font-size: 25px">+</a></button>
-                  
                 </div>
                 <button type="submit" id="add-to-basket-btn" class="btn btn-secondary btn-sm" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 10px">
                   Add to basket
                   <img src="{% static 'website/images/shopping-cart.png' %}" alt="Cart" style="width: 20px; height: 20px; margin-left: 10px;">
                 </button>
               </form>
-              
             </div>
             <div class="col-md-6">
               <div style="padding-top:24px; width: 180px; padding-left: 30px">
-                {% if object.book_available %}
+                {% if product.book_available %}
                 <a href="{% url 'basket:basket_checkout2' %}"  class="btn btn-outline-success" role="button" style="width:200px; display: flex; align-items: center; justify-content: center; margin-top: 36px">
                   Buy Now 
                   <img src="{% static 'website/images/checklist.png' %}" alt="Cart" style="width: 20px; height: 20px; margin-left: 10px;">
@@ -93,6 +88,28 @@
           </div>
         </div>
       </div>
+    </div>
+    <!-- Phần hiển thị comment -->
+    <div>
+      <h3>Comments</h3>
+      {% for comment in product.comments.all %}
+          <div class="comment">
+              <p><strong>{{ comment.user.username }}</strong> said on {{ comment.created_at|date:"Y-m-d H:i" }}:</p>
+              <p>{{ comment.content }}</p>
+          </div>
+      {% empty %}
+          <p>No comments yet.</p>
+      {% endfor %}
+      <hr>
+      <!-- Form thêm comment -->
+      <h4>Add a comment:</h4>
+      <form method="post" >
+        {% csrf_token %}
+        <input type="hidden" name="book_id" value="{{ product.id }}" />
+        <label for="id_content">Comment:</label>
+        <textarea class="mb-0 form-control" id="id_content" name="content" placeholder="Enter your comment here..." required></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </div>
