@@ -1311,5 +1311,22 @@
                 }
             });
 
-        </script>        
+        </script>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({
+                        pageLanguage: 'en', // Ngôn ngữ của trang web
+                        includedLanguages: 'en,vi,zh-CN', // Các ngôn ngữ bạn muốn hiển thị
+                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE // Bố cục của tiện ích
+                    }, 'google_translate_element');
+                }
+            window.onload = function() {
+                var clearDotImage = document.querySelector('img[src="https://www.google.com/images/cleardot.gif"]');
+                if (clearDotImage !== null) {
+                    clearDotImage.remove();
+                }
+            };
+        </script>
+            
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>                   
 </html>
