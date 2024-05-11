@@ -47,11 +47,13 @@
                                     {% if item.qty != 0 %}
                                     {% with product=item.product %}
                                     <tr>
-                                        <td>
-                                           
-                                        </td>
                                         
-                                        <td><span>${{ item.product }}</span></td>
+											<td style="margin-left: -500px">
+												{{product.title}} x {{item.qty}} 
+											</td>
+                                        
+                                        
+                                        <td><span>${{ item.price }}  x {{item.qty}} </span></td>
                                     </tr>
                                     {% endwith %}
                                     {% endif %}
