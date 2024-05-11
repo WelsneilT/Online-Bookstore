@@ -36,6 +36,14 @@
                                     <div class="error">{{ form.username.errors }}</div>
                                 {% endif %}
                             </div>
+                            <div class="col-md-12 col-12 mb--15">
+                                <label for="{{ form.email.id_for_label }}">Email</label>
+                                <input class="mb-0 form-control" type="text" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"
+                                       placeholder="Enter your email here..." value="{{ form.email.value|default_if_none:'' }}" required>
+                                {% if form.email.errors %}
+                                    <div class="error">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
                             <div class="col-lg-6 mb--20">
                                 <label for="{{ form.password.id_for_label }}">Password</label>
                                 <input class="mb-0 form-control" type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}"

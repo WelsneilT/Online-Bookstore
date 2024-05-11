@@ -70,15 +70,16 @@ class SignUpView(FormView):
     def form_valid(self, form):
         # Lấy dữ liệu từ form
         username = form.cleaned_data['username']
+        email = form.cleaned_data['email']
         password = form.cleaned_data['password']
         
         # Kiểm tra xem người dùng có tồn tại không
         if not User.objects.filter(username=username).exists():
             # Tạo tài khoản mới
-            user = User.objects.create_user(username=username, password=password)
+            user = User.objects.create_user(username=username, password=password, email=email)
             
             # Đăng nhập người dùng tự động sau khi đăng ký
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password, email=email)
             login(self.request, user)
             
             # Chuyển hướng đến trang thành công
