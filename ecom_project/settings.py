@@ -166,4 +166,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bestbookever633@gmail.com'  # Thay bằng địa chỉ email của bạn
-EMAIL_HOST_PASSWORD = 'apjm eftg rfja wmli'  # Thay bằng mật khẩu của bạn
+EMAIL_HOST_PASSWORD = 'hekf sqlv juac dtrc'  # Thay bằng mật khẩu của bạn
