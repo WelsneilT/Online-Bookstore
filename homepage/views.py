@@ -2,11 +2,57 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from books.models import Book
 from django.db.models import Q
+import pickle
+import pandas as pd
+import numpy as np
+from nltk.stem.porter import PorterStemmer
+from sklearn.metrics.pairwise import cosine_similarity
+import sqlite3
+
+ps= PorterStemmer()
+
+# Load the model from the .pkl file
+with open('model.pkl', 'rb') as file:
+    model = pickle.load(file)
+with open('vector.pkl', 'rb') as file:
+    vector = pickle.load(file)
+# Function to recommend similar books
+conn = sqlite3.connect('C:/Users/HP/.vscode/Software-Engineering-83/db.sqlite3')
+query = "SELECT * FROM books_book;"
+books = pd.read_sql_query(query, conn)
+conn.close()
+def recommend(book_id):
+    #book_index = books[books['title'] == book_title].index[0]
+    similarity = cosine_similarity(vector)
+    distances = similarity[book_id - 1]
+    # Get top 5 similar books (excluding the book itself)
+    similar_books_indices = np.argsort(distances)[::-1][1:21]
+    recommended_books = books.iloc[similar_books_indices][['title', 'author']]
+    print(recommended_books)
+    return similar_books_indices
+
+def get_book_ids_of_current_user(request):
+    current_user = request.user
+
+    # Filter Book objects in the current user's wishlist
+    wishlist_books = Book.objects.filter(users_wishlist=current_user)
+
+    # Access book_id values from the join table (book_user_wishlist)
+    book_ids = list(wishlist_books.values_list('id', flat=True))
+
+    return book_ids
 
 @login_required
 def home(request):
+    user_wishlist_id = get_book_ids_of_current_user(request)
+    if len(user_wishlist_id) != 0 :
+        list = recommend(user_wishlist_id[-1])
+        print(list)
+        book_id_list = [int(id + 1) for id in list]    
+        featured_products = Book.objects.filter(id__in=book_id_list)
+    else:
+        featured_products = Book.objects.filter(book_available=True)[10020:10040]
     slider_books = Book.objects.filter(book_available=True)[406:412]
-    featured_products = Book.objects.filter(book_available=True)[96:116]
     new_arrivals = Book.objects.filter(book_available=True)[79:99]
     most_view_products = Book.objects.filter(book_available=True)[221:241]
 
