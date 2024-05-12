@@ -40,7 +40,6 @@ def checkout3(request):
             new_order.user = request.user  # Set the user
             new_order.success = False
             print("Total Price of the Order:", new_order.total_price)  # Print the total price
-            
             new_order.save()
             order_id = new_order.pk
             for item in basket:
