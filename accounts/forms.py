@@ -9,8 +9,6 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     
-
-    
 class PasswordChangingForm(forms.Form):
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -19,6 +17,21 @@ class PasswordChangingForm(forms.Form):
     class Meta:
         model = User
         fields = ['old_password', 'new_password', 'confirm_password']
+        
+class PasswordResetForm(forms.Form):
+    email = forms.EmailField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    
+    class Meta:
+        model = User
+        fields = ['email']
+        
+class PasswordChangeForm(forms.Form):
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
+    class Meta:
+        model = User
+        fields = ['new_password', 'confirm_password']
 
 class ProfileUpdateForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100, required=False)

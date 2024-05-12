@@ -15,18 +15,23 @@ from .forms import RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
-from django.shortcuts import redirect
 from django.contrib.auth.views import PasswordChangeView
 from django import forms
 from django.contrib.auth import update_session_auth_hash
 from basket.basket import Basket
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django import forms
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm
 from .models import Profile
 from books.models import Book,Order,OrderItem
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.shortcuts import redirect, resolve_url
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
 
 def some_view(request):
     user = request.user
@@ -147,14 +152,6 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
 class PasswordChangeDoneView(TemplateView):
     template_name = 'password_change_done.html'
 
-#CHANGE PASSWORD
-class PasswordChangeView(FormView):
-    form_class = PasswordChangingForm
-    success_url = reverse_lazy('login')
-    template_name = 'password_change.html'
-    
-    def password_change(request):
-        return render(request, "password_change.html")
 
 @login_required
 def wishlist(request):
@@ -172,3 +169,64 @@ def add_to_wishlist(request, id):
         product.users_wishlist.add(request.user)
         messages.success(request, "Added " + product.title + " to your WishList")
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+class PasswordResetView(FormView):
+    form_class = PasswordResetForm
+    success_url = reverse_lazy('password_reset_confirm')
+    template_name = 'password_reset.html'
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        
+        # Gửi email reset mật khẩu
+        form.save(
+            request=self.request,
+            email_template_name='registration/password_reset_email.html',
+            subject_template_name='registration/password_reset_subject.txt',
+        )
+        
+        return super().form_valid(form)
+    def get_success_url(self):
+        # Trả về URL của trang cảm ơn sau khi yêu cầu đã được xử lý thành công
+        return reverse_lazy('password_reset_done')
+    
+class PasswordResetConfirmView(FormView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('password_reset_complete')
+    template_name = 'password_reset_confirm.html'
+    
+    def dispatch(self, request, uidb64, token, *args, **kwargs):
+        """
+        Xác định user từ thông tin trong URL.
+        """
+        try:
+            uid = force_bytes(urlsafe_base64_decode(uidb64))
+            self.user = get_user_model().objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
+            self.user = None
+
+        if self.user is None or not default_token_generator.check_token(self.user, token):
+            # Redirect hoặc hiển thị thông báo lỗi nếu không thể xác định user hoặc token không hợp lệ
+            return redirect(resolve_url('password_reset_invalid'))
+
+        return super().dispatch(request, uidb64, token, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        """
+        Chuyển đối user vào form để xác định user khi thay đổi mật khẩu.
+        """
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.user
+        return kwargs
+    def form_valid(self, form):
+        """
+        Xử lý khi form hợp lệ được submit.
+        """
+        # Lưu mật khẩu mới và xác thực token
+        form.save()
+        
+        # Chuyển hướng đến trang thành công
+        return super().form_valid(form)
+    def get_success_url(self):
+        # Trả về URL của trang cảm ơn sau khi yêu cầu đã được xử lý thành công
+        return reverse_lazy('password_reset_complete')
+    
