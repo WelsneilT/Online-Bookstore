@@ -161,9 +161,9 @@ TIME_ZONE = 'Asia/Ho_Chi_Minh'  # This timezone also applies to Hanoi
 USE_TZ = True
 
 # Email
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'hehehehehe20202510@gmail.com'  # Thay bằng địa chỉ email của bạn
-# EMAIL_HOST_PASSWORD = 'idei tgey widu upxv'  # Thay bằng mật khẩu của bạn
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bestbookever633@gmail.com'  # Thay bằng địa chỉ email của bạn
+EMAIL_HOST_PASSWORD = 'apjm eftg rfja wmli'  # Thay bằng mật khẩu của bạn
