@@ -59,29 +59,20 @@
     display: none !important;
     visibility: hidden !important;
    }
-   .goog-logo-link {
-   display: none !important;
-   }
+
    #google_translate_element {
     /* Thay đổi kích thước tùy ý */
-    font-size: 1px;
+    font-size: 10px;
     }
     #google_translate_element {
         /* Màu nền */
         background-color: #36696B; /* Thay đổi màu nền tùy ý */
-    
         /* Màu văn bản */
         color: #36696B; /* Thay đổi màu văn bản tùy ý */
-        position: absolute;
-        /* Đặt vị trí từ phía trên cùng của header */
-        top: 50%; /* hoặc giá trị cụ thể khác nếu cần */
-        /* Đặt vị trí từ phía trái của header */
-        left: 0%; /* hoặc giá trị cụ thể khác nếu cần */
-        /* Dịch chuyển phần tử điều chỉnh để nó chính xác ở giữa */
-        transform: translate(-50%, -50%);
-        /* Đảm bảo nó hiển thị trên tất cả các phần tử khác */
-        z-index: 9999; /* hoặc số lớn hơn nếu cần */
+        position: relative;
+        z-index: 9999; 
     }
+
 </style>
 <body>
     <div class="site-wrapper" id="top">
@@ -517,21 +508,20 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="header-phone color-white">
                                 <div class="icon">
                                     <i class="fas fa-headphones-alt"></i>
                                 </div>
                                 <div class="text">
-                                    <p>Free Support 24/7</p>
+                                    <p>Support 24/7</p>
                                     <p class="font-weight-bold number">0327728199</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
                             <div class="main-navigation flex-lg-right">
-                                <div id="google_translate_element">
-                                </div>
+                                
                                 <ul class="main-menu menu-right main-menu--white li-last-0">
                                     <li class="menu-item has-children">
                                         <a  href="{% url 'home' %}"> Home </a>  
@@ -557,6 +547,19 @@
                                         <a href="{% url 'blog' %}">Blog</a>
                                         
                                     </li>
+                                    <li class="menu-item has-children">
+                                        <a href="javascript:void(0)"> Languages</a> <i
+                                            class="dropdown-arrow"></i></a>
+                                        <ul id="custom_translate_menu" class="sub-menu">
+                                            <li><a href="#" data-lang="vi">Vietnamese</a></li>
+                                            <li><a href="#" data-lang="en">English</a></li>
+                                            <li><a href="#" data-lang="ja">Japanese</a></li>
+                                            <li><a href="#" data-lang="zh-CN">Chinese (Simplified)</a></li>
+                                            <div id="google_translate_element">
+                                            </div>
+                                        </ul>
+                                    </li>
+
                                     <li class="menu-item">
                                         <a href="{% url 'contact:index' %}">Contact</a>
                                     </li>
@@ -1139,7 +1142,7 @@
                         <div class="footer-contact">
                             <p><span class="label">Address:</span><span class="text">UET 301-G2</span></p>
                             <p><span class="label">Phone:</span><span class="text">0327728199</span></p>
-                            <p><span class="label">Email:</span><span class="text">td.tan2711@gmail.comm</span></p>
+                            <p><span class="label">Email:</span><span class="text">td.tan2711@gmail.com</span></p>
                         </div>
                     </div>
                 </div>
@@ -1347,19 +1350,59 @@
         </script>
         <script type="text/javascript">
             function googleTranslateElementInit() {
-                    new google.translate.TranslateElement({
-                        pageLanguage: 'en', // Ngôn ngữ của trang web
-                        includedLanguages: 'en,vi,zh-CN,ja', // Các ngôn ngữ bạn muốn hiển thị
-                        layout: google.translate.TranslateElement.InlineLayout.SIMPLE // Bố cục của tiện ích
-                    }, 'google_translate_element');
-                }
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en', // Default language of the web page
+                    includedLanguages: 'en,vi,zh-CN,ja', // Languages to be displayed in the widget
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE // Layout of the widget
+                }, 'google_translate_element');
+            }
+        
             window.onload = function() {
                 var clearDotImage = document.querySelector('img[src="https://www.google.com/images/cleardot.gif"]');
-                if (clearDotImage !== null) {
+                if (clearDotImage) {
                     clearDotImage.remove();
                 }
-            };
+        
+                document.getElementById('custom_translate_menu').addEventListener('click', function(e) {
+                    e.preventDefault();
+        
+                    if (e.target.tagName === 'A') {
+                        var lang = e.target.getAttribute('data-lang'); // Get the data-lang attribute from clicked link
+                        var select = document.querySelector('.goog-te-combo'); // Get the hidden select element
+                        if (select) {
+                            select.value = lang; // Set the language of the select element
+                            select.dispatchEvent(new Event('change')); // Trigger the change event
+                        }
+        
+                        // Optional: close the dropdown
+                        this.style.display = 'none';
+                    }
+                });
+            }
         </script>
             
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>                   
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>          
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var menuItems = document.querySelectorAll('#custom_translate_menu a');
+            
+                menuItems.forEach(function(item) {
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var lang = item.getAttribute('data-lang');
+                        var selectField = document.querySelector('.goog-te-combo');
+                        if (selectField) {
+                            selectField.value = lang;
+                            selectField.dispatchEvent(new Event('change'));
+                        }
+                    });
+                });
+            });
+            </script>     
 </html>
