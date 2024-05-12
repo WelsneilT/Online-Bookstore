@@ -51,6 +51,37 @@
     left: 0; 
     z-index: 1000;
   }
+  body {
+    top: 0px !important;
+   }
+
+   body > .skiptranslate > iframe.skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+   }
+   .goog-logo-link {
+   display: none !important;
+   }
+   #google_translate_element {
+    /* Thay đổi kích thước tùy ý */
+    font-size: 1px;
+    }
+    #google_translate_element {
+        /* Màu nền */
+        background-color: #36696B; /* Thay đổi màu nền tùy ý */
+    
+        /* Màu văn bản */
+        color: #36696B; /* Thay đổi màu văn bản tùy ý */
+        position: absolute;
+        /* Đặt vị trí từ phía trên cùng của header */
+        top: 50%; /* hoặc giá trị cụ thể khác nếu cần */
+        /* Đặt vị trí từ phía trái của header */
+        left: 0%; /* hoặc giá trị cụ thể khác nếu cần */
+        /* Dịch chuyển phần tử điều chỉnh để nó chính xác ở giữa */
+        transform: translate(-50%, -50%);
+        /* Đảm bảo nó hiển thị trên tất cả các phần tử khác */
+        z-index: 9999; /* hoặc số lớn hơn nếu cần */
+    }
 </style>
 <body>
     <div class="site-wrapper" id="top">
@@ -499,6 +530,8 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="main-navigation flex-lg-right">
+                                <div id="google_translate_element">
+                                </div>
                                 <ul class="main-menu menu-right main-menu--white li-last-0">
                                     <li class="menu-item has-children">
                                         <a  href="{% url 'home' %}"> Home </a>  
