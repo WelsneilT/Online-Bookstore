@@ -130,7 +130,7 @@ class BooksDetailView(DetailView):
             user = request.user  # Assuming user is authenticated
             book = Book.objects.get(pk=book_id)
             comment = Comment.objects.create(book=book, user=user, content=content)
-            return redirect('book_detail', pk=book_id)
+            return redirect('detail', pk=book_id)
         else:
             context = self.get_context_data(**kwargs)
             context['comment_form'] = form
