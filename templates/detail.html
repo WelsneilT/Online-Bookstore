@@ -2,6 +2,7 @@
 
 {% load static %}
 {% block content %}
+{% load custom_filters %}
 <style>
   .small-btn {
     padding: 0.3rem 0.1rem; 
@@ -45,7 +46,7 @@
           <h4 class="card-title" style="margin-top:-20px">{{ product.title }}</h4>
           <p class="card-text" style="margin-top:-5px">Author: {{ product.author }}</p><hr>
           {% load rating_stars %}
-          <p class="card-text" style="margin-top:-10px">Rating: {{ product.rating|floatformat:2 }} <span class="star-rating">{% render_stars product.rating %} 
+          <p class="card-text" style="margin-top:-10px; ">Rating: {{ product.rating|floatformat:2 }} <a style="color: #e6ac00;">{% render_stars product.rating %} </a>
             <a href="{% url 'user_wishlist' product.id  %}" class="wishlist-link" style="margin-left: 320px; ">
               <img src="{% static 'website/images/bookmark.png' %}"  alt="Cart" style="width: 40px; height: 40px;">
             </a>
@@ -91,26 +92,45 @@
     </div>
     <!-- Phần hiển thị comment -->
     <div>
-      <h3>Comments</h3>
+      <h3 style="margin-top: 30px;">Comments</h3>
       {% for comment in product.comments.all %}
-          <div class="comment">
-              <p><strong>{{ comment.user.username }}</strong> said on {{ comment.created_at|date:"Y-m-d H:i" }}:</p>
-              <p>{{ comment.content }}</p>
-          </div>
+        <div class="comment">
+          <p><strong>{{ comment.user.username }}</strong> {% for _ in 5|custom_range %}
+            {% if forloop.counter >= comment.rating %}
+              <span class="fa fa-star" style="color: #e6ac00; font-size: 10px" ></span>
+            {% endif %}
+          {% endfor %} :</p>
+          <p style="font-size: 16px; line-height: 5px;">{{ comment.content }}  <a style="font-size: 10px;">{{ comment.created_at|date:"Y-m-d H:i" }}</a>
+          </p>
+        </div>
       {% empty %}
-          <p>No comments yet.</p>
+        <p>No comments yet.</p>
       {% endfor %}
       <hr>
-      <!-- Form thêm comment -->
-      <h4>Add a comment:</h4>
+      <!-- Add Comment Form -->
       <form method="post" >
         {% csrf_token %}
         <input type="hidden" name="book_id" value="{{ product.id }}" />
-        <label for="id_content">Comment:</label>
+        <label for="id_content" style="font-size: 20px; font-weight: bold;">Add a comment</label>
         <textarea class="mb-0 form-control" id="id_content" name="content" placeholder="Enter your comment here..." required></textarea>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <label for="star-rating" style="font-size: 20px; font-weight: bold;">Rating:</label>
+        <div class="emoji-icons" style="color: #e6ac00;">
+          <input type="radio" id="star1" name="rating" value="5">
+          <label for="star5">★</label>
+          <input type="radio" id="star4" name="rating" value="4">
+          <label for="star4">★★</label>
+          <input type="radio" id="star3" name="rating" value="3">
+          <label for="star3">★★★</label>
+          <input type="radio" id="star2" name="rating" value="2">
+          <label for="star2">★★★★</label>
+          <input type="radio" id="star1" name="rating" value="1">
+          <label for="star1">★★★★★</label>
+        </div>
+        <button type="submit" class="btn btn--primary" style="margin-left: 660px">Submit</button>
       </form>
     </div>
+  </div>
+  </div>
   </div>
 </div>
 
@@ -130,8 +150,26 @@ document.addEventListener('DOMContentLoaded', function () {
   plusButton.addEventListener('click', function () {
     let qty = parseInt(quantityInput.value);
     quantityInput.value = qty + 1;
-  });
+  }); 
 });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const starRatingElements = document.querySelectorAll('.star-rating');
+    starRatingElements.forEach(function(starRatingElement) {
+      const rating = parseInt(starRatingElement.dataset.rating);
+      for (let i = 0; i < 5; i++) {
+        const starIcon = document.createElement('span');
+        starIcon.classList.add('fa');
+        if (i < rating) {
+          starIcon.classList.add('fa-star', 'checked');
+        } else {
+          starIcon.classList.add('fa-star');
+        }
+        starRatingElement.appendChild(starIcon);
+      }
+    });
+  });
+  </script>
 
 {% endblock content %}

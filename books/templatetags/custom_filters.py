@@ -22,3 +22,9 @@ def random_order_number(value):
 @register.filter(name='current_time')
 def current_time(value):
     return timezone.now()
+
+@register.filter
+def custom_range(value):
+    if value is None or not isinstance(value, int):
+        return range(0)  
+    return range(value)

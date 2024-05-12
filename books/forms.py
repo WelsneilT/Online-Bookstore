@@ -8,4 +8,5 @@ class OrderForm(forms.ModelForm):
 
 class CommentForm(forms.Form):
     book_id = forms.IntegerField(widget=forms.HiddenInput())
+    rating = forms.IntegerField()
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'mb-0 form-control', 'placeholder': 'Enter your comment here...', 'required': 'required'}))

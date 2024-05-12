@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, ShopBooksListView, AdventureBooksListView , BiographyBooksListView, DramaBooksListView, FantasyBooksListView, FictionBooksListView, HistoryBooksListView , HorrorBooksListView, MagicBooksListView, NonFictionBooksListView, RomanceBooksListView, admin_order_detail_view, checkout3
+from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, ShopBooksListView, AdventureBooksListView , BiographyBooksListView, DramaBooksListView, FantasyBooksListView, FictionBooksListView, HistoryBooksListView , HorrorBooksListView, MagicBooksListView, NonFictionBooksListView, RomanceBooksListView, admin_order_detail_view, checkout3, CommentUpdateView, CommentDeleteView
 
 urlpatterns = [
     path('list/', BooksListView.as_view(), name = 'list'),
@@ -20,6 +20,8 @@ urlpatterns = [
     path('romance/', RomanceBooksListView.as_view(), name = 'romance-books'),
     path('admin/order/<int:order_id>/', admin_order_detail_view, name='admin_order_detail'),
     path('order/checkout', checkout3, name = 'checkout3'),
+    path('edit-comment/<int:comment_id>/', CommentUpdateView.as_view(), name='edit_comment'),
+    path('delete-comment/<int:comment_id>/', CommentDeleteView.as_view(), name='delete_comment'),
   
    
 ]

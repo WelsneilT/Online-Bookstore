@@ -21,7 +21,7 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
 from basket.basket import Basket
 from django.urls import reverse
-
+from django.views.generic import UpdateView, DeleteView
 
 
 from django.shortcuts import render, redirect
@@ -127,15 +127,35 @@ class BooksDetailView(DetailView):
         form = CommentForm(request.POST)
         if form.is_valid():
             content = form.cleaned_data['content']
+            rating = form.cleaned_data['rating']
             user = request.user  # Assuming user is authenticated
             book = Book.objects.get(pk=book_id)
-            comment = Comment.objects.create(book=book, user=user, content=content)
+            comment = Comment.objects.create(book=book, user=user, content=content, rating=rating)
+            comment.save()
             return redirect('detail', pk=book_id)
         else:
             context = self.get_context_data(**kwargs)
             context['comment_form'] = form
             return self.render_to_response(context)
 
+class CommentUpdateView(UpdateView):
+    model = Comment
+    fields = ['content', 'rating']
+    template_name = 'detail.html'
+    pk_url_kwarg = 'comment_id'
+
+    def form_valid(self, form):
+        form.save()
+        return redirect('detail', pk=self.object.book.pk)
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    pk_url_kwarg = 'comment_id'
+    template_name = 'detail.html'
+
+    def get_success_url(self):
+        book_id = self.object.book.pk
+        return reverse_lazy('detail', kwargs={'pk': book_id})
 
 class SearchResultsListView(ListView):
 	model = Book
