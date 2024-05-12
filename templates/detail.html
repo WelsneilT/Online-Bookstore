@@ -111,7 +111,7 @@
       <form method="post" >
         {% csrf_token %}
         <input type="hidden" name="book_id" value="{{ product.id }}" />
-        <label for="id_content" style="font-size: 20px; font-weight: bold;">Add a comment</label>
+        <label for="id_content" style="font-size: 20px; font-weight: bold;">Add a comment:</label>
         <textarea class="mb-0 form-control" id="id_content" name="content" placeholder="Enter your comment here..." required></textarea>
         <label for="star-rating" style="font-size: 20px; font-weight: bold;">Rating:</label>
         <div class="emoji-icons" style="color: #e6ac00;">
