@@ -20,23 +20,27 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     success = models.BooleanField(default=False)
     canceled_reason = models.CharField(max_length=1000)
-    
 
     def __str__(self):
         return f'Order {self.id} by {self.user.username}'
     
 class Book(models.Model):
     title = models.CharField(max_length=500)
+    series = models.CharField(max_length=1000)
     author = models.CharField(max_length=500)
     rating = models.FloatField(null=True, blank=True)
-    description = models.CharField(max_length=2000, default=None)
+    description = models.CharField(max_length=12000, default=None)
+    characters = models.CharField(max_length=10000, default=None)
+    numRatings = models.FloatField(null=True, blank=True)
+    ratingsByStars = models.FloatField(null=True, blank=True)
+    setting = models.CharField(max_length=12000, default=None)
     language = models.CharField(max_length=500)
     genres = models.CharField(max_length=2000, default=None)
     bookFormat = models.CharField(max_length=500)
     edition = models.CharField(max_length=500)
     pages = models.FloatField(null=True, blank=True)
-    publisher = models.CharField(max_length=500)
-    awards = models.CharField(max_length=500)
+    publisher = models.CharField(max_length=1500)
+    awards = models.CharField(max_length=1500)
     likedPercent = models.FloatField(null=True, blank=True)
     image_url = models.CharField(max_length=2083, default=False)
     price = models.FloatField(null=True, blank=True)
