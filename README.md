@@ -27,3 +27,4 @@ Chào mừng đến với Online Book Store! Đây là một sản phẩm cung c
 - **Bùi Văn Khải**: 25%
 - **Nguyễn Quốc Tuấn**: 25% 
 ## Personas:
+-** Andy: sinh viên đại học công nghệ muốn tìm mua những cuốn sách thú vị trên khắp thế giới nhưng phù hợp với túi tiền và sở thích để giải trí. 
