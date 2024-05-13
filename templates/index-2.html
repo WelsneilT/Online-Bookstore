@@ -256,7 +256,7 @@ Home Slider Tab
                                 
                                 <div class="product-card--body">
                                     <div class="card-image">
-                                        <img src="{{ book.image_url }}" alt="{{ book.title }}" style="max-height: 320px;">
+                                        <img src="{{ book.image_url }}" alt="{{ book.title }}" style="height: 320px;">
                                     </div>
                                     
                                 </div>
@@ -264,7 +264,7 @@ Home Slider Tab
                                     <a href="#" class="author">
                                         {{ book.author }}
                                     </a>
-                                    <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
+                                    <h3><a href="{% url 'detail' book.pk %}" class = "book-title">{{ book.title }}</a></h3>
                                     <span class="star-rating" style=" font-size: 20px">{% render_stars book.rating %}</span>
                                     <div class="price-block">
                                         <span class="price">£{{ book.price }}</span>
@@ -305,7 +305,7 @@ Home Slider Tab
                                     <a href="#" class="author">
                                         {{ book.author }}
                                     </a>
-                                    <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
+                                    <h3><a href="{% url 'detail' book.pk %}" class = "book-title">{{ book.title }}</a></h3>
                                     <span class="star-rating" style=" font-size: 20px">{% render_stars book.rating %}</span>
                                     <div class="price-block">
                                         <span class="price">£{{ book.price }}</span>
@@ -346,7 +346,7 @@ Home Slider Tab
                                     <a href="#" class="author">
                                         {{ book.author }}
                                     </a>
-                                    <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a></h3>
+                                    <h3><a href="{% url 'detail' book.pk %}" class = "book-title">{{ book.title }}</a></h3>
                                     <span class="star-rating" style=" font-size: 20px">{% render_stars book.rating %}</span>
                                     <div class="price-block">
                                         <span class="price">£{{ book.price }}</span>
