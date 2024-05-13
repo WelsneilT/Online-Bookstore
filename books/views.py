@@ -22,13 +22,44 @@ from django.shortcuts import get_object_or_404, render
 from basket.basket import Basket
 from django.urls import reverse
 from django.views.generic import UpdateView, DeleteView
-
-
 from django.shortcuts import render, redirect
 from .models import Comment
 from .forms import CommentForm
+import pickle
+import pandas as pd
+import numpy as np
+from nltk.stem.porter import PorterStemmer
+ps= PorterStemmer()
+from sklearn.metrics.pairwise import cosine_similarity
+import sqlite3
 
+# Load the model from the .pkl file
+with open('model.pkl', 'rb') as file:
+    model = pickle.load(file)
+with open('vector.pkl', 'rb') as file:
+    vector = pickle.load(file)
+# Function to recommend similar books
+conn = sqlite3.connect('C:/Users/HP/.vscode/Software-Engineering-83/db.sqlite3')
+query = "SELECT * FROM books_book;"
+books = pd.read_sql_query(query, conn)
+conn.close()
 
+def stem_text(text):
+    return ' '.join([ps.stem(word) for word in text.split()])
+
+def semantic_search(query, books, tfidf_matrix, tfidf_vectorizer):
+    query = stem_text(query)
+    query_vector = tfidf_vectorizer.transform([query])
+    
+    # Calculate cosine similarity between query vector and document vectors
+    similarities = cosine_similarity(query_vector, tfidf_matrix)
+    ranked_indices = similarities.argsort()[0][::-1]  # Sort by descending order of similarity
+    print(similarities)
+    # Return ranked documents based on similarity
+    ranked_documents = books.iloc[ranked_indices]['title']
+    print(ranked_documents)
+    print(ranked_indices[0:101])
+    return ranked_indices[0:101]
 
 @login_required
 def checkout3(request):
@@ -157,14 +188,27 @@ class CommentDeleteView(DeleteView):
         return reverse_lazy('detail', kwargs={'pk': book_id})
 
 class SearchResultsListView(ListView):
-	model = Book
-	template_name = 'search_results.html'
+    model = Book
+    template_name = 'search_results.html'
 
-	def get_queryset(self): # new
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        book_ids = semantic_search(query, books, vector, model)
+
+        # Convert book IDs to a list of integers (assuming IDs are numeric)
+        book_id_list = [int(book_id + 1) for book_id in book_ids]
+        books_object = []
+        for id in book_id_list:
+            book = get_object_or_404(Book, id=id)
+            books_object.append(book)
+        # Filter Book objects by the retrieved IDs
+        return books_object
+
+        '''def get_queryset(self): # new
 		query = self.request.GET.get('q')
 		return Book.objects.filter(
 		Q(title__icontains=query) | Q(author__icontains=query)
-		)
+		)'''
 
 class BookCheckoutView(DetailView):
     model = Book

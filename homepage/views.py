@@ -45,7 +45,7 @@ def get_book_ids_of_current_user(request):
 @login_required
 def home(request):
     user_wishlist_id = get_book_ids_of_current_user(request)
-    if len(user_wishlist_id) != 0 :
+    if len(user_wishlist_id) != 0 and user_wishlist_id[-1] < 10000 :
         list = recommend(user_wishlist_id[-1])
         print(list)
         book_id_list = [int(id + 1) for id in list]    
