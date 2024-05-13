@@ -24,14 +24,6 @@ class PasswordResetForm(forms.Form):
     class Meta:
         model = User
         fields = ['email']
-        
-class PasswordChangeForm(forms.Form):
-    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    
-    class Meta:
-        model = User
-        fields = ['new_password', 'confirm_password']
 
 class ProfileUpdateForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100, required=False)

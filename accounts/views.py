@@ -174,59 +174,31 @@ class PasswordResetView(FormView):
     form_class = PasswordResetForm
     success_url = reverse_lazy('password_reset_confirm')
     template_name = 'password_reset.html'
+    
+    
     def form_valid(self, form):
         email = form.cleaned_data['email']
+        User = get_user_model()
+        user = User.objects.get(email = email)
         
         # Gửi email reset mật khẩu
-        form.save(
-            request=self.request,
-            email_template_name='registration/password_reset_email.html',
-            subject_template_name='registration/password_reset_subject.txt',
-        )
-        
+        if user:
+            # Generate a random password
+            new_password = "12345678@."
+            
+            # Update the user's password
+            user.set_password(new_password)
+            user.save()
+            
+            # Send the email with the new password
+            form.save(
+                request=self.request,
+                email_template_name='password_reset_email.html',
+            )
         return super().form_valid(form)
+    
     def get_success_url(self):
         # Trả về URL của trang cảm ơn sau khi yêu cầu đã được xử lý thành công
         return reverse_lazy('password_reset_done')
-    
-class PasswordResetConfirmView(FormView):
-    form_class = PasswordChangeForm
-    success_url = reverse_lazy('password_reset_complete')
-    template_name = 'password_reset_confirm.html'
-    
-    def dispatch(self, request, uidb64, token, *args, **kwargs):
-        """
-        Xác định user từ thông tin trong URL.
-        """
-        try:
-            uid = force_bytes(urlsafe_base64_decode(uidb64))
-            self.user = get_user_model().objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
-            self.user = None
 
-        if self.user is None or not default_token_generator.check_token(self.user, token):
-            # Redirect hoặc hiển thị thông báo lỗi nếu không thể xác định user hoặc token không hợp lệ
-            return redirect(resolve_url('password_reset_invalid'))
-
-        return super().dispatch(request, uidb64, token, *args, **kwargs)
-
-    def get_form_kwargs(self):
-        """
-        Chuyển đối user vào form để xác định user khi thay đổi mật khẩu.
-        """
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.user
-        return kwargs
-    def form_valid(self, form):
-        """
-        Xử lý khi form hợp lệ được submit.
-        """
-        # Lưu mật khẩu mới và xác thực token
-        form.save()
-        
-        # Chuyển hướng đến trang thành công
-        return super().form_valid(form)
-    def get_success_url(self):
-        # Trả về URL của trang cảm ơn sau khi yêu cầu đã được xử lý thành công
-        return reverse_lazy('password_reset_complete')
     

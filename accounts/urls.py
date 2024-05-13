@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import SignUpView, CustomLogoutView, PasswordChangeDoneView, ChangePasswordView, AccountView, update_profile, user_orders
 
-from .views import SignUpView, CustomLogoutView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView
+from .views import SignUpView, CustomLogoutView, PasswordChangeView, PasswordResetView
 
 from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
@@ -22,9 +22,7 @@ urlpatterns = [
     
     path('reset_password/', PasswordResetView.as_view(), name='password_reset'),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
-    path('accounts/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
-    path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
-
+    
     path("wishlist", views.wishlist, name="wishlist"),
     path("wishlist/add_to_wishlist/<int:id>", views.add_to_wishlist, name="user_wishlist"),
      
