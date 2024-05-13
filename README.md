@@ -27,8 +27,14 @@ Chào mừng đến với Online Book Store! Đây là một sản phẩm cung c
 - **Bùi Văn Khải**: 25%
 - **Nguyễn Quốc Tuấn**: 25% 
 ## Personas:
--** Andy: sinh viên đại học công nghệ muốn tìm mua những cuốn sách thú vị trên khắp thế giới nhưng phù hợp với túi tiền và sở thích để giải trí. 
-
+- **Andy**: sinh viên đại học công nghệ muốn tìm mua những cuốn sách thú vị trên khắp thế giới nhưng phù hợp với túi tiền và sở thích để giải trí. 
+## User stories of Andy:
+-Như một sinh viên đại học công nghệ, anh ấy muốn có thể tìm kiếm những cuốn sách thú vị từ khắp nơi trên thế giới để mua.
+-Andy muốn hệ thống web bán sách cung cấp cho những lựa chọn sách phù hợp với sở thích của mình.
+-Andy mong muốn có thể dễ dàng lọc các cuốn sách theo sở thích của mình như hành động, phép thuật, tiểu sử, tiểu thuyết, hoặc thể loại khác.
+-Andy muốn được đề xuất những cuốn sách dựa trên lịch sử xem của mình hoặc các cuốn sách tương tự đã thích hoặc mua.
+-Andy mong muốn nhận được thông tin chi tiết về mỗi cuốn sách như tóm tắt nội dung, đánh giá, và lời bình của người đọc khác.
+-Andy muốn có tính năng đánh giá sách sau khi đọc để giúp cộng đồng đọc giả khác có thể tham khảo trước khi mua.
 # Tài khoản
 
 ## SET UP môi trường
