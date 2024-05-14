@@ -204,7 +204,7 @@ class SearchResultsListView(ListView):
         # Filter Book objects by the retrieved IDs
         return books_object
 
-        '''def get_queryset(self): # new
+    '''def get_queryset(self): # new
 		query = self.request.GET.get('q')
 		return Book.objects.filter(
 		Q(title__icontains=query) | Q(author__icontains=query)

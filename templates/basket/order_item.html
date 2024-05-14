@@ -1,0 +1,45 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}Order items{% endblock %}
+{% block content %}
+<section class="breadcrumb-section" style="margin-top: -30px">
+  <h2 class="sr-only">Site Breadcrumb</h2>
+  <div class="container">
+      <div class="breadcrumb-contents">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                  <li class="breadcrumb-item active">Order items</li>
+              </ol>
+          </nav>
+      </div>
+  </div>
+</section>
+<main class="pt-5" style="margin-top:-80px">
+  <div class="container">
+    {% for item in items %}
+    {% if item.qty != 0 %}
+    {% with product=item.product %}    
+    <div data-index="{{product.id}}" class="row mb-4 border product-item">
+      <div class="col-md-3 col-lg-2 order-md-first bg-light">
+        <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ product.image_url }}">
+      </div>
+      <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+        <a href="{% url 'detail' product.id %}" class="text-decoration-none text-reset">
+          <h1 class="h5 pt-2">{{ product.title }}</h1>
+        </a>
+        <div class="border">
+          <div class="col border-bottom">
+            <div class="row p-3">
+              <div class="col-6 text-end"> Quantity <span class="h6 fw-bold">{{ item.quantity }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endwith %}
+
+    {% endif %}
+    {% endfor %}
+  </div >
+{% endblock %}

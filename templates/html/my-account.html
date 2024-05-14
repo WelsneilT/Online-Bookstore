@@ -70,8 +70,10 @@
 													
 														<li>
 															<span>Orders  at {{ item.created_at }} </span>
-															<span class="left"> ${{ item.total_price }}</span>
-															<span class="right"> Order notes: {{ item.order_notes }}</span>
+															<span> ${{ item.total_price }}</span>
+															<span> Status {{item.success}}</span>
+															<span> Order notes: {{ item.order_notes }}</span>
+															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
 														</li>
 													
 												{% empty %}

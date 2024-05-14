@@ -51,15 +51,10 @@ def update_profile(request):
             form.save()
             return redirect('home')  # Adjust the redirection as needed
         return render(request, 'html/my-account.html', {'form': form})
-    else:
-        user_id = request.user.id
-        orders = Order.objects.filter(user_id=user_id)
-        return render(request, 'html/my-account.html', {'orders':orders})
     
-def user_orders(request):
-    user_id = request.user.id
-    orders = Order.objects.filter(user_id=user_id)
-    return render(request, 'html/my-account.html', {'orders':orders})
+def user_orders(request,id):
+    orders = OrderItem.objects.filter(order_id=id)
+    return render(request, 'basket/order_item.html', {'items': orders})
 
     
 
