@@ -58,7 +58,7 @@ def home(request):
 
     adventure_books = Book.objects.filter(
     Q(genres__icontains='Adventure') & Q(book_available=True))[310:320]
-    special_offers = Book.objects.filter(book_available=True)[500:505]
+    special_offers = Book.objects.filter(book_available=True)[3983:3984]
     adventure_bookss = Book.objects.filter(
     Q(genres__icontains='Adventure') & Q(book_available=True))[510:520]
     biography_bookss = Book.objects.filter(
@@ -76,13 +76,13 @@ def home(request):
     magic_bookss = Book.objects.filter(
     Q(genres__icontains='Magic') & Q(book_available=True))[10:20]
     non_fiction_bookss = Book.objects.filter(
-    Q(genres__icontains='Nonfiction') & Q(book_available=True))[10:20]
+    Q(genres__icontains='Nonfiction') & Q(book_available=True))[10:17]
     romance_bookss = Book.objects.filter(
     Q(genres__icontains='Romance') & Q(book_available=True))[510:520]
     magic_harry_potter_books = Book.objects.filter(
     Q(genres__icontains='Magic') & Q(title__icontains='Harry Potter') & Q(book_available=True))[0:20]
     special_edition_books = Book.objects.filter(
-    Q(edition__icontains='Special Edition') & Q(book_available=True))[0:10]
+    Q(author__icontains='Yana Toboso') & Q(book_available=True))[0:17]
 
     context = {
         'slider_books': slider_books, 
