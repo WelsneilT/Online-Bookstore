@@ -11,7 +11,7 @@ with open('model.pkl', 'rb') as file:
 with open('vector.pkl', 'rb') as file:
     vector = pickle.load(file)
 # Function to recommend similar books
-conn = sqlite3.connect('C:/Users/HP/.vscode/Software-Engineering-83/db.sqlite3')
+conn = sqlite3.connect('db.sqlite3')
 query = "SELECT * FROM books_book;"
 books = pd.read_sql_query(query, conn)
 conn.close()
