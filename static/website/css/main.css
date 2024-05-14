@@ -28593,8 +28593,8 @@ td {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 2em; 
-  line-height: 1em; 
+  max-height: 2.5em; 
+  line-height: 1.25em; 
   margin-bottom: 10px; 
 }
 
