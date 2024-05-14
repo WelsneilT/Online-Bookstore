@@ -39,7 +39,7 @@ with open('model.pkl', 'rb') as file:
 with open('vector.pkl', 'rb') as file:
     vector = pickle.load(file)
 # Function to recommend similar books
-conn = sqlite3.connect('C:/Users/HP/.vscode/Software-Engineering-83/db.sqlite3')
+conn = sqlite3.connect('db.sqlite3')
 query = "SELECT * FROM books_book;"
 books = pd.read_sql_query(query, conn)
 conn.close()
@@ -191,6 +191,15 @@ class SearchResultsListView(ListView):
     model = Book
     template_name = 'search_results.html'
 
+    def get_queryset(self):  # new
+        query = self.request.GET.get('q')
+        return Book.objects.filter(Q(title__icontains=query) | Q(author__icontains=query))
+
+
+class SemanticSearchResultsListView(ListView):
+    model = Book
+    template_name = 'search_results.html'
+
     def get_queryset(self):
         query = self.request.GET.get('q')
         book_ids = semantic_search(query, books, vector, model)
@@ -204,11 +213,14 @@ class SearchResultsListView(ListView):
         # Filter Book objects by the retrieved IDs
         return books_object
 
+<<<<<<< HEAD
     '''def get_queryset(self): # new
 		query = self.request.GET.get('q')
 		return Book.objects.filter(
 		Q(title__icontains=query) | Q(author__icontains=query)
 		)'''
+=======
+>>>>>>> f7c2daf5dd9a1ec0f4b524c938497dc9cb4a1cb2
 
 class BookCheckoutView(DetailView):
     model = Book
