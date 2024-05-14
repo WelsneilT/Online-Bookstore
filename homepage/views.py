@@ -52,9 +52,13 @@ def home(request):
         featured_products = Book.objects.filter(id__in=book_id_list)
     else:
         featured_products = Book.objects.filter(book_available=True)[10020:10040]
+
+    manga_books_id = [3984, 3032, 3371,  2051, 6067, 8953, 1542]
+
     slider_books = Book.objects.filter(book_available=True)[406:412]
     new_arrivals = Book.objects.filter(book_available=True)[79:99]
     most_view_products = Book.objects.filter(book_available=True)[221:241]
+    manga_books = Book.objects.filter(id__in= manga_books_id, book_available=True)
 
     adventure_books = Book.objects.filter(
     Q(genres__icontains='Adventure') & Q(book_available=True))[310:320]
@@ -102,7 +106,8 @@ def home(request):
         'non_fiction_bookss' : non_fiction_bookss,
         'romance_bookss' :   romance_bookss ,
         'magic_harry_potter_books': magic_harry_potter_books,
-        'special_edition_books': special_edition_books}
+        'special_edition_books': special_edition_books,
+        'manga_books' : manga_books}
 
     return render(request, 'index-2.html', context)
 
