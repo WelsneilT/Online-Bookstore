@@ -67,15 +67,30 @@
 											<h3>Orders</h3>
 											<ul>
 												{% for item in orders %}
-													
+												{% if item.success is False and item.canceled_reason == '' %}
 														<li>
 															<span>Orders  at {{ item.created_at }} </span>
-															<span> ${{ item.total_price }}</span>
-															<span> Status {{item.success}}</span>
+															<span> Status: On going</span>
 															<span> Order notes: {{ item.order_notes }}</span>
 															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
 														</li>
-													
+												{% endif %}
+												{% if item.success is False and item.canceled_reason != '' %}
+														<li>
+															<span>Orders  at {{ item.created_at }} </span>
+															<span> Status: Canceled</span>
+															<span> Cancel reason: {{ item.canceled_reason }}</span>
+															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
+														</li>
+												{% endif %}
+												{% if item.success is True %}
+														<li>
+															<span>Orders  at {{ item.created_at }} </span>
+															<span> Status: Done</span>
+															<span> Order notes: {{ item.order_notes }}</span>
+															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
+														</li>
+												{% endif %}
 												{% empty %}
 													<p>No items in orders.</p>
 												{% endfor %}

@@ -213,15 +213,6 @@ class SemanticSearchResultsListView(ListView):
         # Filter Book objects by the retrieved IDs
         return books_object
 
-<<<<<<< HEAD
-    '''def get_queryset(self): # new
-		query = self.request.GET.get('q')
-		return Book.objects.filter(
-		Q(title__icontains=query) | Q(author__icontains=query)
-		)'''
-=======
->>>>>>> f7c2daf5dd9a1ec0f4b524c938497dc9cb4a1cb2
-
 class BookCheckoutView(DetailView):
     model = Book
     template_name = 'checkout.html'
