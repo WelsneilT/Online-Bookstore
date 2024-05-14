@@ -88,6 +88,12 @@
             </div>
             
             <div class="col-lg-3 mt--30 mt-lg--0">
+                <div class="header-search-block" style="margin-left: -10px">
+                    <form class="search" action="{% url 'search_results' %}" method="get">
+                        <input name="q" type="text" class="search-input" autocomplete="off" placeholder="Promt here" style="margin-left: 10px; border-radius: 10px;">
+                        <button type="submit" class="search-button" style="width: 50px; padding: 0px; position: absolute; border-radius: 10px;"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
                 <div class="sb-slick-slider hero-products-group-slider product-border-reset" data-slick-setting='{
                     "autoplay": true,
                     "autoplaySpeed": 8000,
