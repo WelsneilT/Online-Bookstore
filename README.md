@@ -1,6 +1,6 @@
 # Online Book Store
-
-Chào mừng đến với Online Book Store! Đây là một sản phẩm cung cấp dịch vụ tiện nghi nhất cho người đọc khám phá, tìm kiếm sách từ mọi loại chủ đề.
+- [Báo cáo dự án](https://docs.google.com/document/d/1ux_O7ywsHKS-IiaiwE3iXOXTt4w7d-6cL-nfgmfPbUU/edit?usp=sharing).
+- Chào mừng đến với Online Book Store! Đây là một sản phẩm cung cấp dịch vụ tiện nghi nhất cho người đọc khám phá, tìm kiếm sách từ mọi loại chủ đề.
 
 ## Tính năng
 
@@ -37,6 +37,9 @@ Chào mừng đến với Online Book Store! Đây là một sản phẩm cung c
 - pipenv shell
 - pipenv install django
 - python manage.py check
+- pip install pandas
+- pip install scikit-learn
+- pip install nltk
 - python manage.py runserver
 
 ## Truy cập link dưới
