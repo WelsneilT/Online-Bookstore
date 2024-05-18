@@ -28,6 +28,7 @@ from .forms import CommentForm
 import pickle
 import pandas as pd
 import numpy as np
+from django.utils.decorators import method_decorator
 from nltk.stem.porter import PorterStemmer
 ps= PorterStemmer()
 from sklearn.metrics.pairwise import cosine_similarity
@@ -146,12 +147,12 @@ class BooksDetailView(DetailView):
     model = Book
     template_name = 'detail.html'
     context_object_name = 'product'
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
         return context
-
+    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         book_id = self.kwargs['pk']
         form = CommentForm(request.POST)
@@ -168,12 +169,12 @@ class BooksDetailView(DetailView):
             context['comment_form'] = form
             return self.render_to_response(context)
 
-class CommentUpdateView(UpdateView):
+class CommentUpdateView(LoginRequiredMixin,UpdateView):
     model = Comment
     fields = ['content', 'rating']
     template_name = 'detail.html'
     pk_url_kwarg = 'comment_id'
-
+    
     def form_valid(self, form):
         form.save()
         return redirect('detail', pk=self.object.book.pk)
