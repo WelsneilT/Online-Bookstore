@@ -10,6 +10,7 @@
 - Để pull và sử dụng Docker Image sử dụng các lệnh sau:
   + docker pull welsneil/ecom_project:latest
   + docker run -p 8000:8000 welsneil/ecom_project:latest
+  + https://hub.docker.com/r/welsneil/ecom_project
 
 
 ## Tính năng
