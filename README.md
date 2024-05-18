@@ -37,6 +37,9 @@
 - pipenv shell
 - pipenv install django
 - python manage.py check
+- pip install pandas
+- pip install scikit-learn
+- pip install nltk
 - python manage.py runserver
 
 ## Truy cập link dưới
