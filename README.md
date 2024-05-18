@@ -2,6 +2,20 @@
 - [Báo cáo dự án và video demo](https://drive.google.com/drive/folders/1A8nkzpKSCkEnuhtx-orI2apBJv6E0iwX?usp=sharing).
 - Chào mừng đến với Online Book Store! Đây là một sản phẩm cung cấp dịch vụ tiện nghi nhất cho người đọc khám phá, tìm kiếm sách từ mọi loại chủ đề.
 
+# Docker
+### Prerequisites
+
+- Docker
+- Docker Compose (nếu bạn sử dụng Docker Compose)
+
+### Running with Docker
+Để pull và sử dụng Docker Image sử dụng các lệnh sau:
+
+```bash
+docker pull welsneil/ecom_project:latest
+docker run -p 8000:8000 welsneil/ecom_project:latest
+
+
 ## Tính năng
 
 - **Duyệt**: Khám phá bộ sưu tầm hơn 50000 cuốn sách của chúng tôi với đa dạng các chủ đề từ fiction, non-fiction, mystery, romance, science fiction, and more.
