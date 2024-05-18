@@ -3,17 +3,13 @@
 - Chào mừng đến với Online Book Store! Đây là một sản phẩm cung cấp dịch vụ tiện nghi nhất cho người đọc khám phá, tìm kiếm sách từ mọi loại chủ đề.
 
 # Docker
-### Prerequisites
+- Yêu cầu cài đặt:
+  + Docker
+  + Docker Compose (nếu bạn sử dụng Docker Compose)
 
-- Docker
-- Docker Compose (nếu bạn sử dụng Docker Compose)
-
-### Running with Docker
-Để pull và sử dụng Docker Image sử dụng các lệnh sau:
-
-```bash
-docker pull welsneil/ecom_project:latest
-docker run -p 8000:8000 welsneil/ecom_project:latest
+- Để pull và sử dụng Docker Image sử dụng các lệnh sau:
+  + docker pull welsneil/ecom_project:latest
+  + docker run -p 8000:8000 welsneil/ecom_project:latest
 
 
 ## Tính năng
