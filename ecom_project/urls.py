@@ -26,7 +26,6 @@ urlpatterns = [
     path('books/', include('books.urls')),  # changes
     path('accounts/', include("django.contrib.auth.urls")),   # working for logins
     path('accounts/', include("accounts.urls")),  # changes
-    path('carousel1/', include('carousel1.urls')),
     path('homepage/', include('homepage.urls')),
     path('contact/', include('contact.urls' , namespace = 'contact')),  # changes
     path('index2.html', TemplateView.as_view(template_name='contact/index2.html'), name='contact-index2'),

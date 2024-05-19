@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',  # Thêm dòng này
     'books.apps.BooksConfig',
     'accounts.apps.AccountsConfig',  # changes
-    'carousel1.apps.Carousel1Config',
     'contact.apps.ContactConfig',
     'basket.apps.BasketConfig',
 ]
