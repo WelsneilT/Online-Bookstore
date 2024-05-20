@@ -49,6 +49,17 @@ query = "SELECT * FROM books_book;"
 books = pd.read_sql_query(query, conn)
 conn.close()
 
+import os
+import sqlite3
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+import pickle
+from django.shortcuts import render, redirect
+
 def update_revenue_chart(request):
     # Kết nối với cơ sở dữ liệu SQLite
     conn = sqlite3.connect('db.sqlite3')
@@ -160,13 +171,15 @@ def update_revenue_chart(request):
     # Định dạng lại trục x để hiển thị ngày tháng
     plt.gcf().autofmt_xdate()
 
-    # Lưu biểu đồ thành file hình ảnh
+    # Lưu biểu đồ thành file hình ảnh, ghi đè lên ảnh cũ
+    output_path = 'static/admin/revenue_prediction.png'
     if not os.path.exists('static/admin'):
         os.makedirs('static/admin')
-    plt.savefig('static/admin/revenue_prediction.png')
+    plt.savefig(output_path)
     plt.close()
 
     return redirect('revenue-chart')
+
 
 def revenue_chart_view(request):
     return render(request, 'admin/revenue_chart.html')
