@@ -9,7 +9,8 @@
     <img src="{% static 'admin/revenue_prediction.png' %}" alt="Revenue Prediction">
     <form action="{% url 'update-revenue-chart' %}" method="post">
         {% csrf_token %}
-        <button type="submit">Cập nhật biểu đồ</button>
+                    
+        <button type="submit" class="btn btn-danger btn-sm" style="margin-left: 930px; margin-top:10px; width: 150px; height: 50px; background-color:  #36696b; color: white">Cập nhật biểu đồ</button>
     </form>
 </body>
 </html>
