@@ -48,8 +48,11 @@ df = pd.DataFrame(data)
 print("Dữ liệu sau khi chuyển đổi:")
 print(df.head())
 
-# Tạo thêm dữ liệu giả lập cho mỗi ngày từ 1/4 đến 20/5
-date_range = pd.date_range(start='2024-04-01', end='2024-05-20')
+# Lấy ngày hiện tại
+today = pd.Timestamp.today()
+
+# Tạo thêm dữ liệu giả lập cho mỗi ngày từ 1/4 đến ngày hiện tại
+date_range = pd.date_range(start='2024-04-01', end=today)
 num_samples = len(date_range)
 
 np.random.seed(42)
@@ -105,21 +108,29 @@ model.fit(X_train, y_train)
 def predict_next_day_revenue():
     next_day = [[daily_revenue['days'].max() + 1]]
     predicted_revenue = model.predict(next_day)
-    return predicted_revenue[0], next_day[0][0]
+    next_day_date = daily_revenue['date'].max() + timedelta(days=1)
+    return predicted_revenue[0], next_day_date
 
-predicted_revenue, next_day = predict_next_day_revenue()
+predicted_revenue, next_day_date = predict_next_day_revenue()
 print(f'Dự đoán doanh thu cho ngày tiếp theo: {predicted_revenue}')
 
 # Đánh giá mô hình và hiển thị biểu đồ
 plt.figure(figsize=(12, 6))
-plt.plot(daily_revenue['days'], daily_revenue['total_price'], marker='o', linestyle='-', color='grey', alpha=0.6, label='Actual Revenue')
-plt.scatter(next_day, predicted_revenue, color='red', label='Next Day Prediction', marker='X', s=100)
-plt.xlabel('Days')
+plt.plot(daily_revenue['date'], daily_revenue['total_price'], marker='o', linestyle='-', color='grey', alpha=0.6, label='Actual Revenue')
+plt.scatter(next_day_date, predicted_revenue, color='red', label='Next Day Prediction', marker='X', s=100)
+plt.xlabel('Date')
 plt.ylabel('Revenue')
 plt.title('Actual vs Predicted Revenue')
 plt.legend()
 plt.grid(True)
-plt.show()
+
+# Định dạng lại trục x để hiển thị ngày tháng
+plt.gcf().autofmt_xdate()
+
+# Lưu biểu đồ thành file hình ảnh
+if not os.path.exists('static/admin'):
+    os.makedirs('static/admin')
+plt.savefig('static/admin/revenue_prediction.png')
 
 # In ra độ chính xác của mô hình
 print(f'R^2 Score: {model.score(X_test, y_test)}')

@@ -45,6 +45,10 @@ query = "SELECT * FROM books_book;"
 books = pd.read_sql_query(query, conn)
 conn.close()
 
+
+def revenue_chart_view(request):
+    return render(request, 'admin/revenue_chart.html')
+
 def stem_text(text):
     return ' '.join([ps.stem(word) for word in text.split()])
 

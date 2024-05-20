@@ -1,0 +1,18 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block content %}
+<div id="content-main">
+    <div class="app-books module">
+        <table>
+            <caption>Revenue Chart</caption>
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'revenue-chart' %}">View Revenue Chart</a>
+                </th>
+            </tr>
+        </table>
+    </div>  
+    {{ block.super }}
+</div>
+{% endblock %}
