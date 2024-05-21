@@ -24,10 +24,5 @@ urlpatterns = [
     path('edit-comment/<int:comment_id>/', CommentUpdateView.as_view(), name='edit_comment'),
     path('delete-comment/<int:comment_id>/', CommentDeleteView.as_view(), name='delete_comment'),
     path('admin/revenue-chart/', revenue_chart_view, name='revenue-chart'),
-<<<<<<< HEAD
-=======
-    path('admin/update-revenue-chart/', update_revenue_chart, name='update-revenue-chart'),
-  
-   
->>>>>>> 0f27a739bb09fdbaa54528694bf4778d6fe2a35f
+    path('admin/update-revenue-chart/', update_revenue_chart, name='update-revenue-chart'), 
 ]

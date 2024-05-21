@@ -84,7 +84,7 @@ def home(request):
     Q(genres__icontains='Magic') & Q(book_available=True))[10:20]
     
     nonfiction_bookss = Book.objects.filter(
-    Q(genres__icontains='Nonfiction') & Q(book_available=True))[10:17]
+    Q(genres__icontains='Nonfiction') & Q(book_available=True))[10:20]
 
     recommendbookss = Book.objects.filter(id__in = book_ids, book_available = True)
 
@@ -100,7 +100,7 @@ def home(request):
         'featured_products': featured_products, 
         'new_arrivals': new_arrivals, 
         'most_view_products': most_view_products,
-        'adventure_books': adventure_books,
+        'adventure_bookss': adventure_books,
         'special_offers': special_offers,
         'non_fiction_bookss': nonfiction_bookss,
         'biography_books': biography_bookss,

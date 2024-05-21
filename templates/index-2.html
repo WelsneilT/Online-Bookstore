@@ -374,8 +374,8 @@ Home Slider Tab
 
 <section class="section-margin">
     <div class="container">
-        <div class="section-title section-title--bordered" id="nonfiction">
-            <h2>NON-FICTION BOOKS</h2>
+        <div class="section-title section-title--bordered">
+            <h2>Our recommendations for {{user.username}}</h2>
         </div>
         <div class="product-slider product-list-slider slider-border-single-row sb-slick-slider"
             data-slick-setting='{
@@ -389,7 +389,7 @@ Home Slider Tab
                                     {"breakpoint":575, "settings": {"slidesToShow": 1} },
                                     {"breakpoint":490, "settings": {"slidesToShow": 1} }
                                 ]'>
-            {% for book in non_fiction_bookss %}
+            {% for book in recommend_bookss %}
             <div class="single-slide">
                 <div class="product-card card-style-list">
                     <div class="card-image">
@@ -571,8 +571,8 @@ CHILDREN’S BOOKS SECTION
 ===================================== -->
 <section class="section-margin">
     <div class="container">
-        <div class="section-title section-title--bordered">
-            <h2>ADVENTURE BOOKS</h2>
+        <div class="section-title section-title--bordered" id ="nonfiction">
+            <h2>NON-FICTION BOOKS</h2>
         </div>
         <div class="product-slider product-list-slider slider-border-single-row sb-slick-slider"
             data-slick-setting='{
@@ -586,7 +586,7 @@ CHILDREN’S BOOKS SECTION
                                     {"breakpoint":575, "settings": {"slidesToShow": 1} },
                                     {"breakpoint":490, "settings": {"slidesToShow": 1} }
                                 ]'>
-            {% for book in adventure_books %}
+            {% for book in non_fiction_bookss %}
             <div class="single-slide">
                 <div class="product-card card-style-list">
                     <div class="card-image">
@@ -611,6 +611,32 @@ CHILDREN’S BOOKS SECTION
                 </div>
             </div>
             {% endfor %}
+            {% for book in adventure_bookss %}
+            <div class="single-slide">
+                <div class="product-card card-style-list">
+                    <div class="card-image">
+                        <img src="{{ book.image_url }}" alt="{{ book.title }}" style="width:100px; height: 155px">
+                    </div>
+                    <div class="product-card--body">
+                        {% load rating_stars %}
+                        <div class="product-header">
+                            <a href="#" class="author" style="font-size: 14px;">
+                                {{ book.author }}
+                            </a>
+                            <h3><a href="{% url 'detail' book.pk %}">{{ book.title }}</a>
+                            </h3>
+                        </div> 
+                        <div class="star-rating">
+                            {% render_stars book.rating %}                            
+                        </div> 
+                        <div class="price-block">
+                            <span class="price" style="font-size: 22px; margin-top: 20px;">£{{ book.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
         </div>
     </div>
 </section>
