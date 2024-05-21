@@ -10,7 +10,7 @@ import json
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
-from .models import Order,OrderItem
+from .models import Order,OrderItem,Comment
 from .forms import OrderForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -23,11 +23,12 @@ from basket.basket import Basket
 from django.urls import reverse
 from django.views.generic import UpdateView, DeleteView
 from django.shortcuts import render, redirect
-from .models import Comment
+
 from .forms import CommentForm
 import pickle
 import pandas as pd
 import numpy as np
+from .bookrecommendation import update_clusters
 from django.utils.decorators import method_decorator
 from nltk.stem.porter import PorterStemmer
 ps= PorterStemmer()
@@ -333,3 +334,4 @@ class AdventureBooksListView(ListView):
     def get_queryset(self):
         # Lọc sách dựa trên thể loại 'Adventure'
         return Book.objects.filter(genres__icontains='Adventure')
+    

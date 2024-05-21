@@ -72,3 +72,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' %(self.book.title, self.user)
+
+class Cluster(models.Model):
+    name = models.CharField(max_length=100)
+    users = models.ManyToManyField(User)
+
+    def get_members(self):
+        return "\n".join([u.username for u in self.users.all()])

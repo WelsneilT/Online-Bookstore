@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from books.models import Book
 from django.db.models import Q
+from books.models import Comment,Cluster
+from books.bookrecommendation import update_clusters
+from django.contrib.auth.models import User
 import pickle
 import pandas as pd
 import numpy as np
@@ -52,9 +55,9 @@ def home(request):
         featured_products = Book.objects.filter(id__in=book_id_list)
     else:
         featured_products = Book.objects.filter(book_available=True)[10020:10040]
-
+    book_ids = user_recommendation_list(request)
     manga_books_id = [3984, 3032, 3371,  2051, 6067, 8953, 1542]
-
+    
     slider_books = Book.objects.filter(book_available=True)[406:412]
     new_arrivals = Book.objects.filter(book_available=True)[79:99]
     most_view_products = Book.objects.filter(book_available=True)[221:241]
@@ -79,8 +82,12 @@ def home(request):
     Q(genres__icontains='Horror') & Q(book_available=True))[510:520]
     magic_bookss = Book.objects.filter(
     Q(genres__icontains='Magic') & Q(book_available=True))[10:20]
-    non_fiction_bookss = Book.objects.filter(
+    
+    nonfiction_bookss = Book.objects.filter(
     Q(genres__icontains='Nonfiction') & Q(book_available=True))[10:17]
+
+    recommendbookss = Book.objects.filter(id__in = book_ids, book_available = True)
+
     romance_bookss = Book.objects.filter(
     Q(genres__icontains='Romance') & Q(book_available=True))[510:520]
     magic_harry_potter_books = Book.objects.filter(
@@ -95,7 +102,7 @@ def home(request):
         'most_view_products': most_view_products,
         'adventure_books': adventure_books,
         'special_offers': special_offers,
-        'adventure_bookss': adventure_bookss,
+        'non_fiction_bookss': nonfiction_bookss,
         'biography_books': biography_bookss,
         'drama_bookss' : drama_bookss,
         'fantasy_bookss' : fantasy_bookss ,
@@ -103,7 +110,7 @@ def home(request):
         'history_bookss' : history_bookss , 
         'horror_bookss' : horror_bookss ,
         'magic_bookss' :    magic_bookss,
-        'non_fiction_bookss' : non_fiction_bookss,
+        'recommend_bookss' : recommendbookss,
         'romance_bookss' :   romance_bookss ,
         'magic_harry_potter_books': magic_harry_potter_books,
         'special_edition_books': special_edition_books,
@@ -118,30 +125,35 @@ def shop_list(request):
     context = {'list_books': list_books}
     return render(request, 'html/shop-list.html', context)
 
-def basket_hover(request):
-    basket = Basket(request)
-    basket_json = []
-    total_price = 0
+@login_required
+def user_recommendation_list(request):
 
-    for item in basket.__iter__():
-    # Convert Decimal objects to strings
-        item['price'] = str(item['price'])
-        item['total_price'] = str(item['total_price'])
-    # Extract relevant information from Book objects
-        book_info = {
-            'id': item['product'].id,
-            'title': item['product'].title,
-            'author': item['product'].author,
-            'description': item['product'].description,
-            'price': float(item['product'].price),  # Convert to string if needed
-            'image_url': item['product'].image_url,
-            'book_available': item['product'].book_available,
-            'pk':item['product'].pk,
-            # Add other relevant fields as needed
-        }
-        item['product'] = book_info
+    # get request user reviewed wines
+    user_reviews = Comment.objects.filter(user_id=request.user.id)
+    user_reviews_book_ids = set(map(lambda x: x.book_id, user_reviews))
 
-        basket_json.append(item)
-    total_price = basket.get_total_price()  # Calculate total price
+    # get request user cluster name (just the first one righ now)
+    #try:
+     #   user_cluster_name = \
+      #      User.objects.get(id=request.user.id).cluster_set.first().name
+    #except: # if no cluster assigned for a user, update clusters
+    update_clusters()
+    user_cluster_name = User.objects.get(id=request.user.id).cluster_set.first().name
 
-    return render(request, 'home', {'basket': basket, 'total_price': total_price})
+    # get usernames for other memebers of the cluster
+    user_cluster_other_members = Cluster.objects.get(name=user_cluster_name).users.exclude(id=request.user.id).all()
+    other_members_ids = set(map(lambda x: x.id, user_cluster_other_members))
+
+    # get reviews by those users, excluding wines reviewed by the request user
+    other_users_reviews = \
+        Comment.objects.filter(user_id__in=other_members_ids) \
+            .exclude(book__id__in=user_reviews_book_ids)
+    other_users_reviews_book_ids = set(map(lambda x: x.book_id, other_users_reviews))
+
+    # then get a wine list including the previous IDs, order by rating
+    return other_users_reviews_book_ids
+    #book_list = sorted(
+     #   list(Book.objects.filter(id__in=other_users_reviews_book_ids)),
+      #  key=lambda x: x.rating,
+       # reverse=True
+    #)

@@ -1,45 +1,36 @@
-import pickle
-import pandas as pd
+from .models import Book,Comment,Cluster
+from django.contrib.auth.models import User
+from sklearn.cluster import KMeans
+from scipy.sparse import dok_matrix, csr_matrix
 import numpy as np
-from nltk.stem.porter import PorterStemmer
-ps= PorterStemmer()
-from sklearn.metrics.pairwise import cosine_similarity
-import sqlite3
-# Load the model from the .pkl file
-with open('model.pkl', 'rb') as file:
-    model = pickle.load(file)
-with open('vector.pkl', 'rb') as file:
-    vector = pickle.load(file)
-# Function to recommend similar books
-conn = sqlite3.connect('db.sqlite3')
-query = "SELECT * FROM books_book;"
-books = pd.read_sql_query(query, conn)
-conn.close()
-def recommend(book_title):
-    book_index = books[books['title'] == book_title].index[0]
-    similarity = cosine_similarity(vector)
-    distances = similarity[book_index]
-    # Get top 5 similar books (excluding the book itself)
-    similar_books_indices = np.argsort(distances)[::-1][1:7]
-    recommended_books = books.iloc[similar_books_indices][['title', 'author', 'description']]
-    return recommended_books
+def update_clusters():
+    num_comments = Comment.objects.count()
+    print (num_comments)
+    # update_step = ((num_comments/100)+1) * 5
+    update_step = 1
+    print (update_step)
+    if num_comments % update_step == 0: # using some magic numbers here, sorry...
+        # Create a sparse matrix from user comments
+        all_user_names = User.objects.values_list('id', flat=True)
+        all_book_ids = Comment.objects.values_list('book_id', flat=True)
+        num_users = len(all_user_names)
+        ratings_m = dok_matrix((num_users, max(all_book_ids)+1), dtype=np.float32)
+        for i in range(num_users): # each user corresponds to a row, in the order of all_user_names
+            user_comments = Comment.objects.filter(user_id=all_user_names[i])
+            for user_comment in user_comments:
+                ratings_m[i,user_comment.book_id] = user_comment.rating
 
-def stem_text(text):
-    return ' '.join([ps.stem(word) for word in text.split()])
+        # Perform kmeans clustering
+        k = int(num_users / 10) + 2
+        kmeans = KMeans(n_clusters=k)
+        clustering = kmeans.fit(ratings_m.tocsr())
 
-def semantic_search(query, books, tfidf_matrix, tfidf_vectorizer):
-    query = stem_text(query)
-    query_vector = tfidf_vectorizer.transform([query])
-    
-    # Calculate cosine similarity between query vector and document vectors
-    similarities = cosine_similarity(query_vector, tfidf_matrix)
-    ranked_indices = similarities.argsort()[0][::-1]  # Sort by descending order of similarity
-    print(similarities)
-    # Return ranked documents based on similarity
-    ranked_documents = books.iloc[ranked_indices]['title']
-    print(ranked_documents)
-    return ranked_indices
+        # Update clusters
+        Cluster.objects.all().delete()
+        new_clusters = {i: Cluster(name=i) for i in range(k)}
+        for cluster in new_clusters.values(): # clusters need to be saved before referring to users
+            cluster.save()
+        for i,cluster_label in enumerate(clustering.labels_):
+            new_clusters[cluster_label].users.add(User.objects.get(id=all_user_names[i]))
 
-# Test the recommendation function with a book title
-
-print(semantic_search('knights fighting , civil wars, thrones',books,vector,model))
+        print (new_clusters)
