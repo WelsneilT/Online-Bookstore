@@ -1,0 +1,17 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container" style="margin-bottom: 50px">
+    <h1>Inventory Prediction Chart</h1>
+    <img src="{% static 'admin/inventory_optimization.png' %}" alt="Revenue Prediction">
+    <form action="{% url 'update-inventory-chart' %}" method="post">
+        {% csrf_token %}
+                    
+        <button type="submit"  style="margin-left: 930px; margin-top:10px; width: 150px;height: 50px ; background-color:  #36696b; color: white">Cập nhật biểu đồ</button>
+    </form>
+</div>
+
+    
+{% endblock content %}
+

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, ShopBooksListView, AdventureBooksListView , BiographyBooksListView, DramaBooksListView, FantasyBooksListView, FictionBooksListView, HistoryBooksListView , HorrorBooksListView, MagicBooksListView, NonFictionBooksListView, RomanceBooksListView, admin_order_detail_view, checkout3, CommentUpdateView, CommentDeleteView, SemanticSearchResultsListView, revenue_chart_view, update_revenue_chart
+from .views import BooksListView, BooksDetailView, BookCheckoutView, paymentComplete, SearchResultsListView, ShopBooksListView, AdventureBooksListView , BiographyBooksListView, DramaBooksListView, FantasyBooksListView, FictionBooksListView, HistoryBooksListView , HorrorBooksListView, MagicBooksListView, NonFictionBooksListView, RomanceBooksListView, admin_order_detail_view, checkout3, CommentUpdateView, CommentDeleteView, SemanticSearchResultsListView, revenue_chart_view, update_revenue_chart, inventory_chart_view, update_inventory_chart
 
 urlpatterns = [
     path('list/', BooksListView.as_view(), name = 'list'),
@@ -24,5 +24,9 @@ urlpatterns = [
     path('edit-comment/<int:comment_id>/', CommentUpdateView.as_view(), name='edit_comment'),
     path('delete-comment/<int:comment_id>/', CommentDeleteView.as_view(), name='delete_comment'),
     path('admin/revenue-chart/', revenue_chart_view, name='revenue-chart'),
-    path('admin/update-revenue-chart/', update_revenue_chart, name='update-revenue-chart'), 
+    path('admin/update-revenue-chart/', update_revenue_chart, name='update-revenue-chart'),     
+    path('admin/inventory_chart', inventory_chart_view, name='inventory-chart'),
+    path('admin/update_inventory_chart/', update_inventory_chart, name='update-inventory-chart'),
+    
+    
 ]
