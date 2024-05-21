@@ -128,7 +128,7 @@ def shop_list(request):
 @login_required
 def user_recommendation_list(request):
 
-    # get request user reviewed wines
+    # get request user reviewed books
     user_reviews = Comment.objects.filter(user_id=request.user.id)
     user_reviews_book_ids = set(map(lambda x: x.book_id, user_reviews))
 
@@ -144,16 +144,11 @@ def user_recommendation_list(request):
     user_cluster_other_members = Cluster.objects.get(name=user_cluster_name).users.exclude(id=request.user.id).all()
     other_members_ids = set(map(lambda x: x.id, user_cluster_other_members))
 
-    # get reviews by those users, excluding wines reviewed by the request user
+    # get reviews by those users, excluding books reviewed by the request user
     other_users_reviews = \
         Comment.objects.filter(user_id__in=other_members_ids) \
             .exclude(book__id__in=user_reviews_book_ids)
     other_users_reviews_book_ids = set(map(lambda x: x.book_id, other_users_reviews))
 
-    # then get a wine list including the previous IDs, order by rating
+    # then get a book list including the previous IDs, order by rating
     return other_users_reviews_book_ids
-    #book_list = sorted(
-     #   list(Book.objects.filter(id__in=other_users_reviews_book_ids)),
-      #  key=lambda x: x.rating,
-       # reverse=True
-    #)
