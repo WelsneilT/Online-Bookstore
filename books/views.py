@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
 from books.inventory import simulated_annealing 
 from .models import Book, Order
 from django.urls import reverse_lazy
@@ -218,10 +221,35 @@ def checkout3(request):
             order_id = new_order.pk
             for item in basket:
                 OrderItem.objects.create(order_id=order_id, product=item['product'], price=item['price'], quantity=item['qty']) 
+            user = request.user
+            orders = Order.objects.filter(user_id = user.id)
+            orders = list(orders)
+            print(orders)
+            customer_name = orders[-1].first_name
+            customer_email = orders[-1].email
+            order_number = orders[-1].id
+            order_date = orders[-1].created_at
+            order_items = orders[-1].user_id
+            order_total = orders[-1].total_price
+            print(order_total)
+            subject = 'Order Confirmation'
+            html_message = render_to_string('confirm.html', {
+            'customer_name': customer_name,
+            'order_number': order_number,
+            'order_date': order_date,
+            'order_items': order_items,
+            'order_total': order_total,
+            'year': datetime.now().year,
+            })
+            plain_message = strip_tags(html_message)
+            from_email = settings.DEFAULT_FROM_EMAIL
+            to = customer_email
+            send_mail(subject, plain_message, from_email, [to], html_message=html_message)
             return redirect('basket:basket_ordercomplete2')  # Redirect to a confirmation page, etc.
         
         else:
             print("Form errors:", form.errors)
+        
     else:
         form = OrderForm()
     return render(request, 'checkout2.html', {'form': form})

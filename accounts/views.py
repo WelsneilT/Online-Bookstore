@@ -196,4 +196,4 @@ class PasswordResetView(FormView):
         # Trả về URL của trang cảm ơn sau khi yêu cầu đã được xử lý thành công
         return reverse_lazy('password_reset_done')
 
-    
+  

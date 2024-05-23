@@ -27,6 +27,6 @@ urlpatterns = [
     path('admin/update-revenue-chart/', update_revenue_chart, name='update-revenue-chart'),     
     path('admin/inventory_chart', inventory_chart_view, name='inventory-chart'),
     path('admin/update_inventory_chart/', update_inventory_chart, name='update-inventory-chart'),
-    
+
     
 ]
