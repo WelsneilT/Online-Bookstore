@@ -8,10 +8,12 @@ from django.contrib.auth.models import User
 import pickle
 import pandas as pd
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
 import sqlite3
-
+import random
 ps= PorterStemmer()
 
 # Load the model from the .pkl file
@@ -39,7 +41,25 @@ def get_book_ids_of_current_user(request):
 
     # Filter Book objects in the current user's wishlist
     wishlist_books = Book.objects.filter(users_wishlist=current_user)
-
+    '''tfidf_vectorizer = TfidfVectorizer(max_features=500)  # You can adjust max_features based on your dataset size
+    data = []
+    num_books = 0
+    for book in wishlist_books:
+            data.append({
+                'id':book.id,
+                'description': book.description,
+            })
+            num_books+=1
+    books = pd.DataFrame(data)
+    X = tfidf_vectorizer.fit_transform(books['description'])
+    k = int( num_books/ 10) + 2
+    kmeans = KMeans(k, random_state=42)
+    cluster_labels = kmeans.fit_predict(X)
+    books['cluster_labels'] = cluster_labels
+    book_ids = []
+    for i in (0,k):
+        id = books[books['cluster_labels'] == i]['id'].iloc[0]
+        book_ids.append(id)'''
     # Access book_id values from the join table (book_user_wishlist)
     book_ids = list(wishlist_books.values_list('id', flat=True))
 
@@ -48,8 +68,11 @@ def get_book_ids_of_current_user(request):
 @login_required
 def home(request):
     user_wishlist_id = get_book_ids_of_current_user(request)
-    if len(user_wishlist_id) != 0 and user_wishlist_id[-1] < 10000 :
-        list = recommend(user_wishlist_id[-1])
+    print(user_wishlist_id)
+    random_id = random.randint(0,len(user_wishlist_id)-1)
+    if user_wishlist_id[random_id] < 10000:
+        id = user_wishlist_id[random_id]
+        list = recommend(id)
         print(list)
         book_id_list = [int(id + 1) for id in list]    
         featured_products = Book.objects.filter(id__in=book_id_list)

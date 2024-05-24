@@ -6,10 +6,9 @@ import numpy as np
 def update_clusters():
     num_comments = Comment.objects.count()
     print (num_comments)
-    # update_step = ((num_comments/100)+1) * 5
     update_step = 1
     print (update_step)
-    if num_comments % update_step == 0: # using some magic numbers here, sorry...
+    if num_comments % update_step == 0: 
         # Create a sparse matrix from user comments
         all_user_names = User.objects.values_list('id', flat=True)
         all_book_ids = Comment.objects.values_list('book_id', flat=True)
