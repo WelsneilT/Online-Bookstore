@@ -207,6 +207,62 @@ def semantic_search(query, books, tfidf_matrix, tfidf_vectorizer):
     print(ranked_indices[0:101])
     return ranked_indices[0:101]
 
+import logging
+from django.core.mail import get_connection, send_mail
+from django.conf import settings
+
+logger = logging.getLogger(__name__)
+
+def send_custom_email(subject, plain_message, from_email, recipient_list, html_message=None, use_mailtrap=False):
+    # Select the email configuration based on use_mailtrap flag
+    if use_mailtrap:
+        email_backend = 'django.core.mail.backends.smtp.EmailBackend'
+        email_host = 'sandbox.smtp.mailtrap.io'
+        email_port = 2525
+        email_use_tls = True
+        email_host_user = '4534b44b787519'
+        email_host_password = 'a5add40522b065'
+    else:
+        email_backend = 'django.core.mail.backends.smtp.EmailBackend'
+        email_host = 'smtp.gmail.com'
+        email_port = 587
+        email_use_tls = True
+        email_host_user = settings.EMAIL_HOST_USER
+        email_host_password = settings.EMAIL_HOST_PASSWORD
+
+    try:
+        # Establish connection based on selected settings
+        connection = get_connection(
+            backend=email_backend,
+            host=email_host,
+            port=email_port,
+            username=email_host_user,
+            password=email_host_password,
+            use_tls=email_use_tls
+        )
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=from_email,
+            recipient_list=recipient_list,
+            html_message=html_message,
+            connection=connection
+        )
+    except Exception as e:
+        logger.error("Error sending email: %s", str(e))
+        raise
+import logging
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from datetime import datetime
+from .forms import OrderForm
+from .models import Order, OrderItem
+
+
+logger = logging.getLogger(__name__)
+
 @login_required
 def checkout3(request):
     basket = Basket(request)
@@ -216,40 +272,43 @@ def checkout3(request):
             new_order = form.save(commit=False)
             new_order.user = request.user  # Set the user
             new_order.success = False
-            print("Total Price of the Order:", new_order.total_price)  # Print the total price
             new_order.save()
             order_id = new_order.pk
             for item in basket:
-                OrderItem.objects.create(order_id=order_id, product=item['product'], price=item['price'], quantity=item['qty']) 
+                OrderItem.objects.create(order_id=order_id, product=item['product'], price=item['price'], quantity=item['qty'])
+
             user = request.user
-            orders = Order.objects.filter(user_id = user.id)
-            orders = list(orders)
-            print(orders)
-            customer_name = orders[-1].first_name
-            customer_email = orders[-1].email
-            order_number = orders[-1].id
-            order_date = orders[-1].created_at
-            order_items = orders[-1].user_id
-            order_total = orders[-1].total_price
-            print(order_total)
+            latest_order = Order.objects.filter(user_id=user.id).order_by('-created_at').first()
+
+            customer_name = latest_order.first_name
+            customer_email = latest_order.email
+            order_number = latest_order.id
+            order_date = latest_order.created_at
+            order_items = OrderItem.objects.filter(order_id=order_number)
+            order_total = latest_order.total_price
+
             subject = 'Order Confirmation'
-            html_message = render_to_string('confirm.html', {
-            'customer_name': customer_name,
-            'order_number': order_number,
-            'order_date': order_date,
-            'order_items': order_items,
-            'order_total': order_total,
-            'year': datetime.now().year,
-            })
-            plain_message = strip_tags(html_message)
-            from_email = settings.DEFAULT_FROM_EMAIL
-            to = customer_email
-            send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+            try:
+                html_message = render_to_string('confirm.html', {
+                    'customer_name': customer_name,
+                    'order_number': order_number,
+                    'order_date': order_date,
+                    'order_items': order_items,
+                    'order_total': order_total,
+                    'year': datetime.now().year,
+                })
+                plain_message = strip_tags(html_message)
+                from_email = settings.DEFAULT_FROM_EMAIL
+                to = customer_email
+                send_custom_email(subject, plain_message, from_email, [to], html_message=html_message, use_mailtrap=False)
+            except Exception as e:
+                logger.error("Failed to send email: %s", str(e))
+                # Optionally handle the error (e.g., show a message to the user)
+
+
             return redirect('basket:basket_ordercomplete2')  # Redirect to a confirmation page, etc.
-        
         else:
-            print("Form errors:", form.errors)
-        
+            logger.error("Form errors: %s", form.errors)
     else:
         form = OrderForm()
     return render(request, 'checkout2.html', {'form': form})

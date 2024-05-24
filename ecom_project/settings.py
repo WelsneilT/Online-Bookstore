@@ -166,3 +166,19 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bestbookever633@gmail.com'  # Thay bằng địa chỉ email của bạn
 EMAIL_HOST_PASSWORD = 'hekf sqlv juac dtrc'  # Thay bằng mật khẩu của bạn
+DEFAULT_FROM_EMAIL = 'bestbookever633@gmail.com'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
