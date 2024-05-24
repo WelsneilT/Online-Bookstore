@@ -69,13 +69,16 @@ def get_book_ids_of_current_user(request):
 def home(request):
     user_wishlist_id = get_book_ids_of_current_user(request)
     print(user_wishlist_id)
-    random_id = random.randint(0,len(user_wishlist_id)-1)
-    if user_wishlist_id[random_id] < 10000:
-        id = user_wishlist_id[random_id]
-        list = recommend(id)
-        print(list)
-        book_id_list = [int(id + 1) for id in list]    
-        featured_products = Book.objects.filter(id__in=book_id_list)
+    if len(user_wishlist_id)!=0 :
+        random_id = random.randint(0,len(user_wishlist_id)-1)
+        if user_wishlist_id[random_id] < 10000:
+            id = user_wishlist_id[random_id]
+            list = recommend(id)
+            print(list)
+            book_id_list = [int(id + 1) for id in list]    
+            featured_products = Book.objects.filter(id__in=book_id_list)
+        else:
+            featured_products = Book.objects.filter(book_available=True)[10010:10020]
     else:
         featured_products = Book.objects.filter(book_available=True)[10020:10040]
     book_ids = user_recommendation_list(request)
