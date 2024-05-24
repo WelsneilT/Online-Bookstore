@@ -69,26 +69,26 @@
 												{% for item in orders %}
 												{% if item.success is False and item.canceled_reason == '' %}
 														<li>
-															<span>Orders  at {{ item.created_at }} </span>
-															<span> Status: On going</span>
-															<span> Order notes: {{ item.order_notes }}</span>
-															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
+															<span style= "padding-right: 20px">Orders  at {{ item.created_at }} </span>
+															<span style= "padding-right: 20px"> Status: On going</span>					
+															<span style= "padding-right: 20px"> Order notes: {{ item.order_notes }}</span>
+															<span> <a href="{% url 'user_orders' item.id  %}" style="color: #36696b;">View details</a> </span>
 														</li>
 												{% endif %}
 												{% if item.success is False and item.canceled_reason != '' %}
 														<li>
-															<span>Orders  at {{ item.created_at }} </span>
-															<span> Status: Canceled</span>
-															<span> Cancel reason: {{ item.canceled_reason }}</span>
-															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
+															<span style= "padding-right: 20px">Orders  at {{ item.created_at }} </span>
+															<span style= "padding-right: 20px"> Status: Canceled</span>
+															<span style= "padding-right: 20px"> Cancel reason: {{ item.canceled_reason }}</span>
+															<span style= "padding-right: 20px"> <a href="{% url 'user_orders' item.id  %}" style="color: #36696b;">View details</a> </span>
 														</li>
 												{% endif %}
 												{% if item.success is True %}
 														<li>
-															<span>Orders  at {{ item.created_at }} </span>
-															<span> Status: Done</span>
-															<span> Order notes: {{ item.order_notes }}</span>
-															<span> <a href="{% url 'user_orders' item.id  %}">View details</a> </span>
+															<span style= "padding-right: 20px">Orders  at {{ item.created_at }} </span>
+															<span style= "padding-right: 20px"> Status: Done</span>
+															<span style= "padding-right: 20px"> Order notes: {{ item.order_notes }}</span>
+															<span> <a href="{% url 'user_orders' item.id  %}" style="color: #36696b;">View details</a> </span>
 														</li>
 												{% endif %}
 												{% empty %}
