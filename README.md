@@ -7,8 +7,8 @@
   + Docker Compose (nếu bạn sử dụng Docker Compose)
 
 - Để pull và sử dụng Docker Image sử dụng các lệnh sau:
-  + docker pull welsneil/ecom_project:latest
-  + docker run -p 8000:8000 welsneil/ecom_project:latest
+  + docker pull welsneil/online_bookstore:latest
+  + docker run -p 8000:8000 welsneil/online_bookstore:latest
   + Sau đó vào trình duyệt và gõ link: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
   + https://hub.docker.com/r/welsneil/online_bookstore
 
