@@ -42,5 +42,8 @@
 
 ## Truy cập link dưới vào trang người quản lý bán hàng
 - http://127.0.0.1:8000/admin/
+- Tài khoản admin: tongduytan1
+- Mật khẩu admin: 12345678@.
+- Nếu muốn thêm tài khoản admin: python manage.py createsuperuser
 
 
