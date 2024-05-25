@@ -24,14 +24,14 @@
 
 ## Technologies Used
 
-- **Frontend**: html
+- **Frontend**: html, css, js
 - **Backend**: django framework
 - **Database**:SQLite
-- **Machine learning**: tf-idf, counter vectorizer, k-means cluster
+- **Machine learning**: tf-idf, counter vectorizer, k-means cluster, linear regression, simulated annealing
 - **API**:google translate, kommunicate, web speech to text
 
 ## SET UP môi trường
-
+- Chạy toàn bộ file: book_recommendation_system.ipynb, bookrecommendation.py, revenue.py, inventory.py để lấy được file pkl
 - pipenv shell
 - pipenv install django
 - python manage.py check
