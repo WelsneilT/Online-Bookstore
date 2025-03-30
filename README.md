@@ -1,5 +1,8 @@
 # Online Book Store
 - Chào mừng đến với Online Book Store! Đây là một sản phẩm cung cấp dịch vụ tiện nghi nhất cho người đọc khám phá, tìm kiếm sách từ mọi loại chủ đề.
+  
+[Video demo](https://youtu.be/DYGpS2ubGcg)
+
 
 # Docker
 - Yêu cầu cài đặt:
